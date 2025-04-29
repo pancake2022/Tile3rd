@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "345579615501",
+    "project_id": "cookingparty-fd3ac",
+    "storage_bucket": "cookingparty-fd3ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345579615501:android:1db500339b738e85b92c44",
+        "android_client_info": {
+          "package_name": "com.xjoy.cookingparty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345579615501-6aooebclkv3etr81c9ingir8bmej5gvh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRCSGJYRzL61filMseYRVTjOLTKB5RA2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345579615501-6aooebclkv3etr81c9ingir8bmej5gvh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "345579615501-0a385mog8pej00fse5fife8vgnc2u6rt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.xjoy.cookingparty"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

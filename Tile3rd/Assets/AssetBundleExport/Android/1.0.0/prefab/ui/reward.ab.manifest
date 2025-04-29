@@ -1,0 +1,93 @@
+ManifestFileVersion: 0
+CRC: 978574268
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 02000593fd2f011fc2750fa98faf92a8
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 6231e592d2d37dd6fda925c6c712faa4
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 02000593fd2f011fc2750fa98faf92a8
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 82
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.RectOffset
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.AnimationTriggers
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.Button/ButtonClickedEvent
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.ColorBlock
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.FontData
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.Navigation
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.SpriteState
+Assets:
+- Assets/ExtraResources/Prefab/UI/Reward/animation_item.anim
+- Assets/ExtraResources/Prefab/UI/Reward/animation_levelwin.anim
+- Assets/ExtraResources/Prefab/UI/Reward/animation_noADS.anim
+- Assets/ExtraResources/Prefab/UI/Reward/UI_Reward_lovelevel.prefab
+- Assets/ExtraResources/Prefab/UI/Reward/reward_item.controller
+- Assets/ExtraResources/Prefab/UI/Reward/reward_noADS.controller
+- Assets/ExtraResources/Prefab/UI/Reward/Level_win_test.controller
+- Assets/ExtraResources/Prefab/UI/Reward/UI_Reward_levelwin.prefab
+- Assets/ExtraResources/Prefab/UI/Reward/UI_Reward_Item.prefab
+- Assets/ExtraResources/Prefab/UI/Reward/animation_levelwin_test.anim
+- Assets/ExtraResources/Prefab/UI/Reward/UI_Reward_ADS.prefab
+- Assets/ExtraResources/Prefab/UI/Reward/UI_Reward_shop_noADS.prefab
+- Assets/ExtraResources/Prefab/UI/Reward/Level_win.controller
+- Assets/ExtraResources/Prefab/UI/Reward/UI_Reward_shop_item.prefab
+Dependencies:
+- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/audio/sound.ab
+- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab

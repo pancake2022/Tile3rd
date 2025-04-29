@@ -1,0 +1,55 @@
+# Unity 临时文件和构建
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+
+# Unity 商店工具包（如果你用了）
+Assets/AssetStoreTools*
+
+# VS 相关
+.vs/
+ExportedObj/
+.consulo/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.opendb
+
+# Unity 自动生成的 meta 文件
+*.pidb.meta
+*.pdb.meta
+
+# Unity 崩溃日志
+sysinfo.txt
+
+# 构建文件
+*.apk
+*.unitypackage
+
+# 无用系统文件
+.DS_Store
+*.swp
+
+# VSCode
+.vscode/
+
+# Excel 临时文件
+~$*
+
+# 项目定制资源文件夹（已通用化，不含项目名）
+Assets/AssetBundleExport*
+Assets/StreamingAssets*
+Assets/GeneratedLocalRepo*
+
+# IDEA 工程文件
+.idea/

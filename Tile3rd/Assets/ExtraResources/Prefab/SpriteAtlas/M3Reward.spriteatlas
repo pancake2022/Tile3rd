@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M3Reward
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 12235a57cfbb74b0581387c8d5d6d5bf, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 0481a45003a184bec9c2685ea653592a: 21300000
+    - 4161aa212f8c1428ebbf8e38441ea0b4: 21300000
+    - 45f8c331403274e6a869763eac08d3bd: 21300000
+    - bb146282fc9a443e7adcb427924b6380: 21300000
+    - 9c8a8494896874aeea1072d0b1033995: 21300000
+    - 9a7dca15db38f4385929f3de3cfa24c3: 21300000
+    - e435e2a50bd474f93847184935f059fe: 21300000
+    - eac44247f935149e49a9a70d3c953bca: 21300000
+    - 2a16bc28c1d2d4752a149a68661a7c4a: 21300000
+    - 685e4398e78244da49add119d6ffd99b: 21300000
+    - f54e6ed865eb844a2b43bc79a6476238: 21300000
+    - 4d060c293cf5b482bad4874d9d8f4ec6: 21300000
+    - 5f87ef99a03684671b293c5214158686: 21300000
+    - de7d10b9c1fb545f0ab6c10e448a2815: 21300000
+    - f5cf10d90d3ad432e8631c87b540889f: 21300000
+    - 00c74d9cb6ac44adaae22166001be53b: 21300000
+    - 086bf40dcc46541cca33abeb5ecebf4b: 21300000
+    - 155f20ed9363f45de966249433bc20a5: 21300000
+    - bfbcaced64375488da2147a90a6e1eca: 21300000
+    - f61d8d0f723fc4375935867c558f6fee: 21300000
+    - c53f471f4fa12410cb790c16610a124a: 21300000
+    - 75c717ef51247467fa8b3a6bad96e662: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 0481a45003a184bec9c2685ea653592a, type: 3}
+  - {fileID: 21300000, guid: 4161aa212f8c1428ebbf8e38441ea0b4, type: 3}
+  - {fileID: 21300000, guid: 45f8c331403274e6a869763eac08d3bd, type: 3}
+  - {fileID: 21300000, guid: bb146282fc9a443e7adcb427924b6380, type: 3}
+  - {fileID: 21300000, guid: 9c8a8494896874aeea1072d0b1033995, type: 3}
+  - {fileID: 21300000, guid: 9a7dca15db38f4385929f3de3cfa24c3, type: 3}
+  - {fileID: 21300000, guid: e435e2a50bd474f93847184935f059fe, type: 3}
+  - {fileID: 21300000, guid: eac44247f935149e49a9a70d3c953bca, type: 3}
+  - {fileID: 21300000, guid: 2a16bc28c1d2d4752a149a68661a7c4a, type: 3}
+  - {fileID: 21300000, guid: 685e4398e78244da49add119d6ffd99b, type: 3}
+  - {fileID: 21300000, guid: f54e6ed865eb844a2b43bc79a6476238, type: 3}
+  - {fileID: 21300000, guid: 4d060c293cf5b482bad4874d9d8f4ec6, type: 3}
+  - {fileID: 21300000, guid: 5f87ef99a03684671b293c5214158686, type: 3}
+  - {fileID: 21300000, guid: de7d10b9c1fb545f0ab6c10e448a2815, type: 3}
+  - {fileID: 21300000, guid: f5cf10d90d3ad432e8631c87b540889f, type: 3}
+  - {fileID: 21300000, guid: 00c74d9cb6ac44adaae22166001be53b, type: 3}
+  - {fileID: 21300000, guid: 086bf40dcc46541cca33abeb5ecebf4b, type: 3}
+  - {fileID: 21300000, guid: 155f20ed9363f45de966249433bc20a5, type: 3}
+  - {fileID: 21300000, guid: bfbcaced64375488da2147a90a6e1eca, type: 3}
+  - {fileID: 21300000, guid: f61d8d0f723fc4375935867c558f6fee, type: 3}
+  - {fileID: 21300000, guid: c53f471f4fa12410cb790c16610a124a, type: 3}
+  - {fileID: 21300000, guid: 75c717ef51247467fa8b3a6bad96e662, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - icon_main_bloombuff
+  - cat_claw
+  - icon_shop_noADS
+  - icon_game_bloom
+  - icon_game_delete
+  - tile_03
+  - icon_tag
+  - 00_2
+  - icon_chest_1
+  - tile_04
+  - tile_01
+  - icon_game_back
+  - e00
+  - icon_main_videoreward
+  - icon_flower
+  - icon_heart
+  - icon_shop_item
+  - icon_main_bundle
+  - 00_1
+  - icon_game_change
+  - tile_02
+  - icon_game_life
+  m_RenderDataMap: {}
+  m_Tag: M3Reward
+  m_IsVariant: 0

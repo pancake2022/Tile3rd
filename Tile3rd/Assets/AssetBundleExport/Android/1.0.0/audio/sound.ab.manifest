@@ -1,0 +1,41 @@
+ManifestFileVersion: 0
+CRC: 29428797
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2c51ebbd2430e468fe6b053dc31db1ab
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 2c51ebbd2430e468fe6b053dc31db1ab
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/ExtraResources/Audio/Sound/story_bike.wav
+- Assets/ExtraResources/Audio/Sound/sound_chest_appear.wav
+- Assets/ExtraResources/Audio/Sound/sound_level_failed.wav
+- Assets/ExtraResources/Audio/Sound/story_putdown_1.wav
+- Assets/ExtraResources/Audio/Sound/sound_panel_closing.wav
+- Assets/ExtraResources/Audio/Sound/sound_item_click.wav
+- Assets/ExtraResources/Audio/Sound/sound_level_win.wav
+- Assets/ExtraResources/Audio/Sound/sound_tile_break.wav
+- Assets/ExtraResources/Audio/Sound/story_curtain.wav
+- Assets/ExtraResources/Audio/Sound/story_getcoin.wav
+- Assets/ExtraResources/Audio/Sound/story_dog.wav
+- Assets/ExtraResources/Audio/Sound/sound_button_click.wav
+- Assets/ExtraResources/Audio/Sound/sound_panel_opening.wav
+- Assets/ExtraResources/Audio/Sound/story_wood.wav
+- Assets/ExtraResources/Audio/Sound/sound_chest_open.wav
+- Assets/ExtraResources/Audio/Sound/sound_bird_1.wav
+- Assets/ExtraResources/Audio/Sound/story_pumpking.wav
+- Assets/ExtraResources/Audio/Sound/sound_spend_coins.wav
+- Assets/ExtraResources/Audio/Sound/story_putdown_2.wav
+- Assets/ExtraResources/Audio/Sound/story_flower.wav
+- Assets/ExtraResources/Audio/Sound/sound_bird_2.wav
+- Assets/ExtraResources/Audio/Sound/sound_tile_click.wav
+Dependencies: []

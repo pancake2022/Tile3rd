@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+CRC: 1753352079
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 17e49f7bd167cec0f54e9334201a0ff7
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 6bcc7c11022072c91e179e9144f7fc0e
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 17e49f7bd167cec0f54e9334201a0ff7
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: ae26126d0071d4352b824e123d5fef08, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Assembly-CSharp
+  ClassName: CSFramework.SpriteAtlasConfigItem
+Assets:
+- Assets/ExtraResources/SpriteAtlas/Config/SpriteAtlasConfig.asset
+Dependencies: []

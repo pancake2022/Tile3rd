@@ -1,0 +1,268 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acade273e8b3942c7971e3c48b0ca8d4, type: 3}
+  m_Name: AssetVersionFile
+  m_EditorClassIdentifier: 
+  LoadFromAssetBundle: 1
+  PlatformConfigList:
+  - PlatformName: Release
+    ResourceUrl: https://d3jerfr8v9009k.cloudfront.net/ap2/prod
+    Version: 1.0.0
+    AssetBundleFlowShellPath: BuildTools/release_push_assetbundle.sh
+  - PlatformName: Debug
+    ResourceUrl: https://d3jerfr8v9009k.cloudfront.net/ap2/dev
+    Version: 1.0.0
+    AssetBundleFlowShellPath: BuildTools/debug_push_assetbundle.sh
+  - PlatformName: Test
+    ResourceUrl: https://d3jerfr8v9009k.cloudfront.net/ap2/test
+    Version: 1.0.0
+    AssetBundleFlowShellPath: BuildTools/test_push_assetbundle.sh
+  PlatformIndex: 1
+  AssetConfig:
+    ItemList:
+    - Path: 
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Audio
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 1
+      IsUploadRawResource: 0
+    - Path: Audio/Music
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Audio/Sound
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Config
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 1
+      IsUploadRawResource: 0
+    - Path: Config/Common
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Config/LocalizeConfig
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Config/M3
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Config/M3/Panel
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/Scene
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/SpriteAtlas
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/Animator
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/Animator/Cat
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/Animator/FlyTips
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/Animator/LevelWin
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/Animator/MakeOver01
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/Animator/Makeover
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/Animator/UI
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/DailyTask
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/DailyTask_FindCat
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/Game
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/Home
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/M3
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/M3Editor
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/MakeOver
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/MakeOverLevels
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 1
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/MakeOverLevels/00_bg
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/MakeOverLevels/01
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/MakeOverLevels/02
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/MakeOverLevels/03
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/MakeOverLevels/04
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/MakeOverLevels/05
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/MakeOverLevels/101
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/Old
+      InPackage: 0
+      IsPackAssetBundle: 0
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/Old/Story
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/Old/Story/Animation
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/Old/animation
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/Panel
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/Reward
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/Shop
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: Prefab/UI/Template
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: SpriteAtlas
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 1
+      IsUploadRawResource: 0
+    - Path: SpriteAtlas/Config
+      InPackage: 1
+      IsPackAssetBundle: 1
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: TempResources
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+    - Path: TempResources/t4json
+      InPackage: 1
+      IsPackAssetBundle: 0
+      IsPackAllChild: 0
+      IsUploadRawResource: 0
+  AssetBundlePW: dB4vA9tL5hC3nV8a
+  SpriteAtlasConfigPath: SpriteAtlas/Config/SpriteAtlasConfig

@@ -1,0 +1,76 @@
+ManifestFileVersion: 0
+CRC: 343327836
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 5e42ec8a17dac1773cf1ff9dc0436486
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c66b58e8761d1089d9c79e865ac06040
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 5e42ec8a17dac1773cf1ff9dc0436486
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 61
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d704fcf120b884bed9c4b651c7a9fb51, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.AnimationTriggers
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.Button/ButtonClickedEvent
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.ColorBlock
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.Navigation
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.SpriteState
+Assets:
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/04_4.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/00_7.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/02_1.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/05_2.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/00_1.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/04_2.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/00_3.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/00_5.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/03_1.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/00_6.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/04_3.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/01_1.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/00_2.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/04_1.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/05_1.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/03_2.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/00_4.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/01/06_1.prefab
+Dependencies:
+- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab

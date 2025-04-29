@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae26126d0071d4352b824e123d5fef08, type: 3}
+  m_Name: SpriteAtlasConfig
+  m_EditorClassIdentifier: 
+  ItemList:
+  - AtlasName: M3BackGame
+    DirectoryPath: Prefab/SpriteAtlas
+  - AtlasName: M3BackStory
+    DirectoryPath: Prefab/SpriteAtlas
+  - AtlasName: M3MakeOver
+    DirectoryPath: Prefab/SpriteAtlas
+  - AtlasName: M3Reward
+    DirectoryPath: Prefab/SpriteAtlas
+  - AtlasName: M3Tile01
+    DirectoryPath: Prefab/SpriteAtlas
+  - AtlasName: M3Tile02
+    DirectoryPath: Prefab/SpriteAtlas
+  - AtlasName: M3Tile03
+    DirectoryPath: Prefab/SpriteAtlas
+  - AtlasName: M3Tile04
+    DirectoryPath: Prefab/SpriteAtlas

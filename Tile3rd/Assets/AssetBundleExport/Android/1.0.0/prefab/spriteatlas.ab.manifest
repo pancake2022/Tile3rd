@@ -1,0 +1,31 @@
+ManifestFileVersion: 0
+CRC: 2482829658
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: ae1b0386669ec03bda18d90ad058e90a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 033fafe2c9f6c610c3a734393882fd4c
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: ae1b0386669ec03bda18d90ad058e90a
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/ExtraResources/Prefab/SpriteAtlas/M3Tile02.spriteatlas
+- Assets/ExtraResources/Prefab/SpriteAtlas/M3Tile04.spriteatlas
+- Assets/ExtraResources/Prefab/SpriteAtlas/M3Tile01.spriteatlas
+- Assets/ExtraResources/Prefab/SpriteAtlas/M3Tile03.spriteatlas
+- Assets/ExtraResources/Prefab/SpriteAtlas/M3BackGame.spriteatlas
+- Assets/ExtraResources/Prefab/SpriteAtlas/M3MakeOver.spriteatlas
+- Assets/ExtraResources/Prefab/SpriteAtlas/M3BackStory.spriteatlas
+- Assets/ExtraResources/Prefab/SpriteAtlas/M3Reward.spriteatlas
+Dependencies: []

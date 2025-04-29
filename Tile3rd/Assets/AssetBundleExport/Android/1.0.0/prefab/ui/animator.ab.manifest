@@ -1,0 +1,86 @@
+ManifestFileVersion: 0
+CRC: 2325541660
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 89f8314155fb3791408814eb4e9f7939
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ee737d6afc00fec93c1987e485ffa6bd
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 89f8314155fb3791408814eb4e9f7939
+HashAppended: 0
+ClassTypes:
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/ExtraResources/Prefab/UI/Animator/Cat/Cat_blink.anim
+- Assets/ExtraResources/Prefab/UI/Animator/MakeOver01/Cat_shake.anim
+- Assets/ExtraResources/Prefab/UI/Animator/FlyTips/Fly_signtip.anim
+- Assets/ExtraResources/Prefab/UI/Animator/MakeOver01/Cat_tip.anim
+- Assets/ExtraResources/Prefab/UI/Animator/LevelWin/Cat_jump_situ.controller
+- Assets/ExtraResources/Prefab/UI/Animator/UI/UI_spin.anim
+- Assets/ExtraResources/Prefab/UI/Animator/LevelWin/TileRandom_Change.anim
+- Assets/ExtraResources/Prefab/UI/Animator/UI/UI_shake.controller
+- Assets/ExtraResources/Prefab/UI/Animator/MakeOver01/Cat_default.anim
+- Assets/ExtraResources/Prefab/UI/Animator/LevelWin/Cat_run.controller
+- Assets/ExtraResources/Prefab/UI/Animator/Cat/Cat_blink_off.controller
+- Assets/ExtraResources/Prefab/UI/Animator/Cat/FlyHeart.anim
+- Assets/ExtraResources/Prefab/UI/Animator/Cat/Cat_claw_title.anim
+- Assets/ExtraResources/Prefab/UI/Animator/UI/UI_spin.controller
+- Assets/ExtraResources/Prefab/UI/Animator/LevelWin/level_win_cat.controller
+- Assets/ExtraResources/Prefab/UI/Animator/LevelWin/Cat_jump_situ.anim
+- Assets/ExtraResources/Prefab/UI/Animator/UI/Bubble_dailytaskhint.controller
+- Assets/ExtraResources/Prefab/UI/Animator/MakeOver01/Cat_jump.anim
+- Assets/ExtraResources/Prefab/UI/Animator/MakeOver01/Cat_use.anim
+- Assets/ExtraResources/Prefab/UI/Animator/LevelWin/Cat_run.anim
+- Assets/ExtraResources/Prefab/UI/Animator/Makeover/Makeover_down.anim
+- Assets/ExtraResources/Prefab/UI/Animator/UI/UI_stand.anim
+- Assets/ExtraResources/Prefab/UI/Animator/UI/Bubble_think.anim
+- Assets/ExtraResources/Prefab/UI/Animator/MakeOver01/Cat_stay.controller
+- Assets/ExtraResources/Prefab/UI/Animator/Makeover/Makeover_anim.controller
+- Assets/ExtraResources/Prefab/UI/Animator/UI/UI_logo.controller
+- Assets/ExtraResources/Prefab/UI/Animator/LevelWin/level_win_cat.anim
+- Assets/ExtraResources/Prefab/UI/Animator/UI/UI_shake.anim
+- Assets/ExtraResources/Prefab/UI/Animator/MakeOver01/Cat_jump_situ.anim
+- Assets/ExtraResources/Prefab/UI/Animator/Cat/Cat_blink_off.anim
+- Assets/ExtraResources/Prefab/UI/Animator/Makeover/Makeover_blink.anim
+- Assets/ExtraResources/Prefab/UI/Animator/Makeover/Makeover_tip.anim
+- Assets/ExtraResources/Prefab/UI/Animator/FlyTips/Fly_heart.anim
+- Assets/ExtraResources/Prefab/UI/Animator/UI/Bubble_dailytaskhint.anim
+- Assets/ExtraResources/Prefab/UI/Animator/Cat/Cat_claw_title.controller
+- Assets/ExtraResources/Prefab/UI/Animator/MakeOver01/Cat_down.anim
+- Assets/ExtraResources/Prefab/UI/Animator/UI/UI_stand.controller
+- Assets/ExtraResources/Prefab/UI/Animator/FlyTips/Fly_up.anim
+- Assets/ExtraResources/Prefab/UI/Animator/Makeover/Makeover_foam.anim
+- Assets/ExtraResources/Prefab/UI/Animator/Makeover/Makeover_stand.anim
+- Assets/ExtraResources/Prefab/UI/Animator/Makeover/Makeover_water.anim
+- Assets/ExtraResources/Prefab/UI/Animator/Makeover/Makeover_spin.anim
+- Assets/ExtraResources/Prefab/UI/Animator/Makeover/Makeover_shake.anim
+- Assets/ExtraResources/Prefab/UI/Animator/UI/Bubble_talk.controller
+- Assets/ExtraResources/Prefab/UI/Animator/MakeOver01/Cat_stay.anim
+- Assets/ExtraResources/Prefab/UI/Animator/MakeOver01/Cat_anim.controller
+- Assets/ExtraResources/Prefab/UI/Animator/FlyTips/Fly_target.anim
+- Assets/ExtraResources/Prefab/UI/Animator/LevelWin/TileRandom_Change.controller
+- Assets/ExtraResources/Prefab/UI/Animator/Makeover/Makeover_up.anim
+- Assets/ExtraResources/Prefab/UI/Animator/UI/UI_logo.anim
+- Assets/ExtraResources/Prefab/UI/Animator/FlyTips/Fly_tips.controller
+- Assets/ExtraResources/Prefab/UI/Animator/MakeOver01/Cat_out.anim
+- Assets/ExtraResources/Prefab/UI/Animator/Makeover/Makeover_default.anim
+- Assets/ExtraResources/Prefab/UI/Animator/Makeover/Makeover_default.controller
+- Assets/ExtraResources/Prefab/UI/Animator/Cat/Cat_blink.controller
+- Assets/ExtraResources/Prefab/UI/Animator/MakeOver01/Cat_claw.anim
+- Assets/ExtraResources/Prefab/UI/Animator/Makeover/Makeover_off.anim
+- Assets/ExtraResources/Prefab/UI/Animator/UI/Bubble_think.controller
+- Assets/ExtraResources/Prefab/UI/Animator/FlyTips/Fly_signtip.controller
+- Assets/ExtraResources/Prefab/UI/Animator/Makeover/Makeover_light.anim
+- Assets/ExtraResources/Prefab/UI/Animator/Makeover/Makeover_show.anim
+- Assets/ExtraResources/Prefab/UI/Animator/UI/Bubble_talk.anim
+- Assets/ExtraResources/Prefab/UI/Animator/MakeOver01/Cat_up.anim
+Dependencies: []

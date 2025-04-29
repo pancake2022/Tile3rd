@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M3Tile01
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_IgnorePlatformSupport: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 71f74bbab816f485a80987d51700dcfb, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+    packedSpriteRenderDataKeys:
+    - 993cbe911ff3f411793cb1a0acb98c28: 21300000
+    - ddee7522dddc8418bb337925ef102c52: 21300000
+    - 3e81b5138f3ab46b292235196b0c45cf: 21300000
+    - 1520a6f339969454b92effa3ae90ee3b: 21300000
+    - 08d7ea65074664cc58e0f40c3c920ddd: 21300000
+    - 92f92926cb35b410fa36b3e0658913d7: 21300000
+    - b90e1167c7e85456c9643251b2eeea22: 21300000
+    - b0883128c579a4a6f999e123e30701d2: 21300000
+    - fc38d978340c14e0895c002685123918: 21300000
+    - 625a8998502854dfc956233f341f47d4: 21300000
+    - 697ff9f9183b34546b8cc67f5492fdd1: 21300000
+    - 2384dabac67454d279426f30b86b6500: 21300000
+    - 75e402bb637e844238c4ae5913b33587: 21300000
+    - c17957ccf523c41d79c34a94a0f073e6: 21300000
+    - 98e7c77dcea9b40189dc582db0c33378: 21300000
+    - fc52b69d59fb24f079806515129d7e73: 21300000
+    - 83c951cd5e22049f4b9c80b3347abb74: 21300000
+    - d6ba924e487ae4c2890971eb74d25138: 21300000
+    - 83810fdedbd9144478b23e457f292e56: 21300000
+    - e0d0153f6a58e4e038326b1a65cc7319: 21300000
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 993cbe911ff3f411793cb1a0acb98c28, type: 3}
+  - {fileID: 21300000, guid: ddee7522dddc8418bb337925ef102c52, type: 3}
+  - {fileID: 21300000, guid: 3e81b5138f3ab46b292235196b0c45cf, type: 3}
+  - {fileID: 21300000, guid: 1520a6f339969454b92effa3ae90ee3b, type: 3}
+  - {fileID: 21300000, guid: 08d7ea65074664cc58e0f40c3c920ddd, type: 3}
+  - {fileID: 21300000, guid: 92f92926cb35b410fa36b3e0658913d7, type: 3}
+  - {fileID: 21300000, guid: b90e1167c7e85456c9643251b2eeea22, type: 3}
+  - {fileID: 21300000, guid: b0883128c579a4a6f999e123e30701d2, type: 3}
+  - {fileID: 21300000, guid: fc38d978340c14e0895c002685123918, type: 3}
+  - {fileID: 21300000, guid: 625a8998502854dfc956233f341f47d4, type: 3}
+  - {fileID: 21300000, guid: 697ff9f9183b34546b8cc67f5492fdd1, type: 3}
+  - {fileID: 21300000, guid: 2384dabac67454d279426f30b86b6500, type: 3}
+  - {fileID: 21300000, guid: 75e402bb637e844238c4ae5913b33587, type: 3}
+  - {fileID: 21300000, guid: c17957ccf523c41d79c34a94a0f073e6, type: 3}
+  - {fileID: 21300000, guid: 98e7c77dcea9b40189dc582db0c33378, type: 3}
+  - {fileID: 21300000, guid: fc52b69d59fb24f079806515129d7e73, type: 3}
+  - {fileID: 21300000, guid: 83c951cd5e22049f4b9c80b3347abb74, type: 3}
+  - {fileID: 21300000, guid: d6ba924e487ae4c2890971eb74d25138, type: 3}
+  - {fileID: 21300000, guid: 83810fdedbd9144478b23e457f292e56, type: 3}
+  - {fileID: 21300000, guid: e0d0153f6a58e4e038326b1a65cc7319, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - e14
+  - e15
+  - e02
+  - e10
+  - e00
+  - e13
+  - e09
+  - e03
+  - e06
+  - e05
+  - e01
+  - e04
+  - selectedmark
+  - uibg
+  - e07
+  - e12
+  - mask
+  - e08
+  - e11
+  - visiblemark
+  m_RenderDataMap: {}
+  m_Tag: M3Tile01
+  m_IsVariant: 0

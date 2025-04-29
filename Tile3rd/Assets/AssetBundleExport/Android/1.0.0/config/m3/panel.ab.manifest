@@ -1,0 +1,72 @@
+ManifestFileVersion: 0
+CRC: 3484116021
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: fd1554051563b6fa3075cc64eed020ff
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: fd1554051563b6fa3075cc64eed020ff
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/ExtraResources/Config/M3/Panel/2024037.json
+- Assets/ExtraResources/Config/M3/Panel/2024046.json
+- Assets/ExtraResources/Config/M3/Panel/2024901.json
+- Assets/ExtraResources/Config/M3/Panel/2024012.json
+- Assets/ExtraResources/Config/M3/Panel/2024003.json
+- Assets/ExtraResources/Config/M3/Panel/2024022.json
+- Assets/ExtraResources/Config/M3/Panel/2024024.json
+- Assets/ExtraResources/Config/M3/Panel/2024023.json
+- Assets/ExtraResources/Config/M3/Panel/2024040.json
+- Assets/ExtraResources/Config/M3/Panel/2024009.json
+- Assets/ExtraResources/Config/M3/Panel/2024010.json
+- Assets/ExtraResources/Config/M3/Panel/2024015.json
+- Assets/ExtraResources/Config/M3/Panel/2024017.json
+- Assets/ExtraResources/Config/M3/Panel/2024048.json
+- Assets/ExtraResources/Config/M3/Panel/2024029.json
+- Assets/ExtraResources/Config/M3/Panel/2024019.json
+- Assets/ExtraResources/Config/M3/Panel/2024016.json
+- Assets/ExtraResources/Config/M3/Panel/2024033.json
+- Assets/ExtraResources/Config/M3/Panel/2024030.json
+- Assets/ExtraResources/Config/M3/Panel/2024027.json
+- Assets/ExtraResources/Config/M3/Panel/2024041.json
+- Assets/ExtraResources/Config/M3/Panel/2024039.json
+- Assets/ExtraResources/Config/M3/Panel/2024036.json
+- Assets/ExtraResources/Config/M3/Panel/2024018.json
+- Assets/ExtraResources/Config/M3/Panel/2024026.json
+- Assets/ExtraResources/Config/M3/Panel/2024002.json
+- Assets/ExtraResources/Config/M3/Panel/2024028.json
+- Assets/ExtraResources/Config/M3/Panel/2024006.json
+- Assets/ExtraResources/Config/M3/Panel/2024034.json
+- Assets/ExtraResources/Config/M3/Panel/2024043.json
+- Assets/ExtraResources/Config/M3/Panel/2024001.json
+- Assets/ExtraResources/Config/M3/Panel/2024004.json
+- Assets/ExtraResources/Config/M3/Panel/2024044.json
+- Assets/ExtraResources/Config/M3/Panel/2024999.json
+- Assets/ExtraResources/Config/M3/Panel/2024025.json
+- Assets/ExtraResources/Config/M3/Panel/2024008.json
+- Assets/ExtraResources/Config/M3/Panel/2024031.json
+- Assets/ExtraResources/Config/M3/Panel/2024035.json
+- Assets/ExtraResources/Config/M3/Panel/2024047.json
+- Assets/ExtraResources/Config/M3/Panel/2024038.json
+- Assets/ExtraResources/Config/M3/Panel/2024007.json
+- Assets/ExtraResources/Config/M3/Panel/2024049.json
+- Assets/ExtraResources/Config/M3/Panel/2024011.json
+- Assets/ExtraResources/Config/M3/Panel/2024013.json
+- Assets/ExtraResources/Config/M3/Panel/2024045.json
+- Assets/ExtraResources/Config/M3/Panel/2024050.json
+- Assets/ExtraResources/Config/M3/Panel/2024902.json
+- Assets/ExtraResources/Config/M3/Panel/2024014.json
+- Assets/ExtraResources/Config/M3/Panel/2024020.json
+- Assets/ExtraResources/Config/M3/Panel/2024021.json
+- Assets/ExtraResources/Config/M3/Panel/2024032.json
+- Assets/ExtraResources/Config/M3/Panel/2024005.json
+- Assets/ExtraResources/Config/M3/Panel/2024042.json
+Dependencies: []

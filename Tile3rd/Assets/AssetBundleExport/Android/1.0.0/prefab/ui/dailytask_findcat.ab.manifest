@@ -1,0 +1,58 @@
+ManifestFileVersion: 0
+CRC: 1580406046
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 6f02f4271e76be49aaaa224e5f2cc212
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: a175435d4bbcf4b8cb4cc81909fc8bbc
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 6f02f4271e76be49aaaa224e5f2cc212
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.AnimationTriggers
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.Button/ButtonClickedEvent
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.ColorBlock
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.Navigation
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.SpriteState
+Assets:
+- Assets/ExtraResources/Prefab/UI/DailyTask_FindCat/FindCat_2.prefab
+- Assets/ExtraResources/Prefab/UI/DailyTask_FindCat/FindCat_3.prefab
+- Assets/ExtraResources/Prefab/UI/DailyTask_FindCat/FindCat_4.prefab
+- Assets/ExtraResources/Prefab/UI/DailyTask_FindCat/FindCat_1.prefab
+Dependencies:
+- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab

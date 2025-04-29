@@ -1,0 +1,37 @@
+ManifestFileVersion: 0
+CRC: 2507643327
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 93cf31391b176facda3ee6c714afd840
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: d623db9332e87481683d81c7a27748ed
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 93cf31391b176facda3ee6c714afd840
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3363e6cabf05f485a946cb83fd8accc8, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
+Assets:
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/00_bg/bg_01.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/00_bg/bg_04.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/00_bg/bg_03.prefab
+- Assets/ExtraResources/Prefab/UI/MakeOverLevels/00_bg/bg_02.prefab
+Dependencies: []

@@ -1,0 +1,37 @@
+{
+    "_steamId": "",
+    "_displayName": "TileCatLife",
+    "_globalConfiguration": {
+        "_domainProtocols": [],
+        "_initialized": false
+    },
+    "_customDeepLinkingProtocols": [{
+        "_domainProtocols": [],
+        "_deepLinkingProtocols": [],
+        "_initialized": false
+    }, {
+        "_domainProtocols": [],
+        "_deepLinkingProtocols": [],
+        "_initialized": false
+    }, {
+        "_domainProtocols": [],
+        "_deepLinkingProtocols": [],
+        "_initialized": false
+    }, {
+        "_domainProtocols": [],
+        "_deepLinkingProtocols": [],
+        "_initialized": false
+    }, {
+        "_domainProtocols": [],
+        "_deepLinkingProtocols": [],
+        "_initialized": false
+    }, {
+        "_domainProtocols": [],
+        "_deepLinkingProtocols": [],
+        "_initialized": false
+    }, {
+        "_domainProtocols": [],
+        "_deepLinkingProtocols": [],
+        "_initialized": false
+    }]
+}
