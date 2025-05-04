@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 978574268
+CRC: 1160891748
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 02000593fd2f011fc2750fa98faf92a8
+    Hash: 51fcef4da89a7076222f3aefee4770b4
   TypeTreeHash:
     serializedVersion: 2
     Hash: 6231e592d2d37dd6fda925c6c712faa4
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 02000593fd2f011fc2750fa98faf92a8
+    Hash: 51fcef4da89a7076222f3aefee4770b4
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -89,5 +89,5 @@ Assets:
 - Assets/ExtraResources/Prefab/UI/Reward/Level_win.controller
 - Assets/ExtraResources/Prefab/UI/Reward/UI_Reward_shop_item.prefab
 Dependencies:
-- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/audio/sound.ab
-- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab
+- /Users/rancui/Documents/GitHub/Tile3rd/Tile3rd/Assets/AssetBundleExport/Android/1.0.0/audio/sound.ab
+- /Users/rancui/Documents/GitHub/Tile3rd/Tile3rd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab

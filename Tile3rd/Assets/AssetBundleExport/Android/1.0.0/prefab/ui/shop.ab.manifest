@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 326273556
+CRC: 904971052
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4e527f7cc92a90ae4ee72609dff93fe2
+    Hash: c81009ff9fc905c3c353540bc1033912
   TypeTreeHash:
     serializedVersion: 2
     Hash: 65847c132c210b5509d4797ab1ed9998
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 4e527f7cc92a90ae4ee72609dff93fe2
+    Hash: c81009ff9fc905c3c353540bc1033912
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -78,5 +78,5 @@ Assets:
 - Assets/ExtraResources/Prefab/UI/Shop/UI_Bundle_bloom.prefab
 - Assets/ExtraResources/Prefab/UI/Shop/UI_Bundle_shop_noADS.prefab
 Dependencies:
-- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab
-- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/panel.ab
+- /Users/rancui/Documents/GitHub/Tile3rd/Tile3rd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab
+- /Users/rancui/Documents/GitHub/Tile3rd/Tile3rd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/panel.ab

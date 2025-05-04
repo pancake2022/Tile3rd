@@ -83,8 +83,6 @@ public class M3GameCollectionCellUI : M3GameCellUI
         if (InCollectionState == M3CellInCollectionState.Collected)//已经收集完毕了则可跟tile互动
         {
             gameObject.SetActive(true);
-            
-            
         }
         else // if (InCollectionState == M3CellInCollectionState.None)//否则不可
         {

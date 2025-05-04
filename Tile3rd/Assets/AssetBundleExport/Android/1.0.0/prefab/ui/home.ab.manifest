@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1663104657
+CRC: 4224378844
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 0128118ccaf913973e83fb0830a2f28c
+    Hash: b0ee930bb714cc482879e67faacd0ae3
   TypeTreeHash:
     serializedVersion: 2
     Hash: 0a9eb6854af8f643f4db8e80b7b79790
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 0128118ccaf913973e83fb0830a2f28c
+    Hash: b0ee930bb714cc482879e67faacd0ae3
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -102,4 +102,4 @@ Assets:
 - Assets/ExtraResources/Prefab/UI/Home/UI_AdsManager.prefab
 - Assets/ExtraResources/Prefab/UI/Home/UI_Home_RewardFly.prefab
 Dependencies:
-- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab
+- /Users/rancui/Documents/GitHub/Tile3rd/Tile3rd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab

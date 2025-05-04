@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using System.Linq;
 
 /// <summary>
 /// 游戏操作步骤类型
@@ -404,5 +405,51 @@ public class M3GamePanelUI : BaseUI
         return returnfly;
     }
 
+    //指定celltype
+    public void SetCellType(int cellType)
+    {
+        var allCells = new List<M3Cell>();  // 用来存放所有 Layer 的 cell
 
+        // Step 1: 合并所有 Layer 的 CellList 到 allCells 列表
+        for (int i = 0; i < LayerUIArray.Length; i++)
+        {
+            var cellList = LayerUIArray[i].Layer.CellList;
+            allCells.AddRange(cellList); // 将当前 Layer 的 cellList 添加到 allCells 中
+            //totalCell += cellList.Count;
+        }
+
+        // Step 2: 随机选择 9 个 cell 设置为 Type = 1
+        var random = new System.Random();
+        var shuffledCells = allCells.OrderBy(x => random.Next()).ToList(); // 打乱所有 cell 的顺序
+
+        for (int i = 0; i < shuffledCells.Count; i++)
+        {
+            if (i < 9) // 前 9 个 cell
+            {
+                shuffledCells[i].Type = 1;
+            }
+            else // 其余的 cell
+            {
+                shuffledCells[i].Type = 2;
+            }
+        }
+        //LayerUIArray[i].Layer.CellList = cellList;
+        // Step 3: 将修改后的 cell 分配回各个 Layer
+        //int currentIndex = 0;
+        //for (int i = 0; i < LayerUIArray.Length; i++)
+        //{
+        //    var cellList = LayerUIArray[i].Layer.CellList;
+        //    int cellCount = cellList.Count;
+
+        //    for (int j = 0; j < cellCount; j++)
+        //    {
+        //        // 将修改后的 cell 更新到原来的 Layer
+        //        cellList[j] = shuffledCells[currentIndex];
+        //        currentIndex++;
+        //    }
+
+        //    // 更新当前 Layer 的 CellList
+        //    LayerUIArray[i].Layer.CellList = cellList;
+        //}
+    }
 }

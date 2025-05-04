@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3036134702
+CRC: 922797719
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 576a0d4adcc8ac85c59d8cb9b1a47f84
+    Hash: d524c8693a9646299318fac15d62937a
   TypeTreeHash:
     serializedVersion: 2
     Hash: c65f03a7160754d56323a0f451b404a4
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 576a0d4adcc8ac85c59d8cb9b1a47f84
+    Hash: d524c8693a9646299318fac15d62937a
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -85,6 +85,9 @@ Assets:
 - Assets/ExtraResources/Prefab/UI/Template/CollectionTemplate.prefab
 - Assets/ExtraResources/Prefab/UI/Template/CommingSoon.prefab
 - Assets/ExtraResources/Prefab/UI/Template/SignTemplate_big.prefab
+- Assets/ExtraResources/Prefab/UI/Template/OrderTemplate.prefab
 - Assets/ExtraResources/Prefab/UI/Template/SignFlower.prefab
+- Assets/ExtraResources/Prefab/UI/Template/CustomerTemplate.prefab
+- Assets/ExtraResources/Prefab/UI/Template/CustomTemplate.prefab
 Dependencies:
-- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab
+- /Users/rancui/Documents/GitHub/Tile3rd/Tile3rd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab

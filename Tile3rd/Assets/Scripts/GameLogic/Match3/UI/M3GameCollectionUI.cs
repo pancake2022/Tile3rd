@@ -20,6 +20,7 @@ public class M3GameCollectionUI :  BaseUI
 
     private Action<M3GameCollectionUI> ClickCalback_Match;
     private Action<M3GameCollectionUI> ClickCalback_Collect;
+    public int currentCellType;
 
     protected override void on_create()
     {
@@ -72,6 +73,7 @@ public class M3GameCollectionUI :  BaseUI
                 if (cell_ui_i.InCollectionState != M3CellInCollectionState.Matching)
                     ++same_collected_cell_count;
             }
+            
         }
 
         if (last_same_collected_cell_index != -1)
@@ -95,8 +97,10 @@ public class M3GameCollectionUI :  BaseUI
         else
         {
             start_collect(cell_ui, light_cell_ui, CollectedCellUIList.Count);
-
         }
+        //获得cell的type值
+        currentCellType = cell_ui.Cell.Type;
+
         //新手引导
         ClickCalback_Collect?.Invoke(this);
         return true;
@@ -151,8 +155,13 @@ public class M3GameCollectionUI :  BaseUI
         {
             var match_cell_list = PrepareMatchQueue.Dequeue();
             foreach (var match_cell in match_cell_list)
+            {
                 match_cell.StartMatch();
 
+                //match时的celltype
+                //Debug.Log(match_cell.Cell.Type);
+                currentCellType = match_cell.Cell.Type;
+            }
             PanelUI.RecordGameOpt(new GameOpt
             {
                 Type = GameOptType.Eliminate,
@@ -165,7 +174,6 @@ public class M3GameCollectionUI :  BaseUI
 
     public void MatchCompleted(M3GameCollectionCellUI cell_ui)
     {
-        var game_ui = _ui_manager.FindWindow<GameUI>();
         index = CollectedCellUIList.IndexOf(cell_ui);
         if (index >= 0)
         {
@@ -175,14 +183,13 @@ public class M3GameCollectionUI :  BaseUI
             CollectedCellUIList.RemoveAt(index);
             push_cell_to_stack(cell_ui);
         }
+
         ////match的回调
-        //ClickCalback_Match?.Invoke(this);
         matchCompletedCounter++;
 
         if (matchCompletedCounter == 1)
         {
             ClickCalback_Match?.Invoke(this);
-            Debug.Log("执行match");
         }
         if (matchCompletedCounter == 3)
         {

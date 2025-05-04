@@ -31,6 +31,8 @@ public class GameUI : WindowUI
     public int totalCell;
     public bool isPause;
 
+    public GameCustom gameCustom;
+
     protected override void on_create()
     {
         //var home_ui = _ui_manager.FindWindow<HomeUI>();
@@ -62,6 +64,8 @@ public class GameUI : WindowUI
         //创建按钮
         register_button("Panel/Setting/Button", on_setting_clicked);
         register_button("Panel/LevelWin", on_win_clicked);
+        register_button("Panel/TestButton", on_test_clicked);
+        register_button("Panel/TestButton2", on_test2_clicked);
 
         SetGameMusic();
         TileRandomShowInit();
@@ -76,6 +80,12 @@ public class GameUI : WindowUI
 
         //新手引导相关
         gameGuideUI = create_ui<GameGuideUI>("Panel/Guide");
+
+        //挂顾客系统
+        gameCustom = create_ui<GameCustom>("Template/CustomTemplate", "Panel/Custom").Init(this);
+
+        //var _prop_rt = find_component<RectTransform>("Panel/Game_PropsFly");
+        //gamePropsFly = create_ui<GamePropsFly>("Game/Game_PropsFly", _prop_rt).Init(this);
     }
     protected override void on_open()
     {
@@ -135,21 +145,48 @@ public class GameUI : WindowUI
     }
 
     //初始化游戏布局
+    //public GameUI Init(M3Panel panel)
+    //{
+    //    leftCell = 0;
+    //    totalCell = 0;
+    //    _panel_ui.Init(panel);
+
+    //    //获得leftcell的数量
+    //    Debug.Log("layer" + _panel_ui.LayerUIArray.Length);
+    //    for (int i = 0; i < _panel_ui.LayerUIArray.Length; i++)
+    //    {
+    //        leftCell = leftCell + _panel_ui.LayerUIArray[i].Layer.CellList.Count;
+    //    }
+    //    totalCell = leftCell;
+    //    Debug.Log("cell总数：" + totalCell + " / " + "初始lefetcell=" + leftCell);
+    //    return this;
+    //}
+
     public GameUI Init(M3Panel panel)
     {
         leftCell = 0;
         totalCell = 0;
+        int maxCellType = int.MinValue;
+
         _panel_ui.Init(panel);
 
         //获得leftcell的数量
         for (int i = 0; i < _panel_ui.LayerUIArray.Length; i++)
         {
-            leftCell = leftCell + _panel_ui.LayerUIArray[i].Layer.CellList.Count;
+            var cellList = _panel_ui.LayerUIArray[i].Layer.CellList;
+            totalCell += cellList.Count;
+
+            foreach (var cell in _panel_ui.LayerUIArray[i].Layer.CellList)
+            {
+                maxCellType = Math.Max(maxCellType, cell.Type);
+            }
         }
-        totalCell = leftCell;
-        Debug.Log("cell总数：" + totalCell + " / " + "初始lefetcell=" + leftCell);
+        leftCell = totalCell;
+        Debug.Log("cell总数" + totalCell);
+        Debug.Log("celltype最大值" + maxCellType);
         return this;
     }
+
     //点设置按钮
     private void on_setting_clicked()
     {
@@ -257,6 +294,10 @@ public class GameUI : WindowUI
         game_rewarditemfly();
         gameGuideUI.Match();
         levelwin();
+
+        //打印cell.type
+        //Debug.Log("当前牌的type" + _panel_ui.CollectionUI.currentCellType);
+        gameCustom.FinishOrder();
     }
     //回调collect
     private void Collect()
@@ -265,6 +306,9 @@ public class GameUI : WindowUI
         gameItemGroupUI.ReviveCondition();
         _panel_ui.CollectionUI.isMatchPause = false;
         LevelType_TileChange();
+
+        //收集2次出现customer2，收集5次出
+        gameCustom.Collect();
     }
     //win按钮
     private void on_win_clicked()
@@ -272,6 +316,7 @@ public class GameUI : WindowUI
         _ui_manager.OpenWindow<LevelwinUI>();
         Close();
     }
+    
     //判断关卡的类型
     private void LevelType_TileChange()
     {
@@ -287,5 +332,46 @@ public class GameUI : WindowUI
         if (levelStorage.LevelCount >= globalconfig.Interstitial_UnlockLevel
             && globalconfig.Interstitial_CD_Initial >= globalconfig.Interstitial_CD_Level)
             ADSManager.TriggerADSLoading_Interstitial();
+    }
+
+    //test按钮
+    private void on_test_clicked()
+    {
+        _panel_ui.RetryReset();
+        ResetPanel();
+        Init(_panel_ui.Panel);
+
+        _panel_ui.RetryReset();
+        _panel_ui.SetCellType(1);
+        Init(_panel_ui.Panel);
+    }
+    //test按钮
+    private void on_test2_clicked()
+    {
+        //_panel_ui.RetryReset();
+        //ResetPanel();
+        Init(_panel_ui.Panel);
+        _panel_ui.SetCellType(1);
+        Init(_panel_ui.Panel);
+    }
+    //尝试切换关卡
+    public void ResetPanel()
+    {
+        CSFramework.LevelConfig current_levelconfig = TileUtils.GetCurrentLevelConfig(levelStorage.CurrentLevel, _ui_manager.Framework.ConfigManager);
+        var panel_config_ta = _ui_manager.Framework.ResourcesManager.LoadResource<TextAsset>($"{M3Const.M3PanelConfigPath}/{2024002}");
+        if (panel_config_ta != null)
+        {
+            try
+            {
+                var currentPanel = JsonUtility.FromJson<M3Panel>(panel_config_ta.text);
+                //levelStorage.CurrentPanel = currentPanel;
+                _panel_ui.Panel = currentPanel;
+                Debug.Log("当前的panel"+currentPanel.ID);
+            }
+            catch (Exception e)
+            {
+                CSFramework.Logger.Error(e);
+            }
+        }
     }
 }

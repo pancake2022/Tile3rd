@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 1580406046
+CRC: 365104494
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 6f02f4271e76be49aaaa224e5f2cc212
+    Hash: 6abd63d0421ce72c7cb14e4c4d1b00f6
   TypeTreeHash:
     serializedVersion: 2
     Hash: a175435d4bbcf4b8cb4cc81909fc8bbc
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 6f02f4271e76be49aaaa224e5f2cc212
+    Hash: 6abd63d0421ce72c7cb14e4c4d1b00f6
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -55,4 +55,4 @@ Assets:
 - Assets/ExtraResources/Prefab/UI/DailyTask_FindCat/FindCat_4.prefab
 - Assets/ExtraResources/Prefab/UI/DailyTask_FindCat/FindCat_1.prefab
 Dependencies:
-- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab
+- /Users/rancui/Documents/GitHub/Tile3rd/Tile3rd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab

@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 2084327838
+CRC: 2323281079
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 28228daa1f1f837a101fd51e00d330b4
+    Hash: ff80d31e4712c887598d588fc8f16182
   TypeTreeHash:
     serializedVersion: 2
     Hash: c48bcddd42b108cbf3d4722796fdd0b7
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 28228daa1f1f837a101fd51e00d330b4
+    Hash: ff80d31e4712c887598d588fc8f16182
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -78,4 +78,4 @@ Assets:
 - Assets/ExtraResources/Prefab/UI/MakeOverLevels/05/06_4.prefab
 - Assets/ExtraResources/Prefab/UI/MakeOverLevels/05/07_2.prefab
 Dependencies:
-- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab
+- /Users/rancui/Documents/GitHub/Tile3rd/Tile3rd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab

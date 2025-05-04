@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 2460651444
+CRC: 1068210811
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 01a962d4cdc847fe3197fd5c03603d4d
+    Hash: eb5e85c4bf2276af56a871ab4cce7374
   TypeTreeHash:
     serializedVersion: 2
     Hash: 6319ef6a95060bacfd1091c012ec661b
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 01a962d4cdc847fe3197fd5c03603d4d
+    Hash: eb5e85c4bf2276af56a871ab4cce7374
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -89,6 +89,6 @@ Assets:
 - Assets/ExtraResources/Prefab/UI/Game/Game_PropsFly.prefab
 - Assets/ExtraResources/Prefab/UI/Game/UI_Panel_revive.prefab
 Dependencies:
-- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/audio/sound.ab
-- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab
-- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/panel.ab
+- /Users/rancui/Documents/GitHub/Tile3rd/Tile3rd/Assets/AssetBundleExport/Android/1.0.0/audio/sound.ab
+- /Users/rancui/Documents/GitHub/Tile3rd/Tile3rd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab
+- /Users/rancui/Documents/GitHub/Tile3rd/Tile3rd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/panel.ab

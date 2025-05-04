@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 27666770
+CRC: 3635984972
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 021cafcb17e6dcf1baba7ae8109e7851
+    Hash: e95c78e3e6f91543d17050783cc1ba6f
   TypeTreeHash:
     serializedVersion: 2
     Hash: b5bde05bf316c61e2363225ac17cfbca
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 021cafcb17e6dcf1baba7ae8109e7851
+    Hash: e95c78e3e6f91543d17050783cc1ba6f
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -108,4 +108,4 @@ Assets:
 - Assets/ExtraResources/Prefab/UI/Panel/Panel.controller
 - Assets/ExtraResources/Prefab/UI/Panel/UI_Panel_collection.prefab
 Dependencies:
-- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab
+- /Users/rancui/Documents/GitHub/Tile3rd/Tile3rd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab

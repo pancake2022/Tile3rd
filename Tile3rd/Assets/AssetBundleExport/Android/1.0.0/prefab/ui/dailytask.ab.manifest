@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 4085693536
+CRC: 769014273
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d249133128af97364ea87d55487ce27f
+    Hash: cc0f8eb7721ddc2aaa1da1ba5a804e42
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1c4f781c0879080cab240dbcb1935251
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: d249133128af97364ea87d55487ce27f
+    Hash: cc0f8eb7721ddc2aaa1da1ba5a804e42
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -84,5 +84,5 @@ Assets:
 - Assets/ExtraResources/Prefab/UI/DailyTask/UI_DailyTask_Notice_WinStreak.prefab
 - Assets/ExtraResources/Prefab/UI/DailyTask/UI_DailyTask_Icon.prefab
 Dependencies:
-- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab
-- /Users/rancui/Documents/GitHub/Tile2nd/Tile2nd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/panel.ab
+- /Users/rancui/Documents/GitHub/Tile3rd/Tile3rd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab
+- /Users/rancui/Documents/GitHub/Tile3rd/Tile3rd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/panel.ab
