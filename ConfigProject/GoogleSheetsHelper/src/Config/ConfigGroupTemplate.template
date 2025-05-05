@@ -1,0 +1,10 @@
+using System;
+using System.Collections.Generic;
+
+namespace CSFramework
+{
+    public class ${ClassName} : ConfigGroup
+    {${ClassContent} #PropertyStart
+        public ${PropertyType} ${PropertyName}; // ${Desc} #PropertyEnd
+    }
+}

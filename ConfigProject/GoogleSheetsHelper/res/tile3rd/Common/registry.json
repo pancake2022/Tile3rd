@@ -1,0 +1,67 @@
+{
+  "ItemDict": {
+    "Common/game.json": {
+      "JsonPath": "Common/game.json",
+      "GroupClassName": "GameConfigGroup",
+      "TableToPropertyDict": {
+        "Global": {
+          "PropertyName": "GlobalConfigList",
+          "PropertyType": "GlobalConfig"
+        },
+        "Shop": {
+          "PropertyName": "ShopConfigList",
+          "PropertyType": "ShopConfig"
+        },
+        "MakeOver": {
+          "PropertyName": "MakeOverConfigList",
+          "PropertyType": "MakeOverConfig"
+        },
+        "TouchPoint": {
+          "PropertyName": "TouchPointConfigList",
+          "PropertyType": "TouchPointConfig"
+        },
+        "Level": {
+          "PropertyName": "LevelConfigList",
+          "PropertyType": "LevelConfig"
+        },
+        "Quest": {
+          "PropertyName": "QuestConfigList",
+          "PropertyType": "QuestConfig"
+        },
+        "Collection": {
+          "PropertyName": "CollectionConfigList",
+          "PropertyType": "CollectionConfig"
+        },
+        "LoveLevel": {
+          "PropertyName": "LoveLevelConfigList",
+          "PropertyType": "LoveLevelConfig"
+        },
+        "Item": {
+          "PropertyName": "ItemConfigList",
+          "PropertyType": "ItemConfig"
+        },
+        "Story": {
+          "PropertyName": "StoryConfigList",
+          "PropertyType": "StoryConfig"
+        },
+        "Bundle": {
+          "PropertyName": "BundleConfigList",
+          "PropertyType": "BundleConfig"
+        },
+        "DailyTask": {
+          "PropertyName": "DailyTaskConfigList",
+          "PropertyType": "DailyTaskConfig"
+        },
+        "DailyTaskChain": {
+          "PropertyName": "DailyTaskChainConfigList",
+          "PropertyType": "DailyTaskChainConfig"
+        },
+        "Sign": {
+          "PropertyName": "SignConfigList",
+          "PropertyType": "SignConfig"
+        }
+      },
+      "LoadOnStart": true
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/Users/rancui/.dotnet/store/|arch|/|tfm|",
+      "/Users/rancui/.nuget/packages"
+    ]
+  }
+}

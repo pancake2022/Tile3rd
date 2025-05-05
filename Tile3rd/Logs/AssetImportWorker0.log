@@ -6563,3 +6563,151 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 79590.075471 seconds.
+  path: Assets/ExtraResources/Config/LocalizeConfig
+  artifactKey: Guid(0d138bcca456f4d9692fe5bd4ed79d22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExtraResources/Config/LocalizeConfig using Guid(0d138bcca456f4d9692fe5bd4ed79d22) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'f38fc1d1e335c744fdc009025e2cbbed') in 0.133854 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 2.485011 seconds.
+  path: Assets/AssetBundleExport/Android/1.0.0/config/localizeconfig.ab
+  artifactKey: Guid(f6a69d58d78174e2884f8b6450c50329) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetBundleExport/Android/1.0.0/config/localizeconfig.ab using Guid(f6a69d58d78174e2884f8b6450c50329) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '31d74f3dc0b0acad21c06ea91cb304f6') in 0.219853 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 17.968926 seconds.
+  path: Assets/ExtraResources/Config/LocalizeConfig/localize_en.json
+  artifactKey: Guid(4a68c39cfd6164c089d858f92a6a4d91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ExtraResources/Config/LocalizeConfig/localize_en.json using Guid(4a68c39cfd6164c089d858f92a6a4d91) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '2ad6e1c1aac7cdf740996a2108603312') in 0.008344 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 9.553582 seconds.
+  path: Assets/Scripts/GameLogic/CoreConfig/LocalizeConfig
+  artifactKey: Guid(1d65190d3b38941ada3715586cfed226) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/GameLogic/CoreConfig/LocalizeConfig using Guid(1d65190d3b38941ada3715586cfed226) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: 'fafeaab8e27ddfaf7a88ef48a5fe1f6b') in 0.001379 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 4.908070 seconds.
+  path: Assets/Scripts/GameLogic/CoreConfig/LocalizeConfig/LocalizeConfig.cs
+  artifactKey: Guid(95328defdc6d14a20abd11538cf10179) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/GameLogic/CoreConfig/LocalizeConfig/LocalizeConfig.cs using Guid(95328defdc6d14a20abd11538cf10179) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '495ded7a4c1c08e8bd3a70c873a6fc2b') in 0.001430 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 904.633178 seconds.
+  path: Assets/Scripts/GameLogic/CoreConfig
+  artifactKey: Guid(0c22703e7fe02455a974d710ae804758) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/GameLogic/CoreConfig using Guid(0c22703e7fe02455a974d710ae804758) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '7322dbb850ac9e60ca140b4e404c51c8') in 0.016698 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Thread 0x16af27000 may have been prematurely finalized
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.956 seconds
+Native extension for Android target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.329 seconds
+Domain Reload Profiling: 2287ms
+	BeginReloadAssembly (409ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (54ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (149ms)
+	RebuildCommonClasses (24ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (23ms)
+	LoadAllAssembliesAndSetupDomain (493ms)
+		LoadAssemblies (609ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (34ms)
+			TypeCache.Refresh (21ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (1330ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (469ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (10ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (51ms)
+			ProcessInitializeOnLoadAttributes (371ms)
+			ProcessInitializeOnLoadMethodAttributes (31ms)
+			AfterProcessingInitializeOnLoad (1ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (11ms)
+Shader 'TextMeshPro/Distance Field (UIHsvModifier)': fallback shader 'TextMeshPro/Mobile/Distance Field (UIHsv)' not found
+Shader 'TextMeshPro/Distance Field (UIHsvModifier)': fallback shader 'TextMeshPro/Mobile/Distance Field (UIHsv)' not found
+Refreshing native plugins compatible for Editor in 24.23 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 6643 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 70 unused Assets / (1.9 MB). Loaded Objects now: 7530.
+Memory consumption went from 1.01 GB to 1.01 GB.
+Total: 6.597333 ms (FindLiveObjects: 0.795041 ms CreateObjectMapping: 0.095583 ms MarkObjects: 4.578417 ms  DeleteObjects: 1.127541 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:scripting/monoscript/fileName/GameCustom.cs: 7271ef7817e7e1e3f82f3232c9dc011a -> 4e4fc561a0d6709c3f7fd9fd67580ef6
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: 3918e3fc78b5a79bad01e8451be0beb8 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: b2b8513e82f8debd2e847b9cf19b20d5 -> 1b143bf9967ab71a2a8bd1fadb3b1cfa
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 5643.954532 seconds.
+  path: Assets/AssetBundleExport/Android/1.0.0/prefab/ui/game.ab
+  artifactKey: Guid(6d8f97431b1374f17a5c305e2b124213) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetBundleExport/Android/1.0.0/prefab/ui/game.ab using Guid(6d8f97431b1374f17a5c305e2b124213) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '224c3ecf890220d1e2941b454e26361a') in 0.028050 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 5.657713 seconds.
+  path: Assets/AssetBundleExport/Android/1.0.0/prefab/ui/game.ab.manifest
+  artifactKey: Guid(5f7ebd40273bd4e40b43bbc2585dc4da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetBundleExport/Android/1.0.0/prefab/ui/game.ab.manifest using Guid(5f7ebd40273bd4e40b43bbc2585dc4da) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 8 workers.
+ -> (artifact id: '2e885cccf0fbb93d6d829de1f36d7dc7') in 0.001965 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1

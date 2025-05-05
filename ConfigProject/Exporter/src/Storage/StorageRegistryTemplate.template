@@ -1,0 +1,15 @@
+using System.Collections.Generic;
+
+namespace CSFramework
+{
+    public class StorageRegistry : IStorageRegistry
+    {
+        public List<Storage> GetRegisteredStorage ()
+        {
+            return new List<Storage>
+            {${StorageList}#StorageStart
+                new ${StorageName}(), // ${Desc}#StorageEnd
+            };
+        }
+    }
+}
