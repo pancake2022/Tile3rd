@@ -7,13 +7,11 @@ using System.Collections.Generic;
 public class SettingUI : WindowUI
 {
     public static new string DefaultPrefabPath = "Panel/UI_Panel_setting";
-    private CommonStorage commonStorage;
 
     protected override void on_create()
     {
         Property.CommonAnimationTransform = transform.Find("Panel");
         _ui_manager.Framework.AudioManager.PlaySound("sound_panel_opening");
-        commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();
 
         register_button("Panel/Button_close", on_close_clicked);
         register_button("Panel/Button_home", on_close_clicked);
@@ -22,12 +20,12 @@ public class SettingUI : WindowUI
     private void ToggleInit()
     {
         //控制音乐按钮显示
-        if (commonStorage.MusicOpen == true)
+        if (GameConfigManager.CommonStorage.MusicOpen == true)
             register_toggle("Panel/Button_music", on_music_clicked).isOn = true;
         else
             register_toggle("Panel/Button_music", on_music_clicked).isOn = false;
         //控制音效按钮显示
-        if (commonStorage.SoundOpen == true)
+        if (GameConfigManager.CommonStorage.SoundOpen == true)
             register_toggle("Panel/Button_sound", on_sound_clicked).isOn = true;
         else
             register_toggle("Panel/Button_sound", on_sound_clicked).isOn = false;
@@ -43,12 +41,12 @@ public class SettingUI : WindowUI
         play_sound("sound_button_click");
         if (selected) 
         {
-            commonStorage.MusicOpen = true;
+            GameConfigManager.CommonStorage.MusicOpen = true;
             _ui_manager.Framework.AudioManager.SetMusicOpen(true);
         }
         else
         {
-            commonStorage.MusicOpen = false;
+            GameConfigManager.CommonStorage.MusicOpen = false;
             _ui_manager.Framework.AudioManager.SetMusicOpen(false);
         }
     }
@@ -57,12 +55,12 @@ public class SettingUI : WindowUI
         play_sound("sound_button_click");
         if (selected) 
         {
-            commonStorage.SoundOpen = true;
+            GameConfigManager.CommonStorage.SoundOpen = true;
             _ui_manager.Framework.AudioManager.SetSoundOpen(true);
         }
         else
         {
-            commonStorage.SoundOpen = false;
+            GameConfigManager.CommonStorage.SoundOpen = false;
             _ui_manager.Framework.AudioManager.SetSoundOpen(false);
         }
     }

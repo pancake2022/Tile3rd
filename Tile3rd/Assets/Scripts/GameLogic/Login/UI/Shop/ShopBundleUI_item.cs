@@ -57,7 +57,7 @@ public class ShopBundleUI_item : WindowUI
     }
     private void PriceShow()
     {
-        var all_shop = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().ShopConfigList;
+        var all_shop = GameConfigManager.GameConfigGroup.ShopConfigList;
         var shop = all_shop.Find(a => a.ID == 2);
         var price = find_component<Text>("Panel/Button_ok/Text");
         price.text = shop.Price.ToString();

@@ -29,6 +29,7 @@ public class LoginUI : WindowUI
         if (slider.value == 100) 
         {
             SetGameManager();
+            InitializeManager();
             _ui_manager.OpenWindow<HomeUI>();
             Close();
         }
@@ -47,6 +48,10 @@ public class LoginUI : WindowUI
         Transform gameManagerRoot = _ui_manager._context.WindowUILayerDict[UILayer.GameManager];
         var ads = create_ui<ADSManager>(gameManagerRoot);
         var review = create_ui<GoogleReviewManager>(gameManagerRoot);
+        var config = create_ui<GameConfigManager>(gameManagerRoot);
     }
-
+    private void InitializeManager()
+    {
+        GameConfigManager.Initialize(_ui_manager);
+    }
 }

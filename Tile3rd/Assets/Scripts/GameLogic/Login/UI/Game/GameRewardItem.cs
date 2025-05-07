@@ -24,7 +24,6 @@ public class GameRewardItem : WindowUI
     }
     public void Reward_Item_Show()
     {
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
         var item_1 = find_component<RectTransform>("item_1");
         var item_2 = find_component<RectTransform>("item_2");
         var item_3 = find_component<RectTransform>("item_3");
@@ -40,7 +39,7 @@ public class GameRewardItem : WindowUI
         {
             //如果是bloomAll状态，则显示3
             //否则显示2
-            if (tile2storage.BloomAllTimes > 0)
+            if (GameConfigManager.Tile2Storage.BloomAllTimes > 0)
                 item_3.SetActive(true);
             else
                 item_2.SetActive(true);

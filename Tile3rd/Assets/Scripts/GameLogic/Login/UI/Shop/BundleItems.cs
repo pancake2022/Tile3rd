@@ -20,13 +20,11 @@ public class BundleItems : WindowUI
     }
     public void IconInit()
     {
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
         GetCurrentBundle();
         
         if (Home.currentBundle != null)
         {
-            
-            if (tile2storage.BundleRV[Home.currentBundle.ID] == false)
+            if (GameConfigManager.Tile2Storage.BundleRV[Home.currentBundle.ID] == false)
                 IconShow();
             else
                 gameObject.SetActive(false);
@@ -36,11 +34,10 @@ public class BundleItems : WindowUI
     }
     public void GetCurrentBundle()
     {
-        var makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-        var all_bundle = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().BundleConfigList;
-        var all_story = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().StoryConfigList;
+        var all_bundle = GameConfigManager.GameConfigGroup.BundleConfigList;
+        var all_story = GameConfigManager.GameConfigGroup.StoryConfigList;
 
-        var story = all_story.Find(a => a.Type == 1 && makeoverStorage.StoryCondition[a.ID] == 1);
+        var story = all_story.Find(a => a.Type == 1 && GameConfigManager.MakeOverStorage.StoryCondition[a.ID] == 1);
         if (story != null)
             Home.currentBundle = all_bundle.Find(a => a.Type == 1 && a.ShowStoryID == story.ID);
     }
@@ -58,10 +55,9 @@ public class BundleItems : WindowUI
     }
     public void GetCurrentBundle_Sign()
     {
-        var shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        var all_bundle = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().BundleConfigList;
-        var all_story = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().StoryConfigList;
+        var all_bundle = GameConfigManager.GameConfigGroup.BundleConfigList;
+        var all_story = GameConfigManager.GameConfigGroup.StoryConfigList;
 
-        Home.currentBundle = all_bundle.Find(a => a.Type == 2 && a.ID == shareDataGlobalConfig._sign_reward_id);
+        Home.currentBundle = all_bundle.Find(a => a.Type == 2 && a.ID == GameConfigManager.ShareDataGlobalConfig._sign_reward_id);
     }
 }

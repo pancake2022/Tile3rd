@@ -72,18 +72,16 @@ public class M3GameCellUI : BaseUI
 
     private void TileSelect()
     {
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        var all_tile = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().CollectionConfigList;
-        var currentTile = all_tile.Find(a => a.ID == tile2storage.CurrentTileID);
+        var all_tile = GameConfigManager.GameConfigGroup.CollectionConfigList;
+        var currentTile = all_tile.Find(a => a.ID == GameConfigManager.Tile2Storage.CurrentTileID);
         Image.sprite = find_sprite($"{currentTile.TilePack}", "e" + Cell.Type.ToString("D2"));//找图集
     }
     public void ChangeTile()
     {
         //需要去找对应图集里的e00，否则会死机
         //从亮的tile里随机3个进行改变
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        var all_tile = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().CollectionConfigList;
-        var currentTile = all_tile.Find(a => a.ID == tile2storage.CurrentTileID);
+        var all_tile = GameConfigManager.GameConfigGroup.CollectionConfigList;
+        var currentTile = all_tile.Find(a => a.ID == GameConfigManager.Tile2Storage.CurrentTileID);
         if (State == M3CellState.TopInLayer)
             Image.sprite = find_sprite($"{currentTile.TilePack}", "e00");
     }

@@ -10,30 +10,24 @@ public class MakeOver_Touch : BaseUI
     {
         public TouchPointConfig TouchData;
         public Action<TouchButton> ClickCalback;
-        private CommonStorage commonStorage;
-        private MakeOverStorage makeoverStorage;
-        private ShareDataGlobalConfig shareDataGlobalConfig;
         private List<MakeOverConfig> all_image;
 
         protected override void on_create()
         {
-            commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();
-            makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-            shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-            all_image = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().MakeOverConfigList;
+            all_image = GameConfigManager.GameConfigGroup.MakeOverConfigList;
 
             register_button(on_clicked);
         }
         private void SetCondition()
         {
             SetBase();
-            if (makeoverStorage.TouchPointCondition[TouchData.ID] == 0)
+            if (GameConfigManager.MakeOverStorage.TouchPointCondition[TouchData.ID] == 0)
                 SetCondition_Lock();
-            if (makeoverStorage.TouchPointCondition[TouchData.ID] == 1)
+            if (GameConfigManager.MakeOverStorage.TouchPointCondition[TouchData.ID] == 1)
                 SetCondition_Touch();
-            if (makeoverStorage.TouchPointCondition[TouchData.ID] == 2)
+            if (GameConfigManager.MakeOverStorage.TouchPointCondition[TouchData.ID] == 2)
                 SetCondition_Claw();
-            if (makeoverStorage.TouchPointCondition[TouchData.ID] == 3)
+            if (GameConfigManager.MakeOverStorage.TouchPointCondition[TouchData.ID] == 3)
                 SetCondition_Complete();
         }
         private void SetBase()
@@ -46,8 +40,8 @@ public class MakeOver_Touch : BaseUI
 
             foreach (var item in TouchData.Unlock) 
             {
-                if (makeoverStorage.TouchPointCondition[item] >= 2)
-                    makeoverStorage.TouchPointCondition[TouchData.ID] = 1;
+                if (GameConfigManager.MakeOverStorage.TouchPointCondition[item] >= 2)
+                    GameConfigManager.MakeOverStorage.TouchPointCondition[TouchData.ID] = 1;
             }
         }
         private void SetCondition_Touch()
@@ -56,10 +50,10 @@ public class MakeOver_Touch : BaseUI
             SetPointSprit(1);
             SetTips(1);
 
-            if (makeoverStorage.StoryCondition[makeoverStorage.CurrentStoryID] == 2)
+            if (GameConfigManager.MakeOverStorage.StoryCondition[GameConfigManager.MakeOverStorage.CurrentStoryID] == 2)
             {
-                if (makeoverStorage.TouchPointCondition[TouchData.ID] == 1)
-                    makeoverStorage.TouchPointCondition[TouchData.ID] = 2;
+                if (GameConfigManager.MakeOverStorage.TouchPointCondition[TouchData.ID] == 1)
+                    GameConfigManager.MakeOverStorage.TouchPointCondition[TouchData.ID] = 2;
             }
         }
         private void SetCondition_Claw()
@@ -74,12 +68,12 @@ public class MakeOver_Touch : BaseUI
                 var image = all_image.Find(a => a.ID == imageID);
                 if (image.BuyType == 1)
                 {
-                    if (makeoverStorage.ImageUnlock[imageID] == false)
+                    if (GameConfigManager.MakeOverStorage.ImageUnlock[imageID] == false)
                         count++;
                 }
             }
             if (count == 0)
-                makeoverStorage.TouchPointCondition[TouchData.ID] = 3;
+                GameConfigManager.MakeOverStorage.TouchPointCondition[TouchData.ID] = 3;
         }
         private void SetCondition_Complete()
         {
@@ -93,12 +87,12 @@ public class MakeOver_Touch : BaseUI
                     gameObject.SetActive(true);
                 if (TouchData.Type == 2)
                     gameObject.SetActive(false);
-                if (shareDataGlobalConfig._is_catquest_active)
+                if (GameConfigManager.ShareDataGlobalConfig._is_catquest_active)
                     gameObject.SetActive(false);
             }
             if (value == 2)
             {
-                if (makeoverStorage.StoryCondition[makeoverStorage.CurrentStoryID] == 2)
+                if (GameConfigManager.MakeOverStorage.StoryCondition[GameConfigManager.MakeOverStorage.CurrentStoryID] == 2)
                     gameObject.SetActive(true);
             }
             //if (shareDataGlobalConfig._is_catquest_active)
@@ -128,12 +122,12 @@ public class MakeOver_Touch : BaseUI
                 {
                     if (value == 1)
                     {
-                        if (commonStorage.Flower >= image.BuyPrice) 
+                        if (GameConfigManager.CommonStorage.Flower >= image.BuyPrice) 
                             tip1.SetActive(true);
                     }
                     if (value == 2)
                     {
-                        if (commonStorage.Flower >= image.SecondPrice) 
+                        if (GameConfigManager.CommonStorage.Flower >= image.SecondPrice) 
                             tip2.SetActive(true);
                     }
                 }
@@ -158,19 +152,11 @@ public class MakeOver_Touch : BaseUI
     public List<MakeOverConfig> currentTouchList;//声明布局的list
     public TouchButton touch_button;
     public List<TouchButton> touchButtonList;
-
-    private CommonStorage commonStorage;
-    private MakeOverStorage makeoverStorage;
-    private LevelStorage levelStorage;
     
     protected override void on_create()
     {
         touchButtonList = new List<TouchButton>();
         CurrentTouch = null;
-
-        commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();
-        makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-        levelStorage = _ui_manager.Framework.StorageManager.Storage<LevelStorage>();//获取通用关卡存档
     }
     public MakeOver_Touch Init(MakeOver makeover)
     {
@@ -216,17 +202,17 @@ public class MakeOver_Touch : BaseUI
     //新手引导
     private void Guide()
     {
-        if (makeoverStorage.CurrentStoryID == 1)
+        if (GameConfigManager.MakeOverStorage.CurrentStoryID == 1)
         {
             var guide1 = find_component<RectTransform>("touchpoint/guide_1");
             var guide2 = find_component<RectTransform>("touchpoint/guide_2");
             guide1.SetActive(false);
             guide2.SetActive(false);
-            if (makeoverStorage.TouchPointCondition[2] == 0)
+            if (GameConfigManager.MakeOverStorage.TouchPointCondition[2] == 0)
                 guide1.SetActive(true);
-            if (makeoverStorage.TouchPointCondition[2] >= 2) 
+            if (GameConfigManager.MakeOverStorage.TouchPointCondition[2] >= 2) 
             {
-                if (makeoverStorage.TouchPointCondition[3] == 1 && levelStorage.LevelCount == 2)
+                if (GameConfigManager.MakeOverStorage.TouchPointCondition[3] == 1 && GameConfigManager.LevelStorage.LevelCount == 2)
                     guide2.SetActive(true);
             }
         }

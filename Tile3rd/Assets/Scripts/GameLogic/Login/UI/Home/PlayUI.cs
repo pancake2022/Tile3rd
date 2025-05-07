@@ -11,10 +11,6 @@ public class PlayUI : BaseUI
     private RectTransform tip;
     private RectTransform guide;
 
-    private LevelStorage levelStorage;
-    private MakeOverStorage makeoverStorage;
-    private ShareDataGlobalConfig shareDataGlobalConfig;
-
     public PlayUI Init(HomeUI home)
     {
         Home = home;
@@ -22,9 +18,6 @@ public class PlayUI : BaseUI
     }
     protected override void on_create()
     {
-        levelStorage = _ui_manager.Framework.StorageManager.Storage<LevelStorage>();
-        makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-        shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
         register_button("Panel", on_play_clicked);
 
         //初始化引导
@@ -34,26 +27,26 @@ public class PlayUI : BaseUI
         guide.SetActive(false);
 
         var playbutton = find_component<Text>("Panel/Text");
-        playbutton.text = levelStorage.LevelCount.ToString();
+        playbutton.text = GameConfigManager.LevelStorage.LevelCount.ToString();
         
         ShowGuide();        
     }
     public void on_play_clicked()
     {
-        shareDataGlobalConfig._level_condition = 1;
+        GameConfigManager.ShareDataGlobalConfig._level_condition = 1;
 
         //剧情处理
         //shareDataGlobalConfig._story_game_out = true;
-        if (levelStorage.LevelCount == 1)
+        if (GameConfigManager.LevelStorage.LevelCount == 1)
         {
-            if (makeoverStorage.TouchPointCondition[2] >= 2) 
+            if (GameConfigManager.MakeOverStorage.TouchPointCondition[2] >= 2) 
                 GoGame();
             else
                 StartCoroutine(WaitCheck_tip());
         }
-        else if (levelStorage.LevelCount == 4)
+        else if (GameConfigManager.LevelStorage.LevelCount == 4)
         {
-            if (makeoverStorage.TouchPointCondition[5] >= 2) 
+            if (GameConfigManager.MakeOverStorage.TouchPointCondition[5] >= 2) 
                 GoGame();
             else
                 StartCoroutine(WaitCheck_tip());
@@ -75,17 +68,17 @@ public class PlayUI : BaseUI
     }
     public void ShowGuide()
     {
-        if (levelStorage.LevelCount == 1)
+        if (GameConfigManager.LevelStorage.LevelCount == 1)
         {
-            if (makeoverStorage.TouchPointCondition[2] >= 2) 
+            if (GameConfigManager.MakeOverStorage.TouchPointCondition[2] >= 2) 
                 guide.SetActive(true);
         }
-        if (levelStorage.LevelCount == 2)
+        if (GameConfigManager.LevelStorage.LevelCount == 2)
         {
-            if (makeoverStorage.TouchPointCondition[3] >= 2)
+            if (GameConfigManager.MakeOverStorage.TouchPointCondition[3] >= 2)
                 guide.SetActive(true);
         }
-        if (levelStorage.LevelCount == 3)
+        if (GameConfigManager.LevelStorage.LevelCount == 3)
             guide.SetActive(true);
     }
 }

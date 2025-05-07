@@ -95,8 +95,6 @@ public class GameTileRandom : BaseUI
     {
         //额外判断 - 复活和remove会把count置为0
         //额外判断 - retry会重制猫状态
-        var gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        var globalconfig = gameConfigGroup.GlobalConfigList[0];
         if (Condition < 3)
         {
             Condition_Count++;
@@ -111,14 +109,13 @@ public class GameTileRandom : BaseUI
         if (Condition == 3)
             TileChangeCount(2,4,100);
         if (Condition == 4)
-            TileChangeCount(globalconfig.RandomTile_Count_Min, globalconfig.RandomTile_Count_Max, globalconfig.RandomTile_Count_Rate);
+            TileChangeCount(GameConfigManager.GlobalConfig.RandomTile_Count_Min,
+                GameConfigManager.GlobalConfig.RandomTile_Count_Max,
+                GameConfigManager.GlobalConfig.RandomTile_Count_Rate);
     }
     
     private void TileChangeCount(int valueMin, int valueMax, int valueRate)
     {
-        var gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        var globalconfig = gameConfigGroup.GlobalConfigList[0];
-
         Condition_Count++;
         if (Condition_Count > valueMin && Condition_Count < valueMax)
         {
@@ -132,7 +129,7 @@ public class GameTileRandom : BaseUI
                 ChangeConditionShow();
             }
         }
-        if (Condition_Count == globalconfig.RandomTile_Count_Max)
+        if (Condition_Count == GameConfigManager.GlobalConfig.RandomTile_Count_Max)
         {
             if (Condition < 4)
                 Condition++;

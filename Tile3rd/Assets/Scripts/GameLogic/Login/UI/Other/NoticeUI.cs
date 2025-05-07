@@ -15,8 +15,6 @@ public class NoticeUI : WindowUI
     {
         _ui_manager.Framework.AudioManager.PlaySound("sound_panel_opening");
         Property.CommonAnimationTransform = transform.Find("Panel");
-        tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
         home_ui = _ui_manager.FindWindow<HomeUI>();
         register_button("Panel/Button/close", on_close_clicked);
         register_button("Panel/Button/button", on_button_clicked);
@@ -36,26 +34,26 @@ public class NoticeUI : WindowUI
         tileunlock.SetActive(false);
         storyunlock.SetActive(false);
 
-        if (shareDataGlobalConfig._notice_id == 1)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 1)
             levelchest.SetActive(true);
-        if (shareDataGlobalConfig._notice_id == 2)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 2)
             outgem.SetActive(true);
-        if (shareDataGlobalConfig._notice_id == 3)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 3)
         {
             catquest.SetActive(true);
             GetCatQuestImage();
         }
-        if (shareDataGlobalConfig._notice_id == 4)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 4)
         {
             tileunlock.SetActive(true);
             GetTileIcon();
         }
-        if (shareDataGlobalConfig._notice_id == 5)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 5)
         {
             tileunlock.SetActive(true);
             GetSignTileIcon();
         }
-        if (shareDataGlobalConfig._notice_id == 6)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 6)
         {
             storyunlock.SetActive(true);
             GetStoryPic();
@@ -67,20 +65,20 @@ public class NoticeUI : WindowUI
         var text = find_component<Text>("Panel/Button/button/Text");
         close.SetActive(true);
 
-        if (shareDataGlobalConfig._notice_id == 1)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 1)
             text.text = "Play";
-        if (shareDataGlobalConfig._notice_id == 2)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 2)
             text.text = "Play";
-        if (shareDataGlobalConfig._notice_id == 3)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 3)
             text.text = "Play";
-        if (shareDataGlobalConfig._notice_id == 4)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 4)
             text.text = "Use Now";
-        if (shareDataGlobalConfig._notice_id == 5)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 5)
         {
             text.text = "Use Now";
             close.SetActive(false);
         }
-        if (shareDataGlobalConfig._notice_id == 6)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 6)
         {
             text.text = "View";
             close.SetActive(false);
@@ -99,29 +97,28 @@ public class NoticeUI : WindowUI
     {
         play_sound("sound_panel_closing");
         Close();
-        if (shareDataGlobalConfig._notice_id == 1)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 1)
             home_ui.playUI.on_play_clicked();
-        if (shareDataGlobalConfig._notice_id == 2)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 2)
             home_ui.playUI.on_play_clicked();
-        if (shareDataGlobalConfig._notice_id == 3)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 3)
             home_ui.playUI.on_play_clicked();
-        if (shareDataGlobalConfig._notice_id == 4)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 4)
             home_ui.levelChest.collectionunlock();
-        if (shareDataGlobalConfig._notice_id == 5)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 5)
             tile2storage.CurrentTileID = 101;
-        if (shareDataGlobalConfig._notice_id == 6)
+        if (GameConfigManager.ShareDataGlobalConfig._notice_id == 6)
             home_ui.makeOver.MakeoverRefresh();
     }
     //猫的图片
     private void GetCatQuestImage()
     {
-        var makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-        var all_image = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().MakeOverConfigList;
-        var image = all_image.Find(a => a.ID == makeoverStorage.CurrentQuest.MakeOverImageID);
+        var all_image = GameConfigManager.GameConfigGroup.MakeOverConfigList;
+        var image = all_image.Find(a => a.ID == GameConfigManager.MakeOverStorage.CurrentQuest.MakeOverImageID);
         var icon = find_component<Image>("Panel/Picture/catquest/picture/Image");
         var text = find_component<Text>("Panel/Picture/catquest/text/Text");
         icon.sprite = _ui_manager.FindSprite($"{image.Pack}", $"{image.Icon}", true);
-        text.text = makeoverStorage.CurrentQuest.DescStart;
+        text.text = GameConfigManager.MakeOverStorage.CurrentQuest.DescStart;
     }
     //宝箱牌
     private void GetTileIcon()
@@ -132,7 +129,7 @@ public class NoticeUI : WindowUI
     //每日签到牌
     private void GetSignTileIcon()
     {
-        var collectionlist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().CollectionConfigList;
+        var collectionlist = GameConfigManager.GameConfigGroup.CollectionConfigList;
         var tile = collectionlist.Find(a => a.ID == shareDataGlobalConfig._sign_reward_id);
         var icon = find_component<Image>("Panel/Picture/tileunlock/picture/Image");
         icon.sprite = _ui_manager.FindSprite($"{tile.IconPack}", $"{tile.Icon}", true);
@@ -140,8 +137,8 @@ public class NoticeUI : WindowUI
     //解锁story的图
     private void GetStoryPic()
     {
-        var storylist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().StoryConfigList;
-        var story = storylist.Find(a => a.ID == shareDataGlobalConfig._sign_reward_id);
+        var storylist = GameConfigManager.GameConfigGroup.StoryConfigList;
+        var story = storylist.Find(a => a.ID == GameConfigManager.ShareDataGlobalConfig._sign_reward_id);
         var icon = find_component<Image>("Panel/Picture/tileunlock/picture/Image");
         icon.sprite = _ui_manager.FindSprite($"{story.Pack}", $"{story.Back}", true);
     }

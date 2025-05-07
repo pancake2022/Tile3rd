@@ -38,10 +38,8 @@ public class GameRewardItemFly : WindowUI
         public void SetReward()
         {
             var game_ui = _ui_manager.FindWindow<GameUI>();
-            var gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-            var globalconfig = gameConfigGroup.GlobalConfigList[0];
 
-            int randomRewardnormal = UnityEngine.Random.Range(globalconfig.Flower_Bloom_Normal_Min, globalconfig.Flower_Bloom_Normal_Max + 1);//普通的鲜花数量
+            int randomRewardnormal = UnityEngine.Random.Range(GameConfigManager.GlobalConfig.Flower_Bloom_Normal_Min, GameConfigManager.GlobalConfig.Flower_Bloom_Normal_Max + 1);//普通的鲜花数量
             game_ui.gameRewardItem.game_reward_item_1 = game_ui.gameRewardItem.game_reward_item_1 + randomRewardnormal;
             rewardText.text = randomRewardnormal.ToString();
         }
@@ -70,10 +68,6 @@ public class GameRewardItemFly : WindowUI
     public GameUI Game;
     private RectTransform rewardfly_rt;
     private GameObject rewarditem_temp;
-    private Tile2Storage tile2storage;
-    private LevelStorage levelStorage;
-    private GameConfigGroup gameConfigGroup;
-    private GlobalConfig globalconfig;
 
     public GameRewardItemFly Init(GameUI game)//PanelUI的初始化
     {
@@ -82,11 +76,6 @@ public class GameRewardItemFly : WindowUI
     }
     protected override void on_create()
     {
-        tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        levelStorage = _ui_manager.Framework.StorageManager.Storage<LevelStorage>();
-        gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        globalconfig = gameConfigGroup.GlobalConfigList[0];
-
         rewardfly_rt = find_component<RectTransform>("Panel");
         rewarditem_temp = find_component<RectTransform>("itemTemplate", rewardfly_rt).gameObject;
         rewarditem_temp.SetActive(false);
@@ -105,10 +94,10 @@ public class GameRewardItemFly : WindowUI
     {
         Game.gameRewardItem.BloomTimes--;
         rewarditem_temp.SetActive(false);
-        int bloomrandom = UnityEngine.Random.Range(globalconfig.Flower_Bloom_Min, globalconfig.Flower_Bloom_Max + 1);
-        int buffrandom = UnityEngine.Random.Range(globalconfig.Flower_Bloom_Buff_Min, globalconfig.Flower_Bloom_Buff_Max + 1);
+        int bloomrandom = UnityEngine.Random.Range(GameConfigManager.GlobalConfig.Flower_Bloom_Min, GameConfigManager.GlobalConfig.Flower_Bloom_Max + 1);
+        int buffrandom = UnityEngine.Random.Range(GameConfigManager.GlobalConfig.Flower_Bloom_Buff_Min, GameConfigManager.GlobalConfig.Flower_Bloom_Buff_Max + 1);
 
-        int flyCount = tile2storage.BloomBuffTimes > 0 ? buffrandom : bloomrandom;
+        int flyCount = GameConfigManager.Tile2Storage.BloomBuffTimes > 0 ? buffrandom : bloomrandom;
 
         for (int i = 0; i < flyCount; i++)
         {
@@ -148,11 +137,11 @@ public class GameRewardItemFly : WindowUI
     }
     private void FlyItemShow()
     {
-        int BloomRate = 100 - globalconfig.Flower_Bloom_Rate;
-        int BloomBuffRate = 100 - globalconfig.Flower_Bloom_Buff_Rate;
+        int BloomRate = 100 - GameConfigManager.GlobalConfig.Flower_Bloom_Rate;
+        int BloomBuffRate = 100 - GameConfigManager.GlobalConfig.Flower_Bloom_Buff_Rate;
         int randomNum = UnityEngine.Random.Range(1, 101);//整体的几率
         //bloomAll状态
-        if (tile2storage.BloomAllTimes > 0)
+        if (GameConfigManager.Tile2Storage.BloomAllTimes > 0)
         {
             Bloom();
         }
@@ -171,14 +160,14 @@ public class GameRewardItemFly : WindowUI
         //普通状态
         else
         {
-            if (tile2storage.BloomBuffTimes > 0) 
+            if (GameConfigManager.Tile2Storage.BloomBuffTimes > 0) 
             {
                 if (randomNum <= BloomBuffRate)
                     normal();
                 else
                 {
                     if (Game.leftCell >= 15)
-                        BloomStartCount(globalconfig.Bloom_Times_Match);
+                        BloomStartCount(GameConfigManager.GlobalConfig.Bloom_Times_Match);
                     else
                         normal();
                 }
@@ -190,7 +179,7 @@ public class GameRewardItemFly : WindowUI
                 else
                 {
                     if (Game.leftCell >= 15)
-                        BloomStartCount(globalconfig.Bloom_Times_Match);
+                        BloomStartCount(GameConfigManager.GlobalConfig.Bloom_Times_Match);
                     else
                         normal();
                 }
@@ -203,7 +192,7 @@ public class GameRewardItemFly : WindowUI
         //任务关第一次消除就送一个bloom
         //不完成任务关不让打第4关
         Debug.Log("flyleftcell"+Game.leftCell);
-        if (levelStorage.CurrentLevel <= 3)
+        if (GameConfigManager.LevelStorage.CurrentLevel <= 3)
             normal();
         else if (Game._panel_ui.Panel.ID == 2024901) 
         {
@@ -224,7 +213,7 @@ public class GameRewardItemFly : WindowUI
         else if (Game._panel_ui.Panel.ID == 2024005)
         {
             if (Game.leftCell < 45 && Game.leftCell > 42 && Game.gameRewardItem.BloomTimes <= 0)
-                BloomStartCount(globalconfig.Bloom_Times_Match);
+                BloomStartCount(GameConfigManager.GlobalConfig.Bloom_Times_Match);
             else
                 FlyItemShow();
         }

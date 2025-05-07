@@ -21,30 +21,18 @@ public class HomeRewardItemFly : BaseUI
     private int droptilemax;
     private int droptilecount;
 
-    private CommonStorage commonStorage;
-    private Tile2Storage tile2storage;
-    private LevelStorage levelStorage;
-    private ShareDataGlobalConfig shareDataGlobalConfig;
     private List<ItemConfig> itemlist;
     private List<CollectionConfig> collectionlist;
-    private GameConfigGroup gameConfigGroup;
-    private GlobalConfig globalconfig;
 
     protected override void on_create()
     {
-        commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();
-        tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        levelStorage = _ui_manager.Framework.StorageManager.Storage<LevelStorage>();
-        shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        itemlist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().ItemConfigList;
-        collectionlist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().CollectionConfigList;
-        gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        globalconfig = gameConfigGroup.GlobalConfigList[0];
+        itemlist = GameConfigManager.GameConfigGroup.ItemConfigList;
+        collectionlist = GameConfigManager.GameConfigGroup.CollectionConfigList;
 
         var item = find_component<RectTransform>("Panel/Image/item");
-        if (shareDataGlobalConfig._home_fly == 2)
+        if (GameConfigManager.ShareDataGlobalConfig._home_fly == 2)
             item.SetActive(false);
-        if (shareDataGlobalConfig._home_fly == 4)
+        if (GameConfigManager.ShareDataGlobalConfig._home_fly == 4)
             item.SetActive(true);
     }
 
@@ -69,7 +57,7 @@ public class HomeRewardItemFly : BaseUI
         var image = find_component<RectTransform>("Panel/Image");
 
         //关卡宝箱
-        if (shareDataGlobalConfig._home_fly == 1)
+        if (GameConfigManager.ShareDataGlobalConfig._home_fly == 1)
         {
             Home.GetLevelChestPosition();
             flyPosition = Home.startPosition;
@@ -77,7 +65,7 @@ public class HomeRewardItemFly : BaseUI
             anim.Play("Fly_tips");
         }
         //飞心
-        if (shareDataGlobalConfig._home_fly == 2)
+        if (GameConfigManager.ShareDataGlobalConfig._home_fly == 2)
         {
             Home.GetLoveLevelPosition();
             Home.makeOver.makeOver_CatImage.CatHeartPosition();
@@ -87,7 +75,7 @@ public class HomeRewardItemFly : BaseUI
             anim.Play("Fly_heart");
         }
         //飞小花
-        if (shareDataGlobalConfig._home_fly == 4)
+        if (GameConfigManager.ShareDataGlobalConfig._home_fly == 4)
         {
             anim.enabled = false;
             image.SetActive(true);
@@ -98,7 +86,7 @@ public class HomeRewardItemFly : BaseUI
             ItemShow("M3Reward", "icon_flower", false, 0);
             flyType = 1;
         }
-        if (shareDataGlobalConfig._home_fly == 5)
+        if (GameConfigManager.ShareDataGlobalConfig._home_fly == 5)
         {
             Home.GetDailyHintPosition();
             flyPosition = Home.startPosition;
@@ -143,7 +131,7 @@ public class HomeRewardItemFly : BaseUI
         {
             transform.localPosition = Home.startPosition;
             transform.localScale = targetScale;
-            shareDataGlobalConfig._love_exp_pause = false;//需要处理
+            GameConfigManager.ShareDataGlobalConfig._love_exp_pause = false;//需要处理
             Home.ClearRewardFly();
             Home.makeOver.MakeOverUI_SelectClose();
 
@@ -191,18 +179,18 @@ public class HomeRewardItemFly : BaseUI
     //关卡宝箱奖励
     private void FlyItemShow()
     {
-        if (shareDataGlobalConfig._bundle_type_id == 5)
+        if (GameConfigManager.ShareDataGlobalConfig._bundle_type_id == 5)
             unlockdrop();
     }
     //掉落解锁
     private void unlockdrop()
     {
         //解锁levelchest/和后面一关，仅掉落bloom
-        if (levelStorage.LevelCount < globalconfig.Unlock_Collection)
+        if (GameConfigManager.LevelStorage.LevelCount < GameConfigManager.GlobalConfig.Unlock_Collection)
             BloomDrop();
         else
         {
-            if (levelStorage.LevelCount == globalconfig.Unlock_Collection)
+            if (GameConfigManager.LevelStorage.LevelCount == GameConfigManager.GlobalConfig.Unlock_Collection)
                 TileDrop();
             else
                 Drop();
@@ -211,22 +199,22 @@ public class HomeRewardItemFly : BaseUI
     //物品掉落的处理
     private void LifeDrop()
     {
-        commonStorage.Item_Life++;
+        GameConfigManager.CommonStorage.Item_Life++;
         ItemShow("M3Reward", "icon_game_life", true, 1);
     }
     private void RemoveDrop()
     {
-        commonStorage.Item_Remove++;
+        GameConfigManager.CommonStorage.Item_Remove++;
         ItemShow("M3Reward", "icon_game_delete", true, 1);
     }
     private void RecallDrop()
     {
-        commonStorage.Item_Recall++;
+        GameConfigManager.CommonStorage.Item_Recall++;
         ItemShow("M3Reward", "icon_game_delete", true, 1);
     }
     private void BloomDrop()
     {
-        commonStorage.Item_Bloom = commonStorage.Item_Bloom + 1;
+        GameConfigManager.CommonStorage.Item_Bloom = GameConfigManager.CommonStorage.Item_Bloom + 1;
         ItemShow("M3Reward", "icon_game_bloom", true, 1);
         //GetCurrentTile();
     }
@@ -234,14 +222,14 @@ public class HomeRewardItemFly : BaseUI
     private void GetCurrentTile()
     {
         //maxdroptile = tile2storage.TileUnlock.Count;
-        var collectionlist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().CollectionConfigList;
+        var collectionlist = GameConfigManager.GameConfigGroup.CollectionConfigList;
         maxdroptile = collectionlist.Where(a => a.Type == 2).Max(a => a.ID);
 
         foreach (var item in collectionlist)
         {
             if (item.Type == 2)
             {
-                if (tile2storage.TileUnlock[item.ID] == false)
+                if (GameConfigManager.Tile2Storage.TileUnlock[item.ID] == false)
                 {
                     currentdroptile = item.ID;
                     lastdroptile = item.UnlockTile;
@@ -259,18 +247,18 @@ public class HomeRewardItemFly : BaseUI
         var tile = collectionlist.Find(a => a.ID == currentdroptile);
         int num = 0;
         
-        if (tile2storage.TileUnlock[lastdroptile] == true && tile2storage.TileUnlock[currentdroptile] == false)
+        if (GameConfigManager.Tile2Storage.TileUnlock[lastdroptile] == true && GameConfigManager.Tile2Storage.TileUnlock[currentdroptile] == false)
         {
-            foreach (var item in tile2storage.TileSingleUnlock)
+            foreach (var item in GameConfigManager.Tile2Storage.TileSingleUnlock)
             {
-                if (tile2storage.TileSingleUnlock[droptilemax] == false)
+                if (GameConfigManager.Tile2Storage.TileSingleUnlock[droptilemax] == false)
                 {
                     if (item.Key >= droptilemin) 
                     {
-                        if (tile2storage.TileSingleUnlock[item.Key] == false)
+                        if (GameConfigManager.Tile2Storage.TileSingleUnlock[item.Key] == false)
                         {
                             num = item.Key - droptilemin;
-                            tile2storage.TileSingleUnlock[item.Key] = true;
+                            GameConfigManager.Tile2Storage.TileSingleUnlock[item.Key] = true;
                             ItemShow($"{tile.TilePack}", $"e" + num.ToString("D2"), true, 1);
                             Home.levelChest.collectionunlock();
                             break;
@@ -279,12 +267,11 @@ public class HomeRewardItemFly : BaseUI
                 }
                 else
                 {
-                    var shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-                    shareDataGlobalConfig._notice_id = 4;
+                    GameConfigManager.ShareDataGlobalConfig._notice_id = 4;
                     _ui_manager.OpenWindow<NoticeUI>();
                     ItemShow($"{tile.TilePack}", $"e" + droptilecount.ToString("D2"), true, 1);
-                    tile2storage.TileUnlock[currentdroptile] = true;
-                    tile2storage.CurrentTileID = tile.ID;
+                    GameConfigManager.Tile2Storage.TileUnlock[currentdroptile] = true;
+                    GameConfigManager.Tile2Storage.CurrentTileID = tile.ID;
                     Home.collection.ShowInit();
                 }
             }
@@ -297,7 +284,7 @@ public class HomeRewardItemFly : BaseUI
         int randomNum2 = Random.Range(1, 11);
         if (randomNum2 <= 8)
         {
-            if (tile2storage.TileUnlock[maxdroptile] == false)
+            if (GameConfigManager.Tile2Storage.TileUnlock[maxdroptile] == false)
                 TileDrop();
             else
                 BloomDrop();
@@ -313,7 +300,7 @@ public class HomeRewardItemFly : BaseUI
         //其余则给保底奖励
         bool propUsed = false;
         int randomNum2 = Random.Range(1, 101);
-        foreach (var item in tile2storage.LevelChestItemList)
+        foreach (var item in GameConfigManager.Tile2Storage.LevelChestItemList)
         {
             if (item > 0)
                 propUsed = true;
@@ -322,13 +309,13 @@ public class HomeRewardItemFly : BaseUI
         {
             if (randomNum2 <= 30)
             {
-                if (tile2storage.LevelChestItemList[0] > 0)
+                if (GameConfigManager.Tile2Storage.LevelChestItemList[0] > 0)
                     LifeDrop();
-                if (tile2storage.LevelChestItemList[1] > 0)
+                if (GameConfigManager.Tile2Storage.LevelChestItemList[1] > 0)
                     RemoveDrop();
-                if (tile2storage.LevelChestItemList[2] > 0)
+                if (GameConfigManager.Tile2Storage.LevelChestItemList[2] > 0)
                     RecallDrop();
-                if (tile2storage.LevelChestItemList[3] > 0)
+                if (GameConfigManager.Tile2Storage.LevelChestItemList[3] > 0)
                     BloomDrop();
             }
             else

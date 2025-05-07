@@ -77,11 +77,10 @@ public class DailyTask_Icon : BaseUI
         }
         private void Slider()
         {
-            var tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
             sliderValue = 0;
             foreach (var item in Chain.ChainList)
             {
-                if (tile2Storage.DailyTaskCondition[item] == 3)
+                if (GameConfigManager.Tile2Storage.DailyTaskCondition[item] == 3)
                     sliderValue++;
             }
 
@@ -107,21 +106,19 @@ public class DailyTask_Icon : BaseUI
         {
             chain_progress.SetActive(true);
 
-            var tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
             foreach (var item in Chain.ChainList)
             {
-                if (tile2Storage.DailyTaskCondition[item] == 3)
+                if (GameConfigManager.Tile2Storage.DailyTaskCondition[item] == 3)
                     chainFinish = true;
                 else
                     chainFinish = false;
             }
             if (chainFinish)
-                tile2Storage.DailyTaskChainCondition[Chain.ID] = 2;
+                GameConfigManager.Tile2Storage.DailyTaskChainCondition[Chain.ID] = 2;
         }
         public void ShowButton()
         {
-            var makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-            if (makeoverStorage.TouchPointCondition[Chain.UnlockTouchID] >= 2)
+            if (GameConfigManager.MakeOverStorage.TouchPointCondition[Chain.UnlockTouchID] >= 2)
                 button_claim.SetActive(true);
             else
                 button_claim_lock.SetActive(true);
@@ -144,7 +141,6 @@ public class DailyTask_Icon : BaseUI
     private DailyTaskChainConfig chainData;
     private int sliderValue;
     private bool chainFinish;
-    private Tile2Storage tile2Storage;
     public float diff;
     public float hour;
     public float min;
@@ -157,7 +153,6 @@ public class DailyTask_Icon : BaseUI
     }
     protected override void on_create()
     {
-        tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
     }
     private void Update()
     {
@@ -165,8 +160,8 @@ public class DailyTask_Icon : BaseUI
     }
     private void GetCurrentChain()
     {
-        var chainlist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().DailyTaskChainConfigList;
-        chainData = chainlist.Find(a => a.ID == tile2Storage.CurrentDailyTaskChainID);
+        var chainlist = GameConfigManager.GameConfigGroup.DailyTaskChainConfigList;
+        chainData = chainlist.Find(a => a.ID == GameConfigManager.Tile2Storage.CurrentDailyTaskChainID);
         currentChain = create_ui<CurrentChain>("Panel");
         currentChain.Init(chainData);
     }
@@ -178,13 +173,13 @@ public class DailyTask_Icon : BaseUI
     private void RefreshDailyTask_Icon()
     {
         GetCurrentChain();
-        if (tile2Storage.DailyTaskChainCondition[tile2Storage.CurrentDailyTaskChainID] == 0)
+        if (GameConfigManager.Tile2Storage.DailyTaskChainCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskChainID] == 0)
             DailyTaskChainCondition_0();
-        if (tile2Storage.DailyTaskChainCondition[tile2Storage.CurrentDailyTaskChainID] == 1)
+        if (GameConfigManager.Tile2Storage.DailyTaskChainCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskChainID] == 1)
             DailyTaskChainCondition_1();
-        if (tile2Storage.DailyTaskChainCondition[tile2Storage.CurrentDailyTaskChainID] == 2)
+        if (GameConfigManager.Tile2Storage.DailyTaskChainCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskChainID] == 2)
             DailyTaskChainCondition_2();
-        if (tile2Storage.DailyTaskChainCondition[tile2Storage.CurrentDailyTaskChainID] == 3)
+        if (GameConfigManager.Tile2Storage.DailyTaskChainCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskChainID] == 3)
             DailyTaskChainCondition_3();
     }
     
@@ -209,12 +204,12 @@ public class DailyTask_Icon : BaseUI
 
     public void GetCountDown()
     {
-        if (tile2Storage.DailyTaskChainCondition[tile2Storage.CurrentDailyTaskChainID] == 0)
+        if (GameConfigManager.Tile2Storage.DailyTaskChainCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskChainID] == 0)
         {
             //领奖刷新任务链时 - 记录starttime
             //用当前时间与starttime对比，判断是否超过了cd时间
             var endTime = DateTime.Now;
-            TimeSpan difftime = tile2Storage.DailyTaskChainStartTime.Subtract(endTime);
+            TimeSpan difftime = GameConfigManager.Tile2Storage.DailyTaskChainStartTime.Subtract(endTime);
             diff = currentChain.Chain.UnlockCD + MathF.Floor((float)(difftime.TotalSeconds));
             hour = MathF.Floor(diff / 3600);
             min = MathF.Floor((diff - hour * 3600) / 60);
@@ -223,7 +218,7 @@ public class DailyTask_Icon : BaseUI
             //cd结束后切换到下一个状态
             if (diff <= 0)
             {
-                tile2Storage.DailyTaskChainCondition[tile2Storage.CurrentDailyTaskChainID] = 1;
+                GameConfigManager.Tile2Storage.DailyTaskChainCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskChainID] = 1;
                 RefreshDailyTask_Icon();
                 Home.DailyTaskInit();
             }
@@ -242,19 +237,19 @@ public class DailyTask_Icon : BaseUI
     }
     public void ChainFinish()
     {
-        tile2Storage.DailyTaskChainCondition[tile2Storage.CurrentDailyTaskChainID] = 3;
+        GameConfigManager.Tile2Storage.DailyTaskChainCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskChainID] = 3;
         RefreshDailyTask_Icon();
     }
     private void GetNextChainID()
     {
-        var chainList = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().DailyTaskChainConfigList;
-        int index = chainList.FindIndex(a => a.ID == tile2Storage.CurrentDailyTaskChainID);
+        var chainList = GameConfigManager.GameConfigGroup.DailyTaskChainConfigList;
+        int index = chainList.FindIndex(a => a.ID == GameConfigManager.Tile2Storage.CurrentDailyTaskChainID);
         var lastChain = chainList[chainList.Count - 1];
 
-        if (tile2Storage.CurrentDailyTaskChainID < lastChain.ID)
+        if (GameConfigManager.Tile2Storage.CurrentDailyTaskChainID < lastChain.ID)
         {
             var nextChain = chainList[index + 1];
-            tile2Storage.CurrentDailyTaskChainID = nextChain.ID;
+            GameConfigManager.Tile2Storage.CurrentDailyTaskChainID = nextChain.ID;
             RefreshDailyTask_Icon();
         }
         else

@@ -59,6 +59,10 @@
         "Sign": {
           "PropertyName": "SignConfigList",
           "PropertyType": "SignConfig"
+        },
+        "OrderChain": {
+          "PropertyName": "OrderChainConfigList",
+          "PropertyType": "OrderChainConfig"
         }
       },
       "LoadOnStart": true

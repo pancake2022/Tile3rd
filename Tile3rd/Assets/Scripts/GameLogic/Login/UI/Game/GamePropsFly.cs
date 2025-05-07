@@ -25,29 +25,26 @@ public class GamePropsFly : WindowUI
 
     public void FlyItemShow()
     {
-        var shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        var gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        var globalconfig = gameConfigGroup.GlobalConfigList[0];
         //广告礼包 - 消除
-        if (shareDataGlobalConfig._bundle_type_id == 3)
+        if (GameConfigManager.ShareDataGlobalConfig._bundle_type_id == 3)
         {
             Game.gameItemGroupUI.GetStartPositon_Remove();
             flyPosition = Game.gameItemGroupUI.startPosition;
-            ItemShow("M3Reward", "icon_game_delete", globalconfig.RV_Reward_Remove);
+            ItemShow("M3Reward", "icon_game_delete", GameConfigManager.GlobalConfig.RV_Reward_Remove);
         }
         //广告礼包 - 回退
-        if (shareDataGlobalConfig._bundle_type_id == 4)
+        if (GameConfigManager.ShareDataGlobalConfig._bundle_type_id == 4)
         {
             Game.gameItemGroupUI.GetStartPositon_Recall();
             flyPosition = Game.gameItemGroupUI.startPosition;
-            ItemShow("M3Reward", "icon_game_back", globalconfig.RV_Reward_Recall);
+            ItemShow("M3Reward", "icon_game_back", GameConfigManager.GlobalConfig.RV_Reward_Recall);
         }
         //广告礼包 - 绽放
-        if (shareDataGlobalConfig._bundle_type_id == 5)
+        if (GameConfigManager.ShareDataGlobalConfig._bundle_type_id == 5)
         {
             Game.gameItemGroupUI.GetStartPositon_Bloom();
             flyPosition = Game.gameItemGroupUI.startPosition;
-            ItemShow("M3Reward", "icon_game_bloom", globalconfig.RV_Reward_Bloom);
+            ItemShow("M3Reward", "icon_game_bloom", GameConfigManager.GlobalConfig.RV_Reward_Bloom);
         }
         transform.localPosition = flyPosition;
     }

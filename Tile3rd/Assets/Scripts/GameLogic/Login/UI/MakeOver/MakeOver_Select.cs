@@ -64,10 +64,9 @@ public class MakeOver_Select : BaseUI
         private void SetShow()
         {
             //任务家具需要解锁以后才显示
-            var makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
             if (Data.BuyType != 4)
                 Show();
-            if (makeoverStorage.ImageUnlock[Data.ID])
+            if (GameConfigManager.MakeOverStorage.ImageUnlock[Data.ID])
                 Show();
         }
         public SelectButton Init(MakeOverConfig data, Action<SelectButton> click_callback)
@@ -96,11 +95,6 @@ public class MakeOver_Select : BaseUI
     public int AnimType;
     public bool AnimFlyHeart;
 
-    private CommonStorage commonStorage;
-    private MakeOverStorage makeoverStorage;
-    private Tile2Storage tile2storage;
-    private ShareDataGlobalConfig shareDataGlobalConfig;
-
     public MakeOver_Select Init(MakeOver makeover)//PanelUI的初始化
     {
         makeOver = makeover;
@@ -108,11 +102,6 @@ public class MakeOver_Select : BaseUI
     }
     protected override void on_create()
     {
-        commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();
-        makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-        tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-
         register_button("Panel/SelectButton/Button/close", on_close_clicked);
         register_button("Panel/SelectButton/Button/button/image/use", on_use_clicked);
         register_button("Panel/SelectButton/Button/button/image/buy", on_buy_clicked);
@@ -130,7 +119,7 @@ public class MakeOver_Select : BaseUI
     {
         //货币 - 实时数量
         var Flower_Num = find_component<Text>("Panel/UI_Top/coin_bar/cointext");
-        Flower_Num.text = commonStorage.Flower.ToString();
+        Flower_Num.text = GameConfigManager.CommonStorage.Flower.ToString();
     }
 
     public MakeOver_Select InitSelectList()
@@ -158,23 +147,23 @@ public class MakeOver_Select : BaseUI
             selectButton.Init(makeoverdata, p => on_panel_selected(p.Data));
             selectButtonList.Add(selectButton);
 
-            if (makeoverStorage.ImageUse[makeoverdata.ID]) 
+            if (GameConfigManager.MakeOverStorage.ImageUse[makeoverdata.ID]) 
             {
                 on_panel_selected(makeoverdata);
                 selectButton.SetUsed(true);
                 isDefault = false;
             }
-            if (makeoverStorage.ImageUnlock[makeoverdata.ID] == false) 
+            if (GameConfigManager.MakeOverStorage.ImageUnlock[makeoverdata.ID] == false) 
             {
                 selectButton.SetLock(true);
-                if (makeoverStorage.TouchPointCondition[makeOver.makeOver_Touch.CurrentTouch.ID] == 1)
+                if (GameConfigManager.MakeOverStorage.TouchPointCondition[makeOver.makeOver_Touch.CurrentTouch.ID] == 1)
                 {
-                    if (commonStorage.Flower >= makeoverdata.BuyPrice) 
+                    if (GameConfigManager.CommonStorage.Flower >= makeoverdata.BuyPrice) 
                         selectButton.SetTip(true);
                 }
-                if (makeoverStorage.TouchPointCondition[makeOver.makeOver_Touch.CurrentTouch.ID] == 2)
+                if (GameConfigManager.MakeOverStorage.TouchPointCondition[makeOver.makeOver_Touch.CurrentTouch.ID] == 2)
                 {
-                    if (commonStorage.Flower >= makeoverdata.SecondPrice) 
+                    if (GameConfigManager.CommonStorage.Flower >= makeoverdata.SecondPrice) 
                         selectButton.SetTip(true);
                 }
             }
@@ -214,20 +203,19 @@ public class MakeOver_Select : BaseUI
                 makeOver.makeOver_Image.lerpCondition = 1;
 
                 //如果第一次购买（当前touch未解锁）
-                if (makeoverStorage.TouchPointCondition[makeOver.makeOver_Touch.CurrentTouch.ID] == 1)
+                if (GameConfigManager.MakeOverStorage.TouchPointCondition[makeOver.makeOver_Touch.CurrentTouch.ID] == 1)
                     ButtonShow(data.BuyType, $"{ data.BuyPrice}");
                 //如果第二次购买（当前touch已解锁）
-                if (makeoverStorage.TouchPointCondition[makeOver.makeOver_Touch.CurrentTouch.ID] == 2)
+                if (GameConfigManager.MakeOverStorage.TouchPointCondition[makeOver.makeOver_Touch.CurrentTouch.ID] == 2)
                     ButtonShow(data.BuyType, $"{ data.SecondPrice}");
                 //(当前touch全部解锁)
-                if (makeoverStorage.TouchPointCondition[makeOver.makeOver_Touch.CurrentTouch.ID] == 3)
+                if (GameConfigManager.MakeOverStorage.TouchPointCondition[makeOver.makeOver_Touch.CurrentTouch.ID] == 3)
                     ButtonShow(3, $"");
             }
 
             //隐藏猫
             if (CurrentPanel.CatSelectHide && makeOver.makeOver_CatImage.catButton != null)
                 makeOver.makeOver_CatImage.catButton.CatShow(false);
-                //makeOver.makeOver_CatImage.catButton.CatQuestSetShow(false);
         }
     }
 
@@ -245,7 +233,7 @@ public class MakeOver_Select : BaseUI
         button_watch.SetActive(false);
         button_buyText.text = $"{Text}";
 
-        if (makeoverStorage.ImageUnlock[CurrentPanel.ID])
+        if (GameConfigManager.MakeOverStorage.ImageUnlock[CurrentPanel.ID])
             button_use.SetActive(true);
         else if (type == 1)
             button_buy.SetActive(true);
@@ -267,21 +255,21 @@ public class MakeOver_Select : BaseUI
     private void on_buy_clicked()
     {
         play_sound("sound_button_click");
-        if (makeoverStorage.TouchPointCondition[makeOver.makeOver_Touch.CurrentTouch.ID] == 1)
+        if (GameConfigManager.MakeOverStorage.TouchPointCondition[makeOver.makeOver_Touch.CurrentTouch.ID] == 1)
         {
-            if (commonStorage.Flower >= CurrentPanel.BuyPrice)
+            if (GameConfigManager.CommonStorage.Flower >= CurrentPanel.BuyPrice)
             {
-                commonStorage.Flower = commonStorage.Flower - CurrentPanel.BuyPrice;
+                GameConfigManager.CommonStorage.Flower = GameConfigManager.CommonStorage.Flower - CurrentPanel.BuyPrice;
                 BuyRefresh();
             }
             else
                 ShowNotice();
         }
-        else if (makeoverStorage.TouchPointCondition[makeOver.makeOver_Touch.CurrentTouch.ID] == 2)
+        else if (GameConfigManager.MakeOverStorage.TouchPointCondition[makeOver.makeOver_Touch.CurrentTouch.ID] == 2)
         {
-            if (commonStorage.Flower >= CurrentPanel.SecondPrice)
+            if (GameConfigManager.CommonStorage.Flower >= CurrentPanel.SecondPrice)
             {
-                commonStorage.Flower = commonStorage.Flower - CurrentPanel.SecondPrice;
+                GameConfigManager.CommonStorage.Flower = GameConfigManager.CommonStorage.Flower - CurrentPanel.SecondPrice;
                 BuyRefresh();
             }
             else
@@ -297,7 +285,7 @@ public class MakeOver_Select : BaseUI
     }
     private void ShowNotice()
     {
-        shareDataGlobalConfig._notice_id = 2;
+        GameConfigManager.ShareDataGlobalConfig._notice_id = 2;
         _ui_manager.OpenWindow<NoticeUI>();
     }
     //UI按钮操作 - 看广告
@@ -337,33 +325,33 @@ public class MakeOver_Select : BaseUI
     {
         CurrentPanel = current;
         var item = makeOver.CurrentStoryTouchList.Find(a => a.ImageIDList.Contains(CurrentPanel.ID));
-        makeoverStorage.TouchPointCondition[item.ID] = 2;
+        GameConfigManager.MakeOverStorage.TouchPointCondition[item.ID] = 2;
         makeOver.makeOver_Touch.InitTouchButtonList();
     }
     private void SetImageUnlock()
     {
-        makeoverStorage.ImageUnlock[CurrentPanel.ID] = true;
+        GameConfigManager.MakeOverStorage.ImageUnlock[CurrentPanel.ID] = true;
         makeOver.makeOver_Touch.InitTouchButtonList();
     }
     private void GetLoveExp()
     {
-        tile2storage.LoveLevelExpUp = CurrentPanel.LoveExp;
+        GameConfigManager.Tile2Storage.LoveLevelExpUp = CurrentPanel.LoveExp;
     }
     private void SetUse()
     {
         foreach (var item in makeOver.makeOver_Touch.currentTouchList)
-            makeoverStorage.ImageUse[item.ID] = false;
-        makeoverStorage.ImageUse[CurrentPanel.ID] = true;
+            GameConfigManager.MakeOverStorage.ImageUse[item.ID] = false;
+        GameConfigManager.MakeOverStorage.ImageUse[CurrentPanel.ID] = true;
     }
     public void GetCatID()
     {
-        makeoverStorage.CurrentCatID[CurrentPanel.StoryID] = CurrentPanel.CatID;
+        GameConfigManager.MakeOverStorage.CurrentCatID[CurrentPanel.StoryID] = CurrentPanel.CatID;
         //makeOver.makeOver_CatImage.CatAnimName = CurrentPanel.CatAnim;
     }
 
     public void SelectAnim()
     {
-        shareDataGlobalConfig._love_exp_pause = true;//需要处理
+        GameConfigManager.ShareDataGlobalConfig._love_exp_pause = true;//需要处理
         _ui_manager.OpenWindow<MaskUI>();
         //buy
         if (AnimType == 1)
@@ -402,7 +390,7 @@ public class MakeOver_Select : BaseUI
     //飞行动画/2.飞心/4.飞花
     public void FlyAnim(int value)
     {
-        shareDataGlobalConfig._home_fly = value;
+        GameConfigManager.ShareDataGlobalConfig._home_fly = value;
         makeOver.Home.home_rewarditemfly();
     }
 

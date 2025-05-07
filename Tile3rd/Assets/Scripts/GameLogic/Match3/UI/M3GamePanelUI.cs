@@ -45,9 +45,6 @@ public class M3GamePanelUI : BaseUI
     public ReturnFlyCellUI returnfly;
     private RectTransform _layer_group_rt;
 
-    private MakeOverStorage makeoverStorage;
-    private ShareDataGlobalConfig shareDataGlobalConfig;
-    private LevelStorage levelStorage;
     private List<LevelConfig> all_level;
     private LevelConfig level;
     private bool test = false;
@@ -57,10 +54,7 @@ public class M3GamePanelUI : BaseUI
         _layer_group_rt = find_component<RectTransform>("LayerGroup");//找到LayerGroup
         CollectionUI = create_ui<M3GameCollectionUI>("Collection").Init(this);//创建消除
 
-        makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-        shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        levelStorage = _ui_manager.Framework.StorageManager.Storage<LevelStorage>();
-        all_level = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().LevelConfigList;
+        all_level = GameConfigManager.GameConfigGroup.LevelConfigList;
     }
     //初始化游戏界面
     public M3GamePanelUI Init(M3Panel panel)

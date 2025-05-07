@@ -8,15 +8,11 @@ public class RewardItemUI : WindowUI
 {
     public static new string DefaultPrefabPath = "Reward/UI_Reward_Item";
     private HomeUI home_ui;
-    private CommonStorage commonStorage;
-    private Tile2Storage tile2storage;
 
     protected override void on_create()
     {
         Property.CommonAnimationTransform = transform.Find("Panel");
         home_ui = _ui_manager.FindWindow<HomeUI>();
-        commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();
-        tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
 
         register_button("Panel/Button/button_claim", on_claim_clicked);
     }
@@ -47,7 +43,7 @@ public class RewardItemUI : WindowUI
     //如果道具不为0，则显示道具
     private void ItemShow()
     {
-        var all_item = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().ItemConfigList;
+        var all_item = GameConfigManager.GameConfigGroup.ItemConfigList;
         var finditem1 = all_item.Find(a => a.ID == home_ui.currentBundle.Item1ID);
         var finditem2 = all_item.Find(a => a.ID == home_ui.currentBundle.Item2ID);
         var finditem3 = all_item.Find(a => a.ID == home_ui.currentBundle.Item3ID);
@@ -86,10 +82,10 @@ public class RewardItemUI : WindowUI
     }
     private void GetReward()
     {
-        tile2storage.BundleRV[home_ui.currentBundle.ID] = true;
-        commonStorage.Item_Recall = commonStorage.Item_Recall + home_ui.currentBundle.Item1Num;
-        commonStorage.Item_Remove = commonStorage.Item_Remove + home_ui.currentBundle.Item2Num;
-        commonStorage.Item_Bloom = commonStorage.Item_Bloom + home_ui.currentBundle.Item3Num;
+        GameConfigManager.Tile2Storage.BundleRV[home_ui.currentBundle.ID] = true;
+        GameConfigManager.CommonStorage.Item_Recall = GameConfigManager.CommonStorage.Item_Recall + home_ui.currentBundle.Item1Num;
+        GameConfigManager.CommonStorage.Item_Remove = GameConfigManager.CommonStorage.Item_Remove + home_ui.currentBundle.Item2Num;
+        GameConfigManager.CommonStorage.Item_Bloom = GameConfigManager.CommonStorage.Item_Bloom + home_ui.currentBundle.Item3Num;
     }
     private void on_claim_clicked()
     {

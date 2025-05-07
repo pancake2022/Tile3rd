@@ -14,14 +14,6 @@ public class GameItemGroupUI : WindowUI
     public BloomBuff_Game bloomBuff_Game;
     private Action<GameItemGroupUI> ClickCalback_Item;
 
-    private CommonStorage commonStorage;
-    private ShareDataGlobalConfig shareDataGlobalConfig;
-    private Tile2Storage tile2Storage;
-    private MakeOverStorage makeoverStorage;
-    private LevelStorage levelStorage;
-    private GameConfigGroup gameConfigGroup;
-    private GlobalConfig globalconfig;
-
     public GameItemGroupUI Init(GameUI game)
     {
         gameUI = game;
@@ -31,14 +23,6 @@ public class GameItemGroupUI : WindowUI
 
     protected override void on_create()
     {
-        shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();
-        tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-        levelStorage = _ui_manager.Framework.StorageManager.Storage<LevelStorage>();
-        gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        globalconfig = gameConfigGroup.GlobalConfigList[0];
-
         //创建按钮
         register_button("item_recall/normal", on_recall_normal_clicked);
         register_button("item_eliminate/normal", on_eliminate_normal_clicked);
@@ -71,21 +55,21 @@ public class GameItemGroupUI : WindowUI
         recall_normal.SetActive(false);
         flower_normal.SetActive(false);
 
-        eliminate_num.text = "level " + globalconfig.Item_Remove_UnlockLevel.ToString();
-        recall_num.text = "level " + globalconfig.Item_Recall_UnlockLevel.ToString();
+        eliminate_num.text = "level " + GameConfigManager.GlobalConfig.Item_Remove_UnlockLevel.ToString();
+        recall_num.text = "level " + GameConfigManager.GlobalConfig.Item_Recall_UnlockLevel.ToString();
         flower_num.text = "level 4";
 
-        if (levelStorage.LevelCount >= globalconfig.Item_Recall_UnlockLevel)
+        if (GameConfigManager.LevelStorage.LevelCount >= GameConfigManager.GlobalConfig.Item_Recall_UnlockLevel)
             recall_normal.SetActive(true);
         else
             recall_lock.transform.SetActive(true);
 
-        if (levelStorage.LevelCount >= globalconfig.Item_Remove_UnlockLevel)
+        if (GameConfigManager.LevelStorage.LevelCount >= GameConfigManager.GlobalConfig.Item_Remove_UnlockLevel)
             eliminate_normal.SetActive(true);
         else
             eliminate_lock.transform.SetActive(true);
 
-        if (makeoverStorage.CatQuestCondition[globalconfig.Item_Bloom_UnlockLevel] == 3) 
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[GameConfigManager.GlobalConfig.Item_Bloom_UnlockLevel] == 3) 
             flower_normal.SetActive(true);
         else
             flower_lock.transform.SetActive(true);
@@ -94,10 +78,10 @@ public class GameItemGroupUI : WindowUI
     }
     private void level12give1bloom()
     {
-        if (levelStorage.LevelCount == 12)
+        if (GameConfigManager.LevelStorage.LevelCount == 12)
         {
-            if (commonStorage.Item_Bloom <= 0)
-                commonStorage.Item_Bloom++;
+            if (GameConfigManager.CommonStorage.Item_Bloom <= 0)
+                GameConfigManager.CommonStorage.Item_Bloom++;
         }
     }
     //道具实时刷新
@@ -107,18 +91,18 @@ public class GameItemGroupUI : WindowUI
         var eliminate_num = find_component<Text>("item_eliminate/normal/Image/Text");
         var recall_num = find_component<Text>("item_recall/normal/Image/Text");
         var flower_num = find_component<Text>("item_flower/normal/Image/Text");
-        recall_num.text = commonStorage.Item_Recall.ToString();
-        eliminate_num.text = commonStorage.Item_Remove.ToString();
-        flower_num.text = commonStorage.Item_Bloom.ToString();
+        recall_num.text = GameConfigManager.CommonStorage.Item_Recall.ToString();
+        eliminate_num.text = GameConfigManager.CommonStorage.Item_Remove.ToString();
+        flower_num.text = GameConfigManager.CommonStorage.Item_Bloom.ToString();
     }
     public void BloomTipsInit()
     {
         //flowertip的显示
         var bloomtip = find_component<RectTransform>("item_flower/normal/bloomtip");
         bloomtip.SetActive(false);
-        if (levelStorage.LevelCount >= 5)
+        if (GameConfigManager.LevelStorage.LevelCount >= 5)
         {
-            if (levelStorage.LevelCount != 11)
+            if (GameConfigManager.LevelStorage.LevelCount != 11)
                 bloomtip.SetActive(true);
         }
     }
@@ -135,13 +119,13 @@ public class GameItemGroupUI : WindowUI
     {
         play_sound("sound_item_click");
 
-        if (commonStorage.Item_Recall >= 1)
+        if (GameConfigManager.CommonStorage.Item_Recall >= 1)
         {
             if (gameUI._panel_ui.TryRevertGameOpt())
             {
-                shareDataGlobalConfig.itemlist[2]++;
-                commonStorage.Item_Recall--;
-                shareDataGlobalConfig._storybundle_check = true;
+                GameConfigManager.ShareDataGlobalConfig.itemlist[2]++;
+                GameConfigManager.CommonStorage.Item_Recall--;
+                GameConfigManager.ShareDataGlobalConfig._storybundle_check = true;
             }
             else
                 StartCoroutine(WaitCheck_returntip());
@@ -152,7 +136,7 @@ public class GameItemGroupUI : WindowUI
                 StartCoroutine(WaitCheck_returntip());
             else
             {
-                shareDataGlobalConfig._bundle_type_id = 4;
+                GameConfigManager.ShareDataGlobalConfig._bundle_type_id = 4;
                 _ui_manager.OpenWindow<OutItemRV>();
             }
         }
@@ -174,17 +158,17 @@ public class GameItemGroupUI : WindowUI
         play_sound("sound_item_click");
         if (gameUI.isPause == false)
         {
-            if (commonStorage.Item_Remove >= 1)
+            if (GameConfigManager.CommonStorage.Item_Remove >= 1)
             {
-                shareDataGlobalConfig.itemlist[1]++;
-                commonStorage.Item_Remove--;
+                GameConfigManager.ShareDataGlobalConfig.itemlist[1]++;
+                GameConfigManager.CommonStorage.Item_Remove--;
                 StartCoroutine(WaitCheck_eliminate());
-                shareDataGlobalConfig._storybundle_check = true;
+                GameConfigManager.ShareDataGlobalConfig._storybundle_check = true;
                 gameUI.tileRandom.Condition_Count = 0;
             }
             else
             {
-                shareDataGlobalConfig._bundle_type_id = 3;
+                GameConfigManager.ShareDataGlobalConfig._bundle_type_id = 3;
                 _ui_manager.OpenWindow<OutItemRV>();
             }
         }
@@ -221,25 +205,25 @@ public class GameItemGroupUI : WindowUI
     private void on_flower_normal_clicked()
     {
         play_sound("sound_item_click");
-        if (tile2Storage.BloomAllTimes > 0)
+        if (GameConfigManager.Tile2Storage.BloomAllTimes > 0)
         {
             StartCoroutine(WaitCheck_flowertip());
         }
         else
         {
-            if (commonStorage.Item_Bloom >= 1)
+            if (GameConfigManager.CommonStorage.Item_Bloom >= 1)
             {
                 if (gameUI.isPause == false)
                 {
-                    shareDataGlobalConfig.itemlist[3]++;
-                    commonStorage.Item_Bloom--;
+                    GameConfigManager.ShareDataGlobalConfig.itemlist[3]++;
+                    GameConfigManager.CommonStorage.Item_Bloom--;
                     FlowerBuff();
-                    shareDataGlobalConfig._storybundle_check = true;
+                    GameConfigManager.ShareDataGlobalConfig._storybundle_check = true;
                 }
             }
             else
             {
-                shareDataGlobalConfig._bundle_type_id = 5;
+                GameConfigManager.ShareDataGlobalConfig._bundle_type_id = 5;
                 _ui_manager.OpenWindow<OutItemRV>();
             }
             ItemRefresh();
@@ -258,12 +242,12 @@ public class GameItemGroupUI : WindowUI
     {
         gameUI.SetItemBloomMusic();
         gameUI.gameRewardItem.BloomBuff = true;
-        gameUI.gameRewardItem.BloomTimes = gameUI.gameRewardItem.BloomTimes + globalconfig.Bloom_Times_Item;
+        gameUI.gameRewardItem.BloomTimes = gameUI.gameRewardItem.BloomTimes + GameConfigManager.GlobalConfig.Bloom_Times_Item;
         var tip = find_component<RectTransform>("item_flower/tip");
         var tiptext = find_component<Text>("item_flower/tip/Image/Text");
         var anim = find_component<Animator>("item_flower/tip");
         tip.SetActive(true);
-        tiptext.text = "+" + globalconfig.Bloom_Times_Item.ToString();
+        tiptext.text = "+" + GameConfigManager.GlobalConfig.Bloom_Times_Item.ToString();
         anim.Play("Fly_tips", -1, 0f);
     }
 

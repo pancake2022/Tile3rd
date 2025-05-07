@@ -28,14 +28,6 @@ public class HomeUI : WindowUI
     public SignIcon signIcon;
     public PopUI popUI;
 
-    private CommonStorage commonStorage;
-    private Tile2Storage tile2storage;
-    private MakeOverStorage makeoverStorage;
-    private LevelStorage levelStorage;
-    private ShareDataGlobalConfig shareDataGlobalConfig;
-    private GameConfigGroup gameConfigGroup;
-    private GlobalConfig globalconfig;
-
     public M3Panel currentPanel;
     public BundleConfig currentBundle;
 
@@ -43,14 +35,6 @@ public class HomeUI : WindowUI
     {
         Property.UseCommonAnimation = false;
         Property.PlayOpenCloseSound = false;
-
-        commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();//获取通用存档
-        tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-        levelStorage = _ui_manager.Framework.StorageManager.Storage<LevelStorage>();
-        shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        globalconfig = gameConfigGroup.GlobalConfigList[0];
 
         //创建按钮
         register_button("Panel/UI_Pop_Icon/UI_Top/Button_setting", on_setting_clicked);
@@ -79,30 +63,29 @@ public class HomeUI : WindowUI
     {
         //货币 - 实时数量
         var Flower_Num = find_component<Text>("Panel/UI_Pop_Icon/UI_Top/coin_bar/cointext");
-        Flower_Num.text = commonStorage.Flower.ToString();
+        Flower_Num.text = GameConfigManager.CommonStorage.Flower.ToString();
     }
     //系统解锁
     public void SystemUnlock()
     {
-        if (levelStorage.LevelCount >= globalconfig.Unlock_LevelChest) 
+        if (GameConfigManager.LevelStorage.LevelCount >= GameConfigManager.GlobalConfig.Unlock_LevelChest)
             LevelChestInit();
-        if (levelStorage.LevelCount >= globalconfig.Unlock_CatQuest)
+        if (GameConfigManager.LevelStorage.LevelCount >= GameConfigManager.GlobalConfig.Unlock_CatQuest)
             CatQuestInit();
-        if (levelStorage.LevelCount >= globalconfig.Unlock_NewBundle)
+        if (GameConfigManager.LevelStorage.LevelCount >= GameConfigManager.GlobalConfig.Unlock_NewBundle)
             BundleItemInit();
-        if (levelStorage.LevelCount >= globalconfig.Unlock_BloomBundle)
+        if (GameConfigManager.LevelStorage.LevelCount >= GameConfigManager.GlobalConfig.Unlock_BloomBundle)
             BundleBloomInit();
-        //if (levelStorage.LevelCount >= globalconfig.Unlock_Sign)
-        //    SignInit();
-        if (levelStorage.LevelCount >= globalconfig.Unlock_Collection)
+        if (GameConfigManager.LevelStorage.LevelCount >= GameConfigManager.GlobalConfig.Unlock_Sign)
+            SignInit();
+        if (GameConfigManager.LevelStorage.LevelCount >= GameConfigManager.GlobalConfig.Unlock_Collection)
             CollectionInit();
-        if (makeoverStorage.CatQuestCondition[globalconfig.Unlock_DailyTask] == 3) 
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[GameConfigManager.GlobalConfig.Unlock_DailyTask] == 3)
         {
-            
             DailyChainInit();
             DailyTaskInit();
         }
-        if (levelStorage.LevelCount >= globalconfig.Unlock_Shop)
+        if (GameConfigManager.LevelStorage.LevelCount >= GameConfigManager.GlobalConfig.Unlock_Shop)
             ShopBundleIconInit();
     }
     private void PopUIInit()
@@ -112,14 +95,14 @@ public class HomeUI : WindowUI
     //创建关卡
     private void CreatePanel()
     {
-        CSFramework.LevelConfig current_levelconfig = TileUtils.GetCurrentLevelConfig(levelStorage.CurrentLevel, _ui_manager.Framework.ConfigManager);
+        CSFramework.LevelConfig current_levelconfig = TileUtils.GetCurrentLevelConfig(GameConfigManager.LevelStorage.CurrentLevel, _ui_manager.Framework.ConfigManager);
         var panel_config_ta = _ui_manager.Framework.ResourcesManager.LoadResource<TextAsset>($"{M3Const.M3PanelConfigPath}/{current_levelconfig.PanelID}");
         if (panel_config_ta != null)
         {
             try
             {
                 currentPanel = JsonUtility.FromJson<M3Panel>(panel_config_ta.text);
-                levelStorage.CurrentPanel = currentPanel;
+                GameConfigManager.LevelStorage.CurrentPanel = currentPanel;
             }
             catch (Exception e)
             {
@@ -143,7 +126,8 @@ public class HomeUI : WindowUI
         MakeOverClear();
         var all_story = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().StoryConfigList;
         var _mo_rt = find_component<RectTransform>("MakeOver/MakeOver");
-        var story = all_story.Find(a => a.ID == makeoverStorage.CurrentStoryID);
+        var story = all_story.Find(a => a.ID == GameConfigManager.MakeOverStorage.CurrentStoryID);
+        
         makeOver = create_ui<MakeOver>($"MakeOver/UI_MakeOver_{story.ID.ToString("D2")}", _mo_rt).Init(this);
         makeOver.CurrentStoryCondition();
     }
@@ -172,7 +156,7 @@ public class HomeUI : WindowUI
     public void BloomBuffInit()
     {
         var _bb_rt = find_component<RectTransform>("Panel/UI_Pop_Icon/UI_Bottom/BloomBuff");
-        if (tile2storage.BloomBuffTimes > 0)
+        if (GameConfigManager.Tile2Storage.BloomBuffTimes > 0)
             bloomBuff = create_ui<BloomBuff>("Home/BloomBuff", _bb_rt).Init(this);
     }
     //挂lovelevel
@@ -206,7 +190,7 @@ public class HomeUI : WindowUI
         var _bloom_rt = find_component<RectTransform>("Panel/UI_Pop_Icon/UI_Right");
         if (bundleBloom != null)
             destroy_ui(bundleBloom);
-        if (tile2storage.BloomBuffTimes < 1)
+        if (GameConfigManager.Tile2Storage.BloomBuffTimes < 1)
         {
             if (levelChest._bloombuff_check)
                 bundleBloom = create_ui<BundleBloom>("Home/UI_Icon_bloom", _bloom_rt).Init(this);
@@ -298,7 +282,7 @@ public class HomeUI : WindowUI
     //设置按钮
     private void on_setting_clicked()
     {
-        shareDataGlobalConfig._winstreak_notice_type = 0;
+        GameConfigManager.ShareDataGlobalConfig._winstreak_notice_type = 0;
         _ui_manager.OpenWindow<SettingUI>();
     }
 
@@ -313,17 +297,17 @@ public class HomeUI : WindowUI
     private void AudioInit()
     {
         //播放home音乐
-        _ui_manager.Framework.AudioManager.StopMusic(shareDataGlobalConfig._game_music_id);
-        _ui_manager.Framework.AudioManager.StopMusic(shareDataGlobalConfig._game_music_bloom);
-        shareDataGlobalConfig._home_music_id = _ui_manager.Framework.AudioManager.PlayMusic("music_home");
+        _ui_manager.Framework.AudioManager.StopMusic(GameConfigManager.ShareDataGlobalConfig._game_music_id);
+        _ui_manager.Framework.AudioManager.StopMusic(GameConfigManager.ShareDataGlobalConfig._game_music_bloom);
+        GameConfigManager.ShareDataGlobalConfig._home_music_id = _ui_manager.Framework.AudioManager.PlayMusic("music_home");
 
         //初始化音乐&音效
-        if (commonStorage.MusicOpen)
+        if (GameConfigManager.CommonStorage.MusicOpen)
             _ui_manager.Framework.AudioManager.SetMusicOpen(true);
         else
             _ui_manager.Framework.AudioManager.SetMusicOpen(false);
 
-        if (commonStorage.SoundOpen)
+        if (GameConfigManager.CommonStorage.SoundOpen)
             _ui_manager.Framework.AudioManager.SetSoundOpen(true);
         else
             _ui_manager.Framework.AudioManager.SetSoundOpen(false);
@@ -332,9 +316,9 @@ public class HomeUI : WindowUI
     //google评分
     private void GoogleRevivew()
     {
-        if (levelStorage.LevelCount >= globalconfig.Unlock_GoogleReview
-            && commonStorage.Android_Reviewed <= 0
-            && shareDataGlobalConfig._is_interstitial == false)
+        if (GameConfigManager.LevelStorage.LevelCount >= GameConfigManager.GlobalConfig.Unlock_GoogleReview
+            && GameConfigManager.CommonStorage.Android_Reviewed <= 0
+            && GameConfigManager.ShareDataGlobalConfig._is_interstitial == false)
             GoogleReviewManager.Instance?.TryPromptReview();
     }
     public void DefaultAnimSet()
@@ -353,10 +337,7 @@ public class HomeUI : WindowUI
     //点test按钮
     private void on_icon_test_clicked()
     {
-        commonStorage.Flower = commonStorage.Flower + 1000;
-        SetSort();
+        GameConfigManager.GiveItem(1, 1000);
     }
-
-    
 }
 

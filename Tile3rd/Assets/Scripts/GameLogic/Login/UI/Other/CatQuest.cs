@@ -39,15 +39,13 @@ public class CatQuest : BaseUI
         }
         public void SetBubbleShow()
         {
-            var makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-            if (makeoverStorage.CatQuestCondition[questConfig.ID] <= 1)
+            if (GameConfigManager.MakeOverStorage.CatQuestCondition[questConfig.ID] <= 1)
                 bubble.SetActive(true);
             else
                 bubble.SetActive(false);
         }
         public void SetBubblePosition(int value)
         {
-            var makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
             var bubbleposition = bubble.localPosition;
             if (value == 1) 
             {
@@ -80,10 +78,6 @@ public class CatQuest : BaseUI
     public QuestButton questButton;
     public int startButtonType;
 
-    private MakeOverStorage makeoverStorage;
-    private ShareDataGlobalConfig shareDataGlobalConfig;
-    private Tile2Storage tile2storage;
-    private LevelStorage levelStorage;
     private List<QuestConfig> questlist;
     private QuestConfig currentQuest;
     private M3Panel questLevelPanel;
@@ -95,11 +89,7 @@ public class CatQuest : BaseUI
     }
     protected override void on_create()
     {
-        makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-        shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        questlist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().QuestConfigList;
-        levelStorage = _ui_manager.Framework.StorageManager.Storage<LevelStorage>();
+        questlist = GameConfigManager.GameConfigGroup.QuestConfigList;
     }
     public CatQuest InitCatQuest()
     {
@@ -123,9 +113,10 @@ public class CatQuest : BaseUI
     }
     private void GetCurrentQuest()
     {
-        currentQuest = questlist.Find(a => a.StoryID == makeoverStorage.CurrentStoryID && makeoverStorage.CatQuestCondition[a.ID] <= 2);
+        currentQuest = questlist.Find(a => a.StoryID == GameConfigManager.MakeOverStorage.CurrentStoryID
+        && GameConfigManager.MakeOverStorage.CatQuestCondition[a.ID] <= 2);
         if (currentQuest != null)
-            makeoverStorage.CurrentQuest.ID = currentQuest.ID;
+            GameConfigManager.MakeOverStorage.CurrentQuest.ID = currentQuest.ID;
     }
     private void GetQuestType()
     {
@@ -141,14 +132,13 @@ public class CatQuest : BaseUI
     private void Type1()
     {
         startButtonType = 1;
-        if (makeoverStorage.CatQuestCondition[currentQuest.ID] == 0)
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] == 0)
         {
-            Debug.Log("有猫任务未解锁");
             gameObject.SetActive(false);
-            if (makeoverStorage.TouchPointCondition[currentQuest.UnlockCondition] > 1)
-                makeoverStorage.CatQuestCondition[currentQuest.ID] = 1;
+            if (GameConfigManager.MakeOverStorage.TouchPointCondition[currentQuest.UnlockCondition] > 1)
+                GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] = 1;
         }
-        if (makeoverStorage.CatQuestCondition[currentQuest.ID] == 1)
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] == 1)
         {
             gameObject.SetActive(true);
             questButton.SetCatShow(true);
@@ -157,7 +147,7 @@ public class CatQuest : BaseUI
             Home.makeOver.makeOver_CatImage.catButton.CatShow(false);
             Guide();
         }
-        if (makeoverStorage.CatQuestCondition[currentQuest.ID] == 2)
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] == 2)
         {
             gameObject.SetActive(true);
             questButton.SetCatShow(false);
@@ -165,28 +155,27 @@ public class CatQuest : BaseUI
             CatQuestActive(true);
             Home.makeOver.makeOver_CatImage.catButton.CatShow(false);
         }
-        if (makeoverStorage.CatQuestCondition[currentQuest.ID] == 3)
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] == 3)
             gameObject.SetActive(false);
     }
 
     private void Type2()
     {
         startButtonType = 1;
-        if (makeoverStorage.CatQuestCondition[currentQuest.ID] == 0)
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] == 0)
         {
-            Debug.Log("无猫任务未解锁");
             gameObject.SetActive(false);
-            if (makeoverStorage.TouchPointCondition[currentQuest.UnlockCondition] > 1)
-                makeoverStorage.CatQuestCondition[currentQuest.ID] = 1;
+            if (GameConfigManager.MakeOverStorage.TouchPointCondition[currentQuest.UnlockCondition] > 1)
+                GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] = 1;
         }
-        if (makeoverStorage.CatQuestCondition[currentQuest.ID] == 1)
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] == 1)
         {
             gameObject.SetActive(true);
             questButton.SetCatShow(false);
             questButton.SetBubblePosition(2);
             CatQuestActive(true);
         }
-        if (makeoverStorage.CatQuestCondition[currentQuest.ID] == 2)
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] == 2)
         {
             gameObject.SetActive(true);
             questButton.SetCatShow(false);
@@ -194,34 +183,33 @@ public class CatQuest : BaseUI
             on_panel_selected(questButton.questConfig);
             CatQuestActive(true);
         }
-        if (makeoverStorage.CatQuestCondition[currentQuest.ID] == 3)
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] == 3)
             gameObject.SetActive(false);
     }
 
     private void Type3()
     {
         startButtonType = 2;
-        if (makeoverStorage.CatQuestCondition[currentQuest.ID] == 0)
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] == 0)
         {
-            Debug.Log("找茬任务未解锁");
             gameObject.SetActive(false);
-            if (makeoverStorage.TouchPointCondition[currentQuest.UnlockCondition] > 1) 
-                makeoverStorage.CatQuestCondition[currentQuest.ID] = 1;
+            if (GameConfigManager.MakeOverStorage.TouchPointCondition[currentQuest.UnlockCondition] > 1)
+                GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] = 1;
         }
-        if (makeoverStorage.CatQuestCondition[currentQuest.ID] == 1)
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] == 1)
         {
             gameObject.SetActive(true);
             questButton.SetCatShow(false);
             CatQuestActive(true);
         }
-        if (makeoverStorage.CatQuestCondition[currentQuest.ID] == 2)
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] == 2)
         {
             gameObject.SetActive(true);
             questButton.SetCatShow(false);
             on_panel_selected(questButton.questConfig);
             CatQuestActive(true);
         }
-        if (makeoverStorage.CatQuestCondition[currentQuest.ID] == 3)
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] == 3)
         {
             gameObject.SetActive(false);
             questButton.SetCatShow(false);
@@ -231,27 +219,26 @@ public class CatQuest : BaseUI
     private void Type4()
     {
         startButtonType = 3;
-        if (makeoverStorage.CatQuestCondition[currentQuest.ID] == 0)
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] == 0)
         {
-            Debug.Log("换图任务未解锁");
             gameObject.SetActive(false);
-            if (makeoverStorage.TouchPointCondition[currentQuest.UnlockCondition] > 1)
-                makeoverStorage.CatQuestCondition[currentQuest.ID] = 1;
+            if (GameConfigManager.MakeOverStorage.TouchPointCondition[currentQuest.UnlockCondition] > 1)
+                GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] = 1;
         }
-        if (makeoverStorage.CatQuestCondition[currentQuest.ID] == 1)
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] == 1)
         {
             gameObject.SetActive(true);
             questButton.SetCatShow(false);
             CatQuestActive(true);
         }
-        if (makeoverStorage.CatQuestCondition[currentQuest.ID] == 2)
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] == 2)
         {
             gameObject.SetActive(true);
             questButton.SetCatShow(false);
             on_panel_selected(questButton.questConfig);
             CatQuestActive(true);
         }
-        if (makeoverStorage.CatQuestCondition[currentQuest.ID] == 3)
+        if (GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] == 3)
         {
             gameObject.SetActive(false);
             questButton.SetCatShow(false);
@@ -263,7 +250,7 @@ public class CatQuest : BaseUI
         currentQuest = data;
         if (startButtonType == 1)
         {
-            shareDataGlobalConfig._level_condition = 2;
+            GameConfigManager.ShareDataGlobalConfig._level_condition = 2;
 
             GetQuesLevelPanel();
             _ui_manager.OpenWindow<GameUI>().Init(questLevelPanel);
@@ -272,7 +259,6 @@ public class CatQuest : BaseUI
         }
         if (startButtonType == 2)
         {
-            Debug.Log("这是找茬类任务");
             Home.HomePanelShow(false);
             Home.makeOver.CloseButtonShow(true);
             Home.makeOver.makeOver_Tips.SetTitle();
@@ -289,7 +275,6 @@ public class CatQuest : BaseUI
         }
         if (startButtonType == 3)
         {
-            Debug.Log("这是换图类任务");
             Home.HomePanelShow(false);
             Home.makeOver.CloseButtonShow(true);
             Home.makeOver.makeOver_Tips.SetTitle();
@@ -304,8 +289,8 @@ public class CatQuest : BaseUI
     }
     public void on_panel_selected(QuestConfig questConfig)
     {
-        makeoverStorage.CatQuestCondition[currentQuest.ID] = 3;
-        makeoverStorage.CurrentStoryID = currentQuest.StoryID;
+        GameConfigManager.MakeOverStorage.CatQuestCondition[currentQuest.ID] = 3;
+        GameConfigManager.MakeOverStorage.CurrentStoryID = currentQuest.StoryID;
         Home.MakeOverInit();
         CurrentImageUnlock();
         RefreshCatQuest();
@@ -317,7 +302,7 @@ public class CatQuest : BaseUI
         Home.makeOver.MakeOverUI_OnSelect();
         Home.makeOver.makeOver_Select.LoveBarInit();
 
-        var quest = questlist.Find(a => a.ID == makeoverStorage.CurrentQuest.ID);
+        var quest = questlist.Find(a => a.ID == GameConfigManager.MakeOverStorage.CurrentQuest.ID);
         var touch = Home.makeOver.CurrentStoryTouchList.Find(a => a.ImageIDList.Contains(quest.MakeOverImageID));
 
         if (touch != null)
@@ -327,31 +312,31 @@ public class CatQuest : BaseUI
                 var data = Home.makeOver.CurrentStoryImageList.Find(a => a.ID == item);
                 if (data.ID == quest.MakeOverImageID)
                 {
-                    makeoverStorage.ImageUse[data.ID] = true;
-                    makeoverStorage.ImageUnlock[data.ID] = true;
+                    GameConfigManager.MakeOverStorage.ImageUse[data.ID] = true;
+                    GameConfigManager.MakeOverStorage.ImageUnlock[data.ID] = true;
                     Home.makeOver.makeOver_Select.SetTouchUnlock(data);
-                    tile2storage.LoveLevelExpUp = data.LoveExp;
+                    GameConfigManager.Tile2Storage.LoveLevelExpUp = data.LoveExp;
                     Home.makeOver.makeOver_Select.GetCatID();
                     Home.makeOver.makeOver_Image.InitImageButtonList();
                     Home.makeOver.makeOver_Select.AnimType = 2;
                     Home.makeOver.makeOver_Select.SelectAnim();
                 }
                 else
-                    makeoverStorage.ImageUse[data.ID] = false;
+                    GameConfigManager.MakeOverStorage.ImageUse[data.ID] = false;
             }
         }
     }
 
     public void GetIcon()
     {
-        var all_image_config = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().MakeOverConfigList;
+        var all_image_config = GameConfigManager.GameConfigGroup.MakeOverConfigList;
         var current_image = all_image_config.Find(a => a.ID == currentQuest.MakeOverImageID);
         questButton.SetImage($"{current_image.Pack}", $"{current_image.Icon}");
     }
     //找到指定关卡
     private void GetQuesLevelPanel()
     {
-        var levellist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().LevelConfigList;
+        var levellist = GameConfigManager.GameConfigGroup.LevelConfigList;
         var Level = levellist.Find(a => a.ID == questButton.questConfig.LevelID);
         var panel_config_ta = _ui_manager.Framework.ResourcesManager.LoadResource<TextAsset>($"{M3Const.M3PanelConfigPath}/{Level.PanelID}");
         if (panel_config_ta != null)
@@ -359,7 +344,7 @@ public class CatQuest : BaseUI
             try
             {
                 questLevelPanel = JsonUtility.FromJson<M3Panel>(panel_config_ta.text);
-                levelStorage.CurrentPanel = questLevelPanel;
+                GameConfigManager.LevelStorage.CurrentPanel = questLevelPanel;
             }
             catch (Exception e)
             {
@@ -374,7 +359,8 @@ public class CatQuest : BaseUI
     }
     private void Guide()
     {
-        if (makeoverStorage.TouchPointCondition[4] == 2 && makeoverStorage.TouchPointCondition[5] == 1)
+        if (GameConfigManager.MakeOverStorage.TouchPointCondition[4] == 2
+            && GameConfigManager.MakeOverStorage.TouchPointCondition[5] == 1)
             SetGuide();
     }
     async void SetGuide()
@@ -386,7 +372,7 @@ public class CatQuest : BaseUI
     }
     public void CatQuestActive(bool value)
     {
-        shareDataGlobalConfig._is_catquest_active = value;
+        GameConfigManager.ShareDataGlobalConfig._is_catquest_active = value;
         if (Home.dailyTask_hint != null)
             Home.dailyTask_hint.InitDailyTask_Hint();
         if (Home.dailyTask_icon != null)

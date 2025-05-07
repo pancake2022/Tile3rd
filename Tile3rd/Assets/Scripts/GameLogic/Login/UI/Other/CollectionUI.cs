@@ -67,11 +67,10 @@ public class CollectionUI : WindowUI
         }
         public void ConditionInit()
         {
-            var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
             tilelock.SetActive(false);
             tileunlock.SetActive(false);
 
-            if (tile2storage.TileUnlock[collectionConfig.ID])
+            if (GameConfigManager.Tile2Storage.TileUnlock[collectionConfig.ID])
                 tileunlock.SetActive(true);
             else
             {
@@ -81,14 +80,13 @@ public class CollectionUI : WindowUI
         }
         public void SetSlider(int current, int max)
         {
-            var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
             var slidertext = find_component<Text>("Condition/lock/rate/slider/Fill Area/Text");
             
             if (collectionConfig.Type == 1)
             {
-                slider.value = tile2storage.LoveLevelLevel;
+                slider.value = GameConfigManager.Tile2Storage.LoveLevelLevel;
                 slider.maxValue = collectionConfig.UnlockLevel;
-                slidertext.text = $"{tile2storage.LoveLevelLevel}/{collectionConfig.UnlockLevel}";
+                slidertext.text = $"{GameConfigManager.Tile2Storage.LoveLevelLevel}/{collectionConfig.UnlockLevel}";
             }
             if (collectionConfig.Type == 2)
             {
@@ -99,8 +97,7 @@ public class CollectionUI : WindowUI
         }
         public void SetTile(int tileID)
         {
-            var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-            tile2storage.CurrentTileID = tileID;
+            GameConfigManager.Tile2Storage.CurrentTileID = tileID;
         }
         public void SetSelected(bool markValue, bool buttonValue)
         {
@@ -109,10 +106,6 @@ public class CollectionUI : WindowUI
         }
         private void on_lock_clicked()
         {
-            var levelStorage = _ui_manager.Framework.StorageManager.Storage<LevelStorage>();
-            var gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-            var globalconfig = gameConfigGroup.GlobalConfigList[0];
-
             play_sound("sound_button_click");
             if (collectionConfig.Type == 2)
             {
@@ -121,7 +114,7 @@ public class CollectionUI : WindowUI
             if (collectionConfig.ID == 101)
             {
                 //sign解锁
-                if (levelStorage.LevelCount >= globalconfig.Unlock_Sign)
+                if (GameConfigManager.LevelStorage.LevelCount >= GameConfigManager.GlobalConfig.Unlock_Sign)
                 {
                     _ui_manager.OpenWindow<SignUI>();
                     _ui_manager.TryCloseWindow<CollectionUI>();
@@ -174,10 +167,9 @@ public class CollectionUI : WindowUI
     }
     private void BGSet()
     {
-        var makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-        var storylist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().StoryConfigList;
+        var storylist = GameConfigManager.GameConfigGroup.StoryConfigList;
         var back = find_component<RectTransform>("BG");
-        var currentstory = storylist.Find(a => a.ID == makeoverStorage.CurrentStoryID);
+        var currentstory = storylist.Find(a => a.ID == GameConfigManager.MakeOverStorage.CurrentStoryID);
         var background = create_ui<HomeBackground>($"MakeOverLevels/00_bg/{currentstory.HomeBack}", back);
         background.Init();
     }
@@ -194,8 +186,7 @@ public class CollectionUI : WindowUI
     }
     public void RefreshCollectionButtonList()
     {
-        var collectionlist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().CollectionConfigList;
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
+        var collectionlist = GameConfigManager.GameConfigGroup.CollectionConfigList;
         ClearCollectionButtonList();
         foreach (var collection in collectionlist)
         {
@@ -205,7 +196,7 @@ public class CollectionUI : WindowUI
             collection_button.ConditionInit();
             collection_button.SetSliderIcon();
 
-            if (collection.ID == tile2storage.CurrentTileID)
+            if (collection.ID == GameConfigManager.Tile2Storage.CurrentTileID)
                 collection_button.SetSelected(true, false);
             else
                 collection_button.SetSelected(false, true);
@@ -213,7 +204,7 @@ public class CollectionUI : WindowUI
             int testmin = collection.ID * 100;
             int testmax = collection.ID * 100 + collection.UnlockCount;
             int counttrue = 0;
-            foreach (var item in tile2storage.TileSingleUnlock) 
+            foreach (var item in GameConfigManager.Tile2Storage.TileSingleUnlock) 
             {
                 if (item.Key > testmin && item.Key <= testmax && item.Value == true) 
                     counttrue++;

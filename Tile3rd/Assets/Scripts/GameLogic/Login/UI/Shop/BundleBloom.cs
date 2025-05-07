@@ -25,13 +25,12 @@ public class BundleBloom : BaseUI
     }
     private void ButtonInit()
     {
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
         var green = find_component<RectTransform>("Panel/item_bloom/button_claim");
         var blue = find_component<RectTransform>("Panel/item_bloom/button_rv");
         green.SetActive(false);
         blue.SetActive(false);
 
-        if (tile2storage.BloomBuffFirst)
+        if (GameConfigManager.Tile2Storage.BloomBuffFirst)
             blue.SetActive(true);
         else
             green.SetActive(true);

@@ -8,13 +8,11 @@ using System.Threading.Tasks;
 public class RetryUI : WindowUI
 {
     public static new string DefaultPrefabPath = "Game/UI_Panel_retry";
-    private ShareDataGlobalConfig shareDataGlobalConfig;
     private GameUI game_ui;
 
     protected override void on_create()
     {
         Property.CommonAnimationTransform = transform.Find("Panel");
-        shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
         game_ui = _ui_manager.FindWindow<GameUI>();
         game_ui.GamePause();
 

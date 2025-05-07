@@ -11,12 +11,10 @@ public class SignIcon : BaseUI
     public class SignIconButton : BaseUI
     {
         public SignConfig Data;
-        private Tile2Storage tile2storage;
         public Action<SignIconButton> ClickCalback;
 
         protected override void on_create()
         {
-            tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
             register_button("Panel/Button/button_claim", on_clicked);
         }
         private void ShowInit()
@@ -42,15 +40,15 @@ public class SignIcon : BaseUI
             if (Data.ID == 5)
             {
                 Num.SetActive(true);
-                num.text = $"x{tile2storage.SignCount * 10}";
+                num.text = $"x{GameConfigManager.Tile2Storage.SignCount * 10}";
             }
         }
         private void ConditionChange()
         {
             ShowInit();
-            if (tile2storage.SignCondition[Data.ID] == 2)
+            if (GameConfigManager.Tile2Storage.SignCondition[Data.ID] == 2)
                 Condition_level();
-            if (tile2storage.SignCondition[Data.ID] == 3)
+            if (GameConfigManager.Tile2Storage.SignCondition[Data.ID] == 3)
                 Condition_claim();
         }
         public void Condition_level()
@@ -59,17 +57,17 @@ public class SignIcon : BaseUI
             var button_claim = find_component<RectTransform>("Panel/Button/button_claim");
             button_level.SetActive(false);
             button_claim.SetActive(false);
-            if (tile2storage.SignCondition[Data.ID] == 2)
+            if (GameConfigManager.Tile2Storage.SignCondition[Data.ID] == 2)
                 button_level.SetActive(true);
-            if (tile2storage.SignCondition[Data.ID] == 3)
+            if (GameConfigManager.Tile2Storage.SignCondition[Data.ID] == 3)
                 button_claim.SetActive(true);
 
             var text = find_component<Text>("Panel/Button/button_level/Text");
-            text.text = $"Win {tile2storage.SignLevelCD[Data.ID]} level";
+            text.text = $"Win {GameConfigManager.Tile2Storage.SignLevelCD[Data.ID]} level";
 
-            if (tile2storage.SignLevelCD[Data.ID] <= 0)
+            if (GameConfigManager.Tile2Storage.SignLevelCD[Data.ID] <= 0)
             {
-                tile2storage.SignCondition[Data.ID] = 3;
+                GameConfigManager.Tile2Storage.SignCondition[Data.ID] = 3;
                 ConditionChange();
             }
         }
@@ -80,10 +78,10 @@ public class SignIcon : BaseUI
             button_level.SetActive(false);
             button_claim.SetActive(true);
 
-            if (Data.ID == 2 && tile2storage.BloomBuffTimes > 3)
+            if (Data.ID == 2 && GameConfigManager.Tile2Storage.BloomBuffTimes > 3)
             {
-                tile2storage.SignLevelCD[2] = tile2storage.BloomBuffTimes - 3;
-                tile2storage.SignCondition[2] = 2;
+                GameConfigManager.Tile2Storage.SignLevelCD[2] = GameConfigManager.Tile2Storage.BloomBuffTimes - 3;
+                GameConfigManager.Tile2Storage.SignCondition[2] = 2;
                 ConditionChange();
             }
         }
@@ -104,8 +102,6 @@ public class SignIcon : BaseUI
     }
     
     public HomeUI Home;
-    private Tile2Storage tile2storage;
-    private ShareDataGlobalConfig shareDataGlobalConfig;
     private List<SignConfig> signList;
     private SignConfig currentSign;
     public SignIconButton signIconButton;
@@ -126,8 +122,6 @@ public class SignIcon : BaseUI
     }
     protected override void on_create()
     {
-        tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
         signList = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().SignConfigList;
         signIconButtonList = new Dictionary<int, SignIconButton>();
         register_button("Panel/Icon", on_icon_clicked);
@@ -138,10 +132,10 @@ public class SignIcon : BaseUI
     }
     private void IsSignUnlock()
     {
-        if (tile2storage.IsSignUnlock == false)
+        if (GameConfigManager.Tile2Storage.IsSignUnlock == false)
         {
-            tile2storage.SignCD[8] = DateTime.Now;//解锁时记录一个时间-与其他cd时间去做对比
-            tile2storage.IsSignUnlock = true;
+            GameConfigManager.Tile2Storage.SignCD[8] = DateTime.Now;//解锁时记录一个时间-与其他cd时间去做对比
+            GameConfigManager.Tile2Storage.IsSignUnlock = true;
         }
     }
     private void CreatTimeList()
@@ -166,7 +160,7 @@ public class SignIcon : BaseUI
         {
             if (signIconButtonList.Count < 3)
             {
-                if (tile2storage.SignCondition[sign.ID] == 2 || tile2storage.SignCondition[sign.ID] == 3)
+                if (GameConfigManager.Tile2Storage.SignCondition[sign.ID] == 2 || GameConfigManager.Tile2Storage.SignCondition[sign.ID] == 3)
                 {
                     if (!signIconButtonList.ContainsKey(sign.ID))
                     {
@@ -204,62 +198,61 @@ public class SignIcon : BaseUI
     {
         if (currentSign.ID == 1)//bloom倒计时
         {
-            tile2storage.SignCD[currentSign.ID] = DateTime.Now;
-            tile2storage.SignCondition[currentSign.ID] = 1;
-            tile2storage.BloomAllTimes++;
-            tile2storage.SignLevelCD[1] = tile2storage.BloomAllTimes;
-            tile2storage.SignLevelCD[4] = tile2storage.BloomAllTimes;
-            if (tile2storage.SignCondition[4] == 3)
-                tile2storage.SignCondition[4] = 2;
+            GameConfigManager.Tile2Storage.SignCD[currentSign.ID] = DateTime.Now;
+            GameConfigManager.Tile2Storage.SignCondition[currentSign.ID] = 1;
+            GameConfigManager.Tile2Storage.BloomAllTimes++;
+            GameConfigManager.Tile2Storage.SignLevelCD[1] = GameConfigManager.Tile2Storage.BloomAllTimes;
+            GameConfigManager.Tile2Storage.SignLevelCD[4] = GameConfigManager.Tile2Storage.BloomAllTimes;
+            if (GameConfigManager.Tile2Storage.SignCondition[4] == 3)
+                GameConfigManager.Tile2Storage.SignCondition[4] = 2;
         }
         if (currentSign.ID == 2)//bloombuff次
         {
-            tile2storage.SignCD[currentSign.ID] = DateTime.Now;
-            tile2storage.SignCondition[currentSign.ID] = 1;
-            tile2storage.BloomBuffTimes += currentSign.Reward_Num;
+            GameConfigManager.Tile2Storage.SignCD[currentSign.ID] = DateTime.Now;
+            GameConfigManager.Tile2Storage.SignCondition[currentSign.ID] = 1;
+            GameConfigManager.Tile2Storage.BloomBuffTimes += currentSign.Reward_Num;
             Home.BloomBuffInit();
             Home.levelChest.ButtonInit();
         }
         if (currentSign.ID == 3)//给一套牌
         {
-            tile2storage.SignCondition[currentSign.ID] = 4;
-            shareDataGlobalConfig._sign_reward_id = 101;
-            shareDataGlobalConfig._notice_id = 5;
-            tile2storage.TileUnlock[shareDataGlobalConfig._sign_reward_id] = true;
+            GameConfigManager.Tile2Storage.SignCondition[currentSign.ID] = 4;
+            GameConfigManager.ShareDataGlobalConfig._sign_reward_id = 101;
+            GameConfigManager.ShareDataGlobalConfig._notice_id = 5;
+            GameConfigManager.Tile2Storage.TileUnlock[GameConfigManager.ShareDataGlobalConfig._sign_reward_id] = true;
             _ui_manager.OpenWindow<NoticeUI>();
 
         }
         if (currentSign.ID == 4)//bloom倒计时
         {
-            tile2storage.SignCD[currentSign.ID] = DateTime.Now;
-            tile2storage.SignCondition[currentSign.ID] = 1;
-            tile2storage.BloomAllTimes++;
-            tile2storage.SignLevelCD[1] = tile2storage.BloomAllTimes;
-            tile2storage.SignLevelCD[4] = tile2storage.BloomAllTimes;
-            if (tile2storage.SignCondition[1] == 3)
-                tile2storage.SignCondition[1] = 2;
+            GameConfigManager.Tile2Storage.SignCD[currentSign.ID] = DateTime.Now;
+            GameConfigManager.Tile2Storage.SignCondition[currentSign.ID] = 1;
+            GameConfigManager.Tile2Storage.BloomAllTimes++;
+            GameConfigManager.Tile2Storage.SignLevelCD[1] = GameConfigManager.Tile2Storage.BloomAllTimes;
+            GameConfigManager.Tile2Storage.SignLevelCD[4] = GameConfigManager.Tile2Storage.BloomAllTimes;
+            if (GameConfigManager.Tile2Storage.SignCondition[1] == 3)
+                GameConfigManager.Tile2Storage.SignCondition[1] = 2;
         }
         if (currentSign.ID == 5)//签到小花
         {
-            tile2storage.SignCD[currentSign.ID] = DateTime.Now;
-            tile2storage.SignCondition[currentSign.ID] = 1;
-            var commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();
-            commonStorage.Flower = commonStorage.Flower + tile2storage.SignCount * 10;
+            GameConfigManager.Tile2Storage.SignCD[currentSign.ID] = DateTime.Now;
+            GameConfigManager.Tile2Storage.SignCondition[currentSign.ID] = 1;
+            GameConfigManager.CommonStorage.Flower = GameConfigManager.CommonStorage.Flower + GameConfigManager.Tile2Storage.SignCount * 10;
         }
         if (currentSign.ID == 6)//礼包
         {
             //直接给reward
-            tile2storage.SignCD[currentSign.ID] = DateTime.Now;
-            tile2storage.SignCondition[currentSign.ID] = 1;
-            shareDataGlobalConfig._sign_reward_id = 101;
+            GameConfigManager.Tile2Storage.SignCD[currentSign.ID] = DateTime.Now;
+            GameConfigManager.Tile2Storage.SignCondition[currentSign.ID] = 1;
+            GameConfigManager.ShareDataGlobalConfig._sign_reward_id = 101;
             Home.bundleItem.GetCurrentBundle_Sign();
             _ui_manager.OpenWindow<RewardItemUI>();
         }
         if (currentSign.ID == 7)//story
         {
-            tile2storage.SignCondition[currentSign.ID] = 4;
-            shareDataGlobalConfig._sign_reward_id = 101;
-            shareDataGlobalConfig._notice_id = 6;
+            GameConfigManager.Tile2Storage.SignCondition[currentSign.ID] = 4;
+            GameConfigManager.ShareDataGlobalConfig._sign_reward_id = 101;
+            GameConfigManager.ShareDataGlobalConfig._notice_id = 6;
             _ui_manager.OpenWindow<NoticeUI>();
             Home.makeOver.GetSignStory();
         }
@@ -279,7 +272,7 @@ public class SignIcon : BaseUI
     {
         var tip = find_component<RectTransform>("Panel/Tips");
         tip.SetActive(false);
-        if (tile2storage.SignCondition[0] == 1) 
+        if (GameConfigManager.Tile2Storage.SignCondition[0] == 1) 
             tip.SetActive(true);
     }
     public void RefreshUIShow()
@@ -327,13 +320,13 @@ public class SignIcon : BaseUI
     //每日签到按钮的倒计时判断
     private void SignCD()
     {
-        if (tile2storage.SignCondition[0] == 0)
+        if (GameConfigManager.Tile2Storage.SignCondition[0] == 0)
         {
-            GetSignCD(tile2storage.SignCD[0]);
+            GetSignCD(GameConfigManager.Tile2Storage.SignCD[0]);
             diffList[0] = diff;
             if (diffList[0] <= 0)
             {
-                tile2storage.SignCondition[0] = 1;
+                GameConfigManager.Tile2Storage.SignCondition[0] = 1;
                 SignIconButtonInit();
                 RefreshUIShow();
             }
@@ -345,13 +338,13 @@ public class SignIcon : BaseUI
     {
         foreach (var sign in signList)
         {
-            if (tile2storage.SignCondition[sign.ID] == 0)
+            if (GameConfigManager.Tile2Storage.SignCondition[sign.ID] == 0)
             {
-                GetSignCD(tile2storage.SignCD[8].AddDays(sign.ID - 2));
+                GetSignCD(GameConfigManager.Tile2Storage.SignCD[8].AddDays(sign.ID - 2));
                 diffList[sign.ID] = diff;
                 if (diffList[sign.ID] <= 0)
                 {
-                    tile2storage.SignCondition[sign.ID] = 2;
+                    GameConfigManager.Tile2Storage.SignCondition[sign.ID] = 2;
                     SetLevelCD(sign.ID);
                     SignIconButtonInit();
                     RefreshUIShow();
@@ -364,16 +357,16 @@ public class SignIcon : BaseUI
     {
         foreach (var sign in signList)
         {
-            if (tile2storage.SignCondition[sign.ID] == 1)
+            if (GameConfigManager.Tile2Storage.SignCondition[sign.ID] == 1)
             {
                 if (sign.ID == 5 || sign.ID == 6)
-                    GetSignCD(tile2storage.SignCD[sign.ID]);
+                    GetSignCD(GameConfigManager.Tile2Storage.SignCD[sign.ID]);
                 else
-                    GetCountDown(tile2storage.SignCD[sign.ID], sign.RefreshCD);
+                    GetCountDown(GameConfigManager.Tile2Storage.SignCD[sign.ID], sign.RefreshCD);
                 diffList[sign.ID] = diff;
                 if (diffList[sign.ID] <= 0)
                 {
-                    tile2storage.SignCondition[sign.ID] = 2;
+                    GameConfigManager.Tile2Storage.SignCondition[sign.ID] = 2;
                     SetLevelCD(sign.ID);
                     SignIconButtonInit();
                     RefreshUIShow();
@@ -384,12 +377,12 @@ public class SignIcon : BaseUI
     private void SetLevelCD(int value)
     {
         if (value == 1)
-            tile2storage.SignLevelCD[1] = tile2storage.BloomAllTimes;
+            GameConfigManager.Tile2Storage.SignLevelCD[1] = GameConfigManager.Tile2Storage.BloomAllTimes;
         if (value == 2)
-            tile2storage.SignLevelCD[2] = tile2storage.BloomBuffTimes - 3;
+            GameConfigManager.Tile2Storage.SignLevelCD[2] = GameConfigManager.Tile2Storage.BloomBuffTimes - 3;
         if (value == 4)
-            tile2storage.SignLevelCD[4] = tile2storage.BloomAllTimes;
+            GameConfigManager.Tile2Storage.SignLevelCD[4] = GameConfigManager.Tile2Storage.BloomAllTimes;
         if (value == 6)
-            tile2storage.SignLevelCD[6] = 3;
+            GameConfigManager.Tile2Storage.SignLevelCD[6] = 3;
     }
 }

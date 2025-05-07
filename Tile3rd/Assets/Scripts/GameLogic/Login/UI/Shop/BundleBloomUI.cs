@@ -21,7 +21,6 @@ public class BundleBloomUI : WindowUI
     }
     private void ButtonInit()
     {
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
         var green = find_component<RectTransform>("Panel/Button_buy");
         var blue = find_component<RectTransform>("Panel/Button_rv");
         var close = find_component<RectTransform>("Panel/Button_close");
@@ -29,7 +28,7 @@ public class BundleBloomUI : WindowUI
         blue.SetActive(false);
         close.SetActive(true);
 
-        if (tile2storage.BloomBuffFirst)
+        if (GameConfigManager.Tile2Storage.BloomBuffFirst)
             blue.SetActive(true);
         else
         {
@@ -59,13 +58,10 @@ public class BundleBloomUI : WindowUI
     }
     public void GetBloom()
     {
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        var gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        var globalConfig = gameConfigGroup.GlobalConfigList[0];
         var home_ui = _ui_manager.FindWindow<HomeUI>();
 
-        tile2storage.BloomBuffFirst = true;
-        tile2storage.BloomBuffTimes = globalConfig.Bloom_Bunlde_BloomTimes;
+        GameConfigManager.Tile2Storage.BloomBuffFirst = true;
+        GameConfigManager.Tile2Storage.BloomBuffTimes = GameConfigManager.GlobalConfig.Bloom_Bunlde_BloomTimes;
         home_ui.BloomBuffInit();
         if (home_ui.signIcon != null)
             home_ui.signIcon.RefreshSignIconButton();

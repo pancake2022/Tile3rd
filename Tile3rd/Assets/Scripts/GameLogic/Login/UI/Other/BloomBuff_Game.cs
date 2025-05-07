@@ -24,8 +24,7 @@ public class BloomBuff_Game : WindowUI
         }
 
         //道具显示
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        for (int i = 0; i < tile2storage.BloomBuffTimes; i++)
+        for (int i = 0; i < GameConfigManager.Tile2Storage.BloomBuffTimes; i++)
         {
             var pic = item.transform.GetChild(i);
             pic.SetActive(true);

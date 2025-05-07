@@ -54,7 +54,6 @@ public class ShopBundleIcon : WindowUI
 
     protected override void on_create()
     {
-        tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
     }
     public ShopBundleIcon Init(HomeUI home)
     {
@@ -66,10 +65,10 @@ public class ShopBundleIcon : WindowUI
     }
     private void FirstUnlock()
     {
-        if (tile2storage.isShopUnlock == false)
+        if (GameConfigManager.Tile2Storage.isShopUnlock == false)
         {
-            tile2storage.ShopRefreshCD = DateTime.Now;
-            tile2storage.isShopUnlock = true;
+            GameConfigManager.Tile2Storage.ShopRefreshCD = DateTime.Now;
+            GameConfigManager.Tile2Storage.isShopUnlock = true;
         }
     }
     public void IconInit()
@@ -85,58 +84,54 @@ public class ShopBundleIcon : WindowUI
     }
     private void RfreshBundleIcon()
     {
-        bundleIcon = create_ui<BundleIcon>($"Home/{tile2storage.CurrentShop.IconPath}", "Panel").Init(tile2storage.CurrentShop);
+        bundleIcon = create_ui<BundleIcon>($"Home/{GameConfigManager.Tile2Storage.CurrentShop.IconPath}", "Panel").Init(GameConfigManager.Tile2Storage.CurrentShop);
     }
     public void GetShopCD()
     {
-        var gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        var globalconfig = gameConfigGroup.GlobalConfigList[0];
-
-        DateTime startTime = tile2storage.ShopRefreshCD;
+        DateTime startTime = GameConfigManager.Tile2Storage.ShopRefreshCD;
         DateTime endTime = DateTime.Now;
-        float cdTime = globalconfig.Shop_CD;
+        float cdTime = GameConfigManager.GlobalConfig.Shop_CD;
 
         TimeSpan difftime = startTime.Subtract(endTime);
         diff = cdTime + MathF.Floor((float)(difftime.TotalSeconds));
 
         if (diff <= 0)
         {
-            tile2storage.ShopRefreshCD = DateTime.Now;
+            GameConfigManager.Tile2Storage.ShopRefreshCD = DateTime.Now;
             ChangeCurrentShop();
         }
     }
     public void ChangeCurrentShop()
     {
-        var all_shop = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().ShopConfigList;
-        if (tile2storage.isnoADS)
-            tile2storage.CurrentShop = all_shop.Find(a => a.ID == 2);
+        var all_shop = GameConfigManager.GameConfigGroup.ShopConfigList;
+        if (GameConfigManager.Tile2Storage.isnoADS)
+            GameConfigManager.Tile2Storage.CurrentShop = all_shop.Find(a => a.ID == 2);
         else
         {
-            if (tile2storage.CurrentShop.ID == 1)
-                tile2storage.CurrentShop = all_shop.Find(a => a.ID == 2);
+            if (GameConfigManager.Tile2Storage.CurrentShop.ID == 1)
+                GameConfigManager.Tile2Storage.CurrentShop = all_shop.Find(a => a.ID == 2);
             else
-                tile2storage.CurrentShop = all_shop.Find(a => a.ID == 1);
+                GameConfigManager.Tile2Storage.CurrentShop = all_shop.Find(a => a.ID == 1);
         }
         IconInit();
     }
     private void PopUI()
     {
-        var shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        if (shareDataGlobalConfig._shop_pop_cd >= 5)
+        if (GameConfigManager.ShareDataGlobalConfig._shop_pop_cd >= 5)
         {
-            if (tile2storage.CurrentShop.ID == 1)
+            if (GameConfigManager.Tile2Storage.CurrentShop.ID == 1)
             {
-                if (shareDataGlobalConfig._is_interstitial)
+                if (GameConfigManager.ShareDataGlobalConfig._is_interstitial)
                 {
-                    shareDataGlobalConfig._shop_pop_cd = 0;
+                    GameConfigManager.ShareDataGlobalConfig._shop_pop_cd = 0;
                     _ui_manager.OpenWindow<ShopBundleUI_noADS>();
                 }
             }
-            if (tile2storage.CurrentShop.ID == 2)
+            if (GameConfigManager.Tile2Storage.CurrentShop.ID == 2)
             {
-                if (tile2storage.BloomBuffTimes <= 0)
+                if (GameConfigManager.Tile2Storage.BloomBuffTimes <= 0)
                 {
-                    shareDataGlobalConfig._shop_pop_cd = 0;
+                    GameConfigManager.ShareDataGlobalConfig._shop_pop_cd = 0;
                     _ui_manager.OpenWindow<ShopBundleUI_item>();
                 }
             }

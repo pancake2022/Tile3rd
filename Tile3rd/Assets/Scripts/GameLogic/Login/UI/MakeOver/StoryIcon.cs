@@ -9,8 +9,6 @@ public class StoryIcon : BaseUI
     public HomeUI Home;
     private RectTransform tip;
     private RectTransform guide;
-    private CommonStorage commonStorage;
-    private MakeOverStorage makeoverStorage;
     private List<StoryConfig> all_story;
     private List<TouchPointConfig> all_touch;
     private List<MakeOverConfig> all_image;
@@ -24,11 +22,9 @@ public class StoryIcon : BaseUI
     }
     protected override void on_create()
     {
-        commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();
-        makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-        all_story = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().StoryConfigList;
-        all_touch = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().TouchPointConfigList;
-        all_image = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().MakeOverConfigList;
+        all_story = GameConfigManager.GameConfigGroup.StoryConfigList;
+        all_touch = GameConfigManager.GameConfigGroup.TouchPointConfigList;
+        all_image = GameConfigManager.GameConfigGroup.MakeOverConfigList;
 
         register_button("button", on_story_clicked);
         tip = find_component<RectTransform>("tips");
@@ -38,9 +34,7 @@ public class StoryIcon : BaseUI
     }
     public void StoryTipInit()
     {
-        var gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        var globalconfig = gameConfigGroup.GlobalConfigList[0];
-        if (makeoverStorage.ImageUnlock[globalconfig.Unlock_StoryIcon])
+        if (GameConfigManager.MakeOverStorage.ImageUnlock[GameConfigManager.GlobalConfig.Unlock_StoryIcon])
         {
             StoryTipRefresh();
             StoryIconGuide();
@@ -48,14 +42,14 @@ public class StoryIcon : BaseUI
     }
     private void StoryTipRefresh()
     {
-        if (makeoverStorage.StoryCondition[makeoverStorage.CurrentStoryID] == 1)
+        if (GameConfigManager.MakeOverStorage.StoryCondition[GameConfigManager.MakeOverStorage.CurrentStoryID] == 1)
         {
-            var touch = all_touch.Find(a => makeoverStorage.TouchPointCondition[a.ID] == 1);
+            var touch = all_touch.Find(a => GameConfigManager.MakeOverStorage.TouchPointCondition[a.ID] == 1);
             if (all_touch.Contains(touch))
             {
                 foreach (var imageID in touch.ImageIDList)
                 {
-                    var image = all_image.Find(a => a.ID == imageID && a.BuyType == 1 && commonStorage.Flower >= a.BuyPrice);
+                    var image = all_image.Find(a => a.ID == imageID && a.BuyType == 1 && GameConfigManager.CommonStorage.Flower >= a.BuyPrice);
                     if (all_image.Contains(image))
                         tip.SetActive(false);
                     else
@@ -65,14 +59,14 @@ public class StoryIcon : BaseUI
             else
                 OtherStory();
         }
-        if (makeoverStorage.StoryCondition[makeoverStorage.CurrentStoryID] == 2)
+        if (GameConfigManager.MakeOverStorage.StoryCondition[GameConfigManager.MakeOverStorage.CurrentStoryID] == 2)
         {
-            var touch = all_touch.Find(a => makeoverStorage.TouchPointCondition[a.ID] == 1 && a.StoryID != makeoverStorage.CurrentStoryID);
+            var touch = all_touch.Find(a => GameConfigManager.MakeOverStorage.TouchPointCondition[a.ID] == 1 && a.StoryID != GameConfigManager.MakeOverStorage.CurrentStoryID);
             if (touch != null)
             {
                 foreach (var imageID in touch.ImageIDList)
                 {
-                    var image = all_image.Find(a => a.ID == imageID && a.BuyType == 1 && commonStorage.Flower >= a.BuyPrice);
+                    var image = all_image.Find(a => a.ID == imageID && a.BuyType == 1 && GameConfigManager.CommonStorage.Flower >= a.BuyPrice);
                     if (all_image.Contains(image))
                         tip.SetActive(true);
                     else
@@ -82,16 +76,16 @@ public class StoryIcon : BaseUI
             else
                 OtherStory();
         }
-        if (makeoverStorage.StoryCondition[makeoverStorage.CurrentStoryID] == 3)
+        if (GameConfigManager.MakeOverStorage.StoryCondition[GameConfigManager.MakeOverStorage.CurrentStoryID] == 3)
         {
             
-            var touch = all_touch.Find(a => makeoverStorage.TouchPointCondition[a.ID] == 1 && a.StoryID != makeoverStorage.CurrentStoryID);
+            var touch = all_touch.Find(a => GameConfigManager.MakeOverStorage.TouchPointCondition[a.ID] == 1 && a.StoryID != GameConfigManager.MakeOverStorage.CurrentStoryID);
             if (touch != null)
             {
                 
                 foreach (var imageID in touch.ImageIDList)
                 {
-                    var image = all_image.Find(a => a.ID == imageID && a.BuyType == 1 && commonStorage.Flower >= a.BuyPrice);
+                    var image = all_image.Find(a => a.ID == imageID && a.BuyType == 1 && GameConfigManager.CommonStorage.Flower >= a.BuyPrice);
                     if (all_image.Contains(image))
                         tip.SetActive(true);
                     else
@@ -105,11 +99,11 @@ public class StoryIcon : BaseUI
     private void OtherStory()
     {
         var otherimage = all_image.Find(a =>
-        a.StoryID != makeoverStorage.CurrentStoryID
-        && makeoverStorage.StoryCondition[a.StoryID] == 2
+        a.StoryID != GameConfigManager.MakeOverStorage.CurrentStoryID
+        && GameConfigManager.MakeOverStorage.StoryCondition[a.StoryID] == 2
         && a.BuyType == 1
-        && makeoverStorage.ImageUnlock[a.ID] == false
-        && commonStorage.Flower >= a.SecondPrice);
+        && GameConfigManager.MakeOverStorage.ImageUnlock[a.ID] == false
+        && GameConfigManager.CommonStorage.Flower >= a.SecondPrice);
 
         if (otherimage != null)
             tip.SetActive(true);
@@ -122,15 +116,15 @@ public class StoryIcon : BaseUI
     }
     private void StartStoryGuide()
     {
-        if (makeoverStorage.StoryGuide.ContainsKey(1))
+        if (GameConfigManager.MakeOverStorage.StoryGuide.ContainsKey(1))
             StoryTipInit();
         else
-            makeoverStorage.StoryGuide.Add(1, 1);
+            GameConfigManager.MakeOverStorage.StoryGuide.Add(1, 1);
     }
     private void StoryIconGuide()
     {
         guide.SetActive(false);
-        if (makeoverStorage.StoryGuide[1] == 1)
+        if (GameConfigManager.MakeOverStorage.StoryGuide[1] == 1)
             guide.SetActive(true);
     }
 }

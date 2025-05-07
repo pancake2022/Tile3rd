@@ -7,6 +7,7 @@ namespace CSFramework
     {
         public List<GlobalConfig> GlobalConfigList; // Global 
         public List<DailyTaskChainConfig> DailyTaskChainConfigList; // DailyTaskChain 
+        public List<OrderChainConfig> OrderChainConfigList; // OrderChain 
         public List<DailyTaskConfig> DailyTaskConfigList; // DailyTask 
         public List<LevelConfig> LevelConfigList; // Level 
         public List<ShopConfig> ShopConfigList; // Shop 

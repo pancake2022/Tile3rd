@@ -29,10 +29,9 @@ public class CatQuestRewardUI : WindowUI
     }
     private void IconInit()
     {
-        var makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-        var all_quest = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().QuestConfigList;
-        var all_image = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().MakeOverConfigList;
-        var quest = all_quest.Find(a => a.ID == makeoverStorage.CurrentQuest.ID);
+        var all_quest = GameConfigManager.GameConfigGroup.QuestConfigList;
+        var all_image = GameConfigManager.GameConfigGroup.MakeOverConfigList;
+        var quest = all_quest.Find(a => a.ID == GameConfigManager.MakeOverStorage.CurrentQuest.ID);
         var image = all_image.Find(a => a.ID == quest.MakeOverImageID);
         var icon = find_component<Image>("Panel/UI_reward/item_1/Image");
         var text = find_component<Text>("Panel/UI_reward/item_1/Text");

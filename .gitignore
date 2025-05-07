@@ -53,3 +53,10 @@ Assets/GeneratedLocalRepo*
 
 # IDEA 工程文件
 .idea/
+
+# Google Sheets 导表工具相关
+ConfigProject/GoogleSheetsHelper/
+ConfigProject/Exporter/
+res/token.json
+res/credentials.json
+cache/cache.json

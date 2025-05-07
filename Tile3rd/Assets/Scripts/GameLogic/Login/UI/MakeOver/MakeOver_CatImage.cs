@@ -21,7 +21,6 @@ public class MakeOver_CatImage : BaseUI
         }
         public void CatShow(bool value)
         {
-            var shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
             gameObject.SetActive(false);
             var cat = find_component<RectTransform>("Panel/image");
             cat.SetActive(value);
@@ -53,7 +52,6 @@ public class MakeOver_CatImage : BaseUI
     }
 
     public CatButton catButton;
-    private MakeOverStorage makeoverStorage;
     public MakeOver makeOver;
     private List<MakeOverConfig> datalist;
     public MakeOverConfig CurrentCat;
@@ -63,7 +61,6 @@ public class MakeOver_CatImage : BaseUI
     public MakeOver_CatImage Init(MakeOver makeover)
     {
         makeOver = makeover;
-        makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
         datalist = makeOver.CurrentStoryImageList;
         return this;
     }
@@ -76,7 +73,7 @@ public class MakeOver_CatImage : BaseUI
     private void RefreshCatButton()
     {
         ClearCatButton();
-        var data = datalist.Find(a => a.CatPrefab != "null" && a.CatID == makeoverStorage.CurrentCatID[a.StoryID]);
+        var data = datalist.Find(a => a.CatPrefab != "null" && a.CatID == GameConfigManager.MakeOverStorage.CurrentCatID[a.StoryID]);
         if (data != null)
         {
             catButton = create_ui<CatButton>($"MakeOverLevels/{data.StoryID.ToString("D2")}/{data.CatPrefab}", $"image/CatPoint_{data.CatID}");
@@ -91,7 +88,7 @@ public class MakeOver_CatImage : BaseUI
     }
     public void CatHeartPosition()
     {
-        var data = datalist.Find(a => a.CatPrefab != "null" && a.CatID == makeoverStorage.CurrentCatID[a.StoryID]);
+        var data = datalist.Find(a => a.CatPrefab != "null" && a.CatID == GameConfigManager.MakeOverStorage.CurrentCatID[a.StoryID]);
         var heart = find_component<RectTransform>($"image/CatPoint_{data.CatID}");
         var heartPos = heart.localPosition;
         heartPos.y += 120;
@@ -102,7 +99,7 @@ public class MakeOver_CatImage : BaseUI
         CurrentCat = data;
         if (isCatTouch == true)
         {
-            if (makeoverStorage.CurrentCatID[3] == 2)
+            if (GameConfigManager.MakeOverStorage.CurrentCatID[3] == 2)
                 _ui_manager.OpenWindow<CatQuestRewardUI>();
         }
     }

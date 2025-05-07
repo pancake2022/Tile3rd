@@ -124,6 +124,20 @@
       "UnlockTouchID": 506
     }
   ],
+  "OrderChain": [
+    {
+      "Desc": "测试用1",
+      "ID": 1
+    },
+    {
+      "Desc": "测试用2",
+      "ID": 2
+    },
+    {
+      "Desc": "测试用3",
+      "ID": 3
+    }
+  ],
   "DailyTask": [
     {
       "FindCatPrefab": "0",

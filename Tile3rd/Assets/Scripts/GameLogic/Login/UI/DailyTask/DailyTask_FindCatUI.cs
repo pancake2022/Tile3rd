@@ -10,14 +10,12 @@ public class DailyTask_FindCatUI : WindowUI
     {
         public int catID;
         private Action<CurrentCat> ClickCalback;
-        private Tile2Storage tile2Storage;
         private RectTransform image0;
         private RectTransform image1;
         private RectTransform image2;
 
         protected override void on_create()
         {
-            tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
             image0 = find_component<RectTransform>("image_0");
             image1 = find_component<RectTransform>("image_1");
             image2 = find_component<RectTransform>("image_2");
@@ -30,13 +28,13 @@ public class DailyTask_FindCatUI : WindowUI
             register_button("image_1", on_clicked);
 
             //找到的猫进行显示
-            if (tile2Storage.FindCatCondition[catID] == true)
+            if (GameConfigManager.Tile2Storage.FindCatCondition[catID] == true)
                 image2.SetActive(true);
             else
                 register_button("image_1", on_clicked);
 
             //提示中的hint进行显示
-            if (tile2Storage.FindCatHintCondition[catID] == 2)
+            if (GameConfigManager.Tile2Storage.FindCatHintCondition[catID] == 2)
                 image0.SetActive(true);
             else
                 image0.SetActive(false);
@@ -57,7 +55,6 @@ public class DailyTask_FindCatUI : WindowUI
     {
         public CurrentCat currentCat;
         private Action<CurrentFindCat> ClickCalback;
-        private Tile2Storage tile2Storage;
         private HomeUI home_ui;
         private RectTransform allcat;
         public int minID = 0;//当前list的最小ID
@@ -65,7 +62,6 @@ public class DailyTask_FindCatUI : WindowUI
 
         protected override void on_create()
         {
-            tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
             home_ui = _ui_manager.FindWindow<HomeUI>();
             allcat = find_component<RectTransform>("CatPoint");
 
@@ -81,15 +77,15 @@ public class DailyTask_FindCatUI : WindowUI
                 currentCat.catID = int.Parse($"{home_ui.dailyTask_hint.currentTask.Task.ID}{maxID}");
                 minID = int.Parse($"{home_ui.dailyTask_hint.currentTask.Task.ID}1");
 
-                if (tile2Storage.FindCatCondition.ContainsKey(currentCat.catID))
+                if (GameConfigManager.Tile2Storage.FindCatCondition.ContainsKey(currentCat.catID))
                 {
                     Debug.Log("没有数据更新");
                     continue;
                 }
                 else
                 {
-                    tile2Storage.FindCatCondition.Add(currentCat.catID, false);
-                    tile2Storage.FindCatHintCondition.Add(currentCat.catID, 0);
+                    GameConfigManager.Tile2Storage.FindCatCondition.Add(currentCat.catID, false);
+                    GameConfigManager.Tile2Storage.FindCatHintCondition.Add(currentCat.catID, 0);
                 }
             }
         }
@@ -106,12 +102,11 @@ public class DailyTask_FindCatUI : WindowUI
         }
         public void RVunlockCat()
         {
-            var tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-            foreach (var item in tile2Storage.FindCatHintCondition)
+            foreach (var item in GameConfigManager.Tile2Storage.FindCatHintCondition)
             {
                 if (item.Value == 0)
                 {
-                    tile2Storage.FindCatHintCondition[item.Key] = 2;
+                    GameConfigManager.Tile2Storage.FindCatHintCondition[item.Key] = 2;
                     break;
                 }
             }
@@ -120,8 +115,8 @@ public class DailyTask_FindCatUI : WindowUI
         private void on_clicked(CurrentCat currentCat)
         {
             //承上
-            tile2Storage.FindCatCondition[currentCat.catID] = true;
-            tile2Storage.FindCatHintCondition[currentCat.catID] = 3;
+            GameConfigManager.Tile2Storage.FindCatCondition[currentCat.catID] = true;
+            GameConfigManager.Tile2Storage.FindCatHintCondition[currentCat.catID] = 3;
             currentCat.RereshCurrentCat();
 
             //启下
@@ -136,7 +131,6 @@ public class DailyTask_FindCatUI : WindowUI
 
     public static new string DefaultPrefabPath = "DailyTask/UI_DailyTask_FindCat";
     public CurrentFindCat currentFindCat;
-    private Tile2Storage tile2Storage;
     private HomeUI home_ui;
     private RectTransform buttonclose;
     private RectTransform buttonhint;
@@ -148,7 +142,6 @@ public class DailyTask_FindCatUI : WindowUI
     {
         Property.CommonAnimationTransform = transform.Find("Panel");
         _ui_manager.Framework.AudioManager.PlaySound("sound_panel_opening");
-        tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
         home_ui = _ui_manager.FindWindow<HomeUI>();
 
         register_button("Panel/Button/close", on_close_clicked);
@@ -189,7 +182,7 @@ public class DailyTask_FindCatUI : WindowUI
     private void CountInit()
     {
         count = 0;
-        foreach (var item in tile2Storage.FindCatCondition)
+        foreach (var item in GameConfigManager.Tile2Storage.FindCatCondition)
         {
             if (item.Key >= currentFindCat.minID) 
             {
@@ -202,7 +195,7 @@ public class DailyTask_FindCatUI : WindowUI
     }
     private void HintInit()
     {
-        foreach (var item in tile2Storage.FindCatHintCondition)
+        foreach (var item in GameConfigManager.Tile2Storage.FindCatHintCondition)
         {
             //用int值来做判断了
             if (item.Value >= 2)
@@ -238,7 +231,7 @@ public class DailyTask_FindCatUI : WindowUI
     }
     private void on_finish_clicked()
     {
-        tile2Storage.DailyTaskCondition[tile2Storage.CurrentDailyTaskID] = 2;
+        GameConfigManager.Tile2Storage.DailyTaskCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskID] = 2;
         home_ui.dailyTask_hint.InitDailyTask_Hint();
         Close();
     }

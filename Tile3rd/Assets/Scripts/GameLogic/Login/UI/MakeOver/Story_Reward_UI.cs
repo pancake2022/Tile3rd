@@ -7,9 +7,6 @@ using System.Collections.Generic;
 public class Story_Reward_UI : WindowUI
 {
     public static new string DefaultPrefabPath = "MakeOver/UI_Story_Reward";
-    private CommonStorage commonStorage;
-    private Tile2Storage tile2storage;
-    private MakeOverStorage makeoverStorage;
     private List<ItemConfig> itemlist;
     private List<StoryConfig> allstory;
     private StoryConfig currentstory;
@@ -19,12 +16,9 @@ public class Story_Reward_UI : WindowUI
     {
         Property.CommonAnimationTransform = transform.Find("Panel");
 
-        commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();//获取通用存档
-        tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-        itemlist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().ItemConfigList;
-        allstory = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().StoryConfigList;
-        currentstory = allstory.Find(a => a.ID == makeoverStorage.CurrentStoryID);
+        itemlist = GameConfigManager.GameConfigGroup.ItemConfigList;
+        allstory = GameConfigManager.GameConfigGroup.StoryConfigList;
+        currentstory = allstory.Find(a => a.ID == GameConfigManager.MakeOverStorage.CurrentStoryID);
         home_ui = _ui_manager.FindWindow<HomeUI>();
 
         _ui_manager.Framework.AudioManager.PlaySound("sound_level_win");
@@ -60,78 +54,42 @@ public class Story_Reward_UI : WindowUI
     {
         play_sound("sound_button_click");
 
-        if (makeoverStorage.CurrentStoryID >= allstory.Count)
+        if (GameConfigManager.MakeOverStorage.CurrentStoryID >= allstory.Count)
         {
-            if (makeoverStorage.StoryCondition[makeoverStorage.CurrentStoryID] == 3)
+            if (GameConfigManager.MakeOverStorage.StoryCondition[GameConfigManager.MakeOverStorage.CurrentStoryID] == 3)
                 Debug.Log("敬请期待");
             else
             {
                 if (home_ui.makeOver.story_Reward_Condition == 1)//touch完成
-                    makeoverStorage.StoryCondition[makeoverStorage.CurrentStoryID] = 2;
+                    GameConfigManager.MakeOverStorage.StoryCondition[GameConfigManager.MakeOverStorage.CurrentStoryID] = 2;
                 if (home_ui.makeOver.story_Reward_Condition == 2)//image完成
-                    makeoverStorage.StoryCondition[makeoverStorage.CurrentStoryID] = 3;
+                    GameConfigManager.MakeOverStorage.StoryCondition[GameConfigManager.MakeOverStorage.CurrentStoryID] = 3;
             }
         }
         else
         {
             if (home_ui.makeOver.story_Reward_Condition == 1)//touch完成
             {
-                ItemClaim(currentstory.TouchRewardID, currentstory.TouchRewardNum);
-                makeoverStorage.StoryCondition[makeoverStorage.CurrentStoryID] = 2;
+                GameConfigManager.GiveItem(currentstory.TouchRewardID, currentstory.TouchRewardNum);
+                GameConfigManager.MakeOverStorage.StoryCondition[GameConfigManager.MakeOverStorage.CurrentStoryID] = 2;
                 //获取下一个剧情story
-                var nextstory = allstory.Find(a => a.Type == 1 && makeoverStorage.StoryCondition[a.ID] == 0);
+                var nextstory = allstory.Find(a => a.Type == 1 && GameConfigManager.MakeOverStorage.StoryCondition[a.ID] == 0);
                 if (nextstory != null) 
                 {
-                    makeoverStorage.CurrentStoryID = nextstory.ID;
-                    makeoverStorage.UnlockMaxStoryID = makeoverStorage.CurrentStoryID;
-                    makeoverStorage.StoryCondition[makeoverStorage.CurrentStoryID] = 1;
+                    GameConfigManager.MakeOverStorage.CurrentStoryID = nextstory.ID;
+                    GameConfigManager.MakeOverStorage.UnlockMaxStoryID = GameConfigManager.MakeOverStorage.CurrentStoryID;
+                    GameConfigManager.MakeOverStorage.StoryCondition[GameConfigManager.MakeOverStorage.CurrentStoryID] = 1;
                 }
             }
             if (home_ui.makeOver.story_Reward_Condition == 2)//image完成
             {
-                ItemClaim(currentstory.ImageRewardID, currentstory.ImageRewardNum);
-                makeoverStorage.StoryCondition[makeoverStorage.CurrentStoryID] = 3;
-                makeoverStorage.CurrentStoryID = makeoverStorage.UnlockMaxStoryID;
+                GameConfigManager.GiveItem(currentstory.ImageRewardID, currentstory.ImageRewardNum);
+                GameConfigManager.MakeOverStorage.StoryCondition[GameConfigManager.MakeOverStorage.CurrentStoryID] = 3;
+                GameConfigManager.MakeOverStorage.CurrentStoryID = GameConfigManager.MakeOverStorage.UnlockMaxStoryID;
             }
         }
         Close();
         home_ui.MakeOverInit();
         home_ui.SystemUnlock();
-    }
-
-    private void ItemClaim(int itemID, int itemNum)
-    {
-        foreach (var item in itemlist)
-        {
-            if (itemID == 1)
-            {
-                commonStorage.Flower = commonStorage.Flower + itemNum;
-                return;
-            }
-                
-            if (itemID == 2)
-            {
-                commonStorage.Item_Remove = commonStorage.Item_Remove + itemNum;
-                return;
-            }
-                
-            if (itemID == 3)
-            {
-                commonStorage.Item_Recall = commonStorage.Item_Recall + itemNum;
-                return;
-            }
-                
-            if (itemID == 4)
-            {
-                commonStorage.Item_Bloom = commonStorage.Item_Bloom + itemNum;
-                return;
-            }
-                
-            if (itemID == 5)
-            {
-                commonStorage.Item_Life = commonStorage.Item_Life + itemNum;
-                return;
-            }
-        }
     }
 }

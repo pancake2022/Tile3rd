@@ -13,9 +13,8 @@ public class BundleItemsUI : WindowUI
     {
         Property.CommonAnimationTransform = transform.Find("Panel");
         _ui_manager.Framework.AudioManager.PlaySound("sound_panel_opening");
-        var shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
         home_ui = _ui_manager.FindWindow<HomeUI>();
-        shareDataGlobalConfig._storybundle_check = false;
+        GameConfigManager.ShareDataGlobalConfig._storybundle_check = false;
         register_button("Panel/Button_close", on_close_clicked);
         register_button("Panel/Button_rv", on_RV_clicked);
         register_button("Panel/Button_ok", on_OK_clicked);
@@ -55,7 +54,7 @@ public class BundleItemsUI : WindowUI
     }
     private void RewardInit()
     {
-        var all_item = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().ItemConfigList;
+        var all_item = GameConfigManager.GameConfigGroup.ItemConfigList;
         var finditem1 = all_item.Find(a => a.ID == home_ui.currentBundle.Item1ID);
         var finditem2 = all_item.Find(a => a.ID == home_ui.currentBundle.Item2ID);
         var finditem3 = all_item.Find(a => a.ID == home_ui.currentBundle.Item3ID);

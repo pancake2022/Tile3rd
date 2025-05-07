@@ -8,9 +8,6 @@ public class DailyTask_NoticeUI_WinStreak : WindowUI
 {
     public static new string DefaultPrefabPath = "DailyTask/UI_DailyTask_Notice_WinStreak";
     private GameUI game_ui;
-    private CommonStorage commonStorage;
-    private ShareDataGlobalConfig shareDataGlobalConfig;
-    private Tile2Storage tile2Storage;
 
     protected override void on_create()
     {
@@ -18,10 +15,6 @@ public class DailyTask_NoticeUI_WinStreak : WindowUI
         _ui_manager.Framework.AudioManager.PlaySound("sound_panel_opening");
         game_ui = _ui_manager.FindWindow<GameUI>();
         game_ui.GamePause();
-
-        commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();
-        shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
 
         register_button("Panel/WinStreak/Button/close", on_close_clicked);
         register_button("Panel/WinStreak/Button/revive_life", on_life_clicked);
@@ -35,9 +28,9 @@ public class DailyTask_NoticeUI_WinStreak : WindowUI
     private void IconShow()
     {
         //icon显示
-        var itemlist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().ItemConfigList;
-        var tasklist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().DailyTaskConfigList;
-        var currenttask = tasklist.Find(a => a.ID == tile2Storage.CurrentDailyTaskID);
+        var itemlist = GameConfigManager.GameConfigGroup.ItemConfigList;
+        var tasklist = GameConfigManager.GameConfigGroup.DailyTaskConfigList;
+        var currenttask = tasklist.Find(a => a.ID == GameConfigManager.Tile2Storage.CurrentDailyTaskID);
         var currentitem = itemlist.Find(a => a.ID == currenttask.RewardID);
 
         var taskBG = find_component<Image>("Panel/WinStreak/Guide/Guide_1/DailyTask/icon/Background");
@@ -56,7 +49,7 @@ public class DailyTask_NoticeUI_WinStreak : WindowUI
 
         //显示进度
         var slider = find_component<Slider>("Panel/WinStreak/Guide/Guide_1/DailyTask/icon");
-        slider.value = tile2Storage.WinStreakCount + 1;
+        slider.value = GameConfigManager.Tile2Storage.WinStreakCount + 1;
         slider.maxValue = currenttask.TaskCount;
 
         //picture按钮显示
@@ -72,7 +65,7 @@ public class DailyTask_NoticeUI_WinStreak : WindowUI
     private void LifeBar()
     {
         var lifecount = find_component<Text>("Panel/ItemBar/Text");
-        lifecount.text = $"{commonStorage.Item_Life}";
+        lifecount.text = $"{GameConfigManager.CommonStorage.Item_Life}";
     }
     private void ButtonShow()
     {
@@ -87,13 +80,13 @@ public class DailyTask_NoticeUI_WinStreak : WindowUI
         button_playon.SetActive(false);
 
         //通过gamesetting点进来
-        if (shareDataGlobalConfig._winstreak_notice_type == 1) 
+        if (GameConfigManager.ShareDataGlobalConfig._winstreak_notice_type == 1) 
             button_playon.SetActive(true);
 
         //通过revive点进来
-        if (shareDataGlobalConfig._winstreak_notice_type == 2)
+        if (GameConfigManager.ShareDataGlobalConfig._winstreak_notice_type == 2)
         {
-            if (commonStorage.Item_Life >= 1)
+            if (GameConfigManager.CommonStorage.Item_Life >= 1)
             {
                 button_life.SetActive(true);
                 lifeicon.SetActive(true);
@@ -112,41 +105,37 @@ public class DailyTask_NoticeUI_WinStreak : WindowUI
     {
         //重置winstreak值
         play_sound("sound_level_failed");
-        tile2Storage.WinStreakCount = 0;
+        GameConfigManager.Tile2Storage.WinStreakCount = 0;
         Close();
 
         //从setting进入
-        if (shareDataGlobalConfig._winstreak_notice_type == 1)
+        if (GameConfigManager.ShareDataGlobalConfig._winstreak_notice_type == 1)
         {
             _ui_manager.TryCloseWindow<GameUI>();
             _ui_manager.OpenWindow<HomeUI>();
         }
         //从revive进入
-        if (shareDataGlobalConfig._winstreak_notice_type == 2)
+        if (GameConfigManager.ShareDataGlobalConfig._winstreak_notice_type == 2)
             _ui_manager.OpenWindow<RetryUI>();
     }
     private void on_life_clicked()
     {
         play_sound("sound_spend_coins");
-        commonStorage.Item_Life--;
-        shareDataGlobalConfig.itemlist[0]++;
+        GameConfigManager.CommonStorage.Item_Life--;
+        GameConfigManager.ShareDataGlobalConfig.itemlist[0]++;
         PlayOn();
     }
     public void PlayOn()
     {
-        var levelStorage = _ui_manager.Framework.StorageManager.Storage<LevelStorage>();
-        var gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        var globalconfig = gameConfigGroup.GlobalConfigList[0];
-
         game_ui.gameItemGroupUI.Revive();
         Close();
 
         //复活给双倍钻石掉落buff
-        if (levelStorage.LevelCount >= globalconfig.Unlock_Revive_BloomBuff) 
+        if (GameConfigManager.LevelStorage.LevelCount >= GameConfigManager.GlobalConfig.Unlock_Revive_BloomBuff) 
         {
             game_ui.ReviveBloomMusic();
             game_ui.gameRewardItem.BloomBuff = true;
-            game_ui.gameRewardItem.BloomTimes = game_ui.gameRewardItem.BloomTimes + globalconfig.Bloom_Times_Life;
+            game_ui.gameRewardItem.BloomTimes = game_ui.gameRewardItem.BloomTimes + GameConfigManager.GlobalConfig.Bloom_Times_Life;
         }
         else
             game_ui.SetGameMusic();

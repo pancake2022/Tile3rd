@@ -18,33 +18,28 @@ public class LoveLevel : BaseUI
     }
     protected override void on_create()
     {
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        var shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-
         levelExp = find_component<Slider>("slider");
         expText = find_component<Text>("text");
         levelText = find_component<Text>("bubble/tip/image/Text");
         levelExp.maxValue = 100;
 
-        if (tile2storage.LoveLevelExpUp > 0)
-            shareDataGlobalConfig._love_exp_pause = false;
+        if (GameConfigManager.Tile2Storage.LoveLevelExpUp > 0)
+            GameConfigManager.ShareDataGlobalConfig._love_exp_pause = false;
 
         lovelevelInit();
     }
     private void Update()
     {
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        var shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        levelExp.value = tile2storage.LoveLevelExp;
-        expText.text = $"{tile2storage.LoveLevelExp / 10}/10";
-        levelText.text = $"{ tile2storage.LoveLevelLevel}";
+        levelExp.value = GameConfigManager.Tile2Storage.LoveLevelExp;
+        expText.text = $"{GameConfigManager.Tile2Storage.LoveLevelExp / 10}/10";
+        levelText.text = $"{ GameConfigManager.Tile2Storage.LoveLevelLevel}";
         
-        if (shareDataGlobalConfig._love_exp_pause == false)
+        if (GameConfigManager.ShareDataGlobalConfig._love_exp_pause == false)
         {
-            if (tile2storage.LoveLevelExpUp > 0)
+            if (GameConfigManager.Tile2Storage.LoveLevelExpUp > 0)
             {
-                tile2storage.LoveLevelExpUp--;
-                tile2storage.LoveLevelExp++;
+                GameConfigManager.Tile2Storage.LoveLevelExpUp--;
+                GameConfigManager.Tile2Storage.LoveLevelExp++;
             }
             order();
         }
@@ -65,24 +60,22 @@ public class LoveLevel : BaseUI
     //弹窗顺序/1等级奖励/2story完成奖励
     private void order()
     {
-        var shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
         for (int i = 1; i <= 2; i++)
         {
             if (i == 1)
             {
-                if (tile2storage.LoveLevelExp == 100)
+                if (GameConfigManager.Tile2Storage.LoveLevelExp == 100)
                 {
-                    shareDataGlobalConfig._love_exp_pause = true;
+                    GameConfigManager.ShareDataGlobalConfig._love_exp_pause = true;
                     _ui_manager.OpenWindow<LoveLevelRewardUI>();
                     break;
                 }
             }
             if (i == 2)
             {
-                if (tile2storage.LoveLevelExpUp == 0)
+                if (GameConfigManager.Tile2Storage.LoveLevelExpUp == 0)
                 {
-                    shareDataGlobalConfig._love_exp_pause = true;
+                    GameConfigManager.ShareDataGlobalConfig._love_exp_pause = true;
                     delayStart = true;
                 }
             }
@@ -90,11 +83,10 @@ public class LoveLevel : BaseUI
     }
     private void lovelevelInit()
     {
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        if (tile2storage.LoveLevelExp >= 100)
+        if (GameConfigManager.Tile2Storage.LoveLevelExp >= 100)
         {
-            tile2storage.LoveLevelLevel++;
-            tile2storage.LoveLevelExp = tile2storage.LoveLevelExp - 100;
+            GameConfigManager.Tile2Storage.LoveLevelLevel++;
+            GameConfigManager.Tile2Storage.LoveLevelExp = GameConfigManager.Tile2Storage.LoveLevelExp - 100;
         }
     }
 }

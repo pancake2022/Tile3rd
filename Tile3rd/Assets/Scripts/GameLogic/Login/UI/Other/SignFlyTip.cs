@@ -10,7 +10,6 @@ public class SignFlyTip : BaseUI
     public SignConfig Data;
     private void IconInit()
     {
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
         var icon = find_component<Image>("Image");
         var Desc = find_component<RectTransform>("Image/Desc");
         var desc = find_component<Text>("Image/Desc");
@@ -33,7 +32,7 @@ public class SignFlyTip : BaseUI
         if (Data.ID == 5)
         {
             Num.SetActive(true);
-            num.text = $"x{tile2storage.SignCount * 10}";
+            num.text = $"x{GameConfigManager.Tile2Storage.SignCount * 10}";
         }
     }
     private void SetPosition()

@@ -24,11 +24,6 @@ public class LevelChest : WindowUI
     }
     public void ButtonInit()
     {
-        var gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        var globalconfig = gameConfigGroup.GlobalConfigList[0];
-        var levelStorage = _ui_manager.Framework.StorageManager.Storage<LevelStorage>();
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        var sharestorage = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
         var normal = find_component<RectTransform>("normal");
         var chest = find_component<RectTransform>("ready_chest");
         var bloom = find_component<RectTransform>("ready_bloom");
@@ -37,11 +32,11 @@ public class LevelChest : WindowUI
         chest.SetActive(false);
         bloom.SetActive(false);
 
-        if (tile2storage.LevelChest_Process == 0)
+        if (GameConfigManager.Tile2Storage.LevelChest_Process == 0)
         {
-            if (levelStorage.LevelCount >= globalconfig.Unlock_BloomBundle)
+            if (GameConfigManager.LevelStorage.LevelCount >= GameConfigManager.GlobalConfig.Unlock_BloomBundle)
             {
-                if (tile2storage.BloomBuffTimes > 0)
+                if (GameConfigManager.Tile2Storage.BloomBuffTimes > 0)
                     normal.SetActive(true);
                 else
                 {
@@ -55,11 +50,11 @@ public class LevelChest : WindowUI
                 normal.SetActive(true);
         }
 
-        if (tile2storage.LevelChest_Process == 1)
+        if (GameConfigManager.Tile2Storage.LevelChest_Process == 1)
         {
-            if (levelStorage.LevelCount >= globalconfig.Unlock_BloomBundle)
+            if (GameConfigManager.LevelStorage.LevelCount >= GameConfigManager.GlobalConfig.Unlock_BloomBundle)
             {
-                if (tile2storage.BloomBuffTimes > 0)
+                if (GameConfigManager.Tile2Storage.BloomBuffTimes > 0)
                     chest.SetActive(true);
                 else
                 {
@@ -93,19 +88,16 @@ public class LevelChest : WindowUI
     }
     private void on_normal_clicked()
     {
-        var shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        shareDataGlobalConfig._notice_id = 1;
+        GameConfigManager.ShareDataGlobalConfig._notice_id = 1;
         _ui_manager.OpenWindow<NoticeUI>();
     }
     private void on_chest_clicked()
     {
         play_sound("sound_chest_open");
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        var shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        shareDataGlobalConfig._bundle_type_id = 5;
-        shareDataGlobalConfig._home_fly = 1;
+        GameConfigManager.ShareDataGlobalConfig._bundle_type_id = 5;
+        GameConfigManager.ShareDataGlobalConfig._home_fly = 1;
         Home.home_rewarditemfly();
-        tile2storage.LevelChest_Process = 0;
+        GameConfigManager.Tile2Storage.LevelChest_Process = 0;
         ButtonInit();
     }
     private void on_bloom_clicked()
@@ -115,11 +107,7 @@ public class LevelChest : WindowUI
     }
     public void collectionunlock()
     {
-        var gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        var globalconfig = gameConfigGroup.GlobalConfigList[0];
-        var levelStorage = _ui_manager.Framework.StorageManager.Storage<LevelStorage>();
-
-        if (levelStorage.LevelCount >= globalconfig.Unlock_Collection)
+        if (GameConfigManager.LevelStorage.LevelCount >= GameConfigManager.GlobalConfig.Unlock_Collection)
             Home.collection.ShowInit();
     }
 }

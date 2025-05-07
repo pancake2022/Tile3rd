@@ -23,21 +23,16 @@ public class OutItemRV : WindowUI
     }
     private void TitleInit()
     {
-        var shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
         var text = find_component<Text>("Panel/Title/Text");
-        if (shareDataGlobalConfig._bundle_type_id == 3)
+        if (GameConfigManager.ShareDataGlobalConfig._bundle_type_id == 3)
             text.text = "Out Removes?";
-        if (shareDataGlobalConfig._bundle_type_id == 4)
+        if (GameConfigManager.ShareDataGlobalConfig._bundle_type_id == 4)
             text.text = "Out Recalls?";
-        if (shareDataGlobalConfig._bundle_type_id == 5)
+        if (GameConfigManager.ShareDataGlobalConfig._bundle_type_id == 5)
             text.text = "Out Blooms?";
     }
     private void PictureInit()
     {
-        var shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        var gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        var globalconfig = gameConfigGroup.GlobalConfigList[0];
-
         var outremove = find_component<RectTransform>("Panel/Picture/outremove");
         var outrecall = find_component<RectTransform>("Panel/Picture/outrecall");
         var outbloom = find_component<RectTransform>("Panel/Picture/outbloom");
@@ -46,41 +41,39 @@ public class OutItemRV : WindowUI
         outrecall.SetActive(false);
         outbloom.SetActive(false);
 
-        if (shareDataGlobalConfig._bundle_type_id == 3)
+        if (GameConfigManager.ShareDataGlobalConfig._bundle_type_id == 3)
         {
             outremove.SetActive(true);
-            text.text = "+ " + globalconfig.RV_Reward_Remove.ToString();
+            text.text = "+ " + GameConfigManager.GlobalConfig.RV_Reward_Remove.ToString();
         }
-        if (shareDataGlobalConfig._bundle_type_id == 4)
+        if (GameConfigManager.ShareDataGlobalConfig._bundle_type_id == 4)
         {
             outrecall.SetActive(true);
-            text.text = "+ " + globalconfig.RV_Reward_Recall.ToString();
+            text.text = "+ " + GameConfigManager.GlobalConfig.RV_Reward_Recall.ToString();
         }
-        if (shareDataGlobalConfig._bundle_type_id == 5)
+        if (GameConfigManager.ShareDataGlobalConfig._bundle_type_id == 5)
         {
             outbloom.SetActive(true);
-            text.text = "+ " + globalconfig.RV_Reward_Bloom.ToString();
+            text.text = "+ " + GameConfigManager.GlobalConfig.RV_Reward_Bloom.ToString();
         }
     }
     private void on_close_clicked()
     {
-        var shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
         play_sound("sound_panel_closing");
         game_ui.GameActiveDelay();
         Close();
 
         //道具为0时，每3关判断局内主动弹出outui
-        shareDataGlobalConfig._game_outitem_jump = 3;
+        GameConfigManager.ShareDataGlobalConfig._game_outitem_jump = 3;
     }
     private void on_ADS_clicked()
     {
         play_sound("sound_button_click");
-        var shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        if (shareDataGlobalConfig._bundle_type_id == 3)
+        if (GameConfigManager.ShareDataGlobalConfig._bundle_type_id == 3)
             ADSManager.TriggerADSShow_Reward("Item_Remove");
-        if (shareDataGlobalConfig._bundle_type_id == 4)
+        if (GameConfigManager.ShareDataGlobalConfig._bundle_type_id == 4)
             ADSManager.TriggerADSShow_Reward("Item_Recall");
-        if (shareDataGlobalConfig._bundle_type_id == 5)
+        if (GameConfigManager.ShareDataGlobalConfig._bundle_type_id == 5)
             ADSManager.TriggerADSShow_Reward("Item_Bloom");
     }
 }

@@ -15,7 +15,6 @@ public class BloomBuff : WindowUI
     }
     protected override void on_create()
     {
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
         //道具默认不显示
         var item = find_component<RectTransform>("Panel");
         for (int i = 0; i < item.childCount; i++)
@@ -25,7 +24,7 @@ public class BloomBuff : WindowUI
         }
 
         //道具显示
-        for (int i = 0; i < tile2storage.BloomBuffTimes; i++)
+        for (int i = 0; i < GameConfigManager.Tile2Storage.BloomBuffTimes; i++)
         {
             var pic = item.transform.GetChild(i);
             pic.SetActive(true);

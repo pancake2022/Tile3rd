@@ -19,12 +19,6 @@ public class GameUI : WindowUI
     public GameRewardItemFly gameRewardItemFly;//局内奖励飞行
     public int rewardfly_positionX;//消除特效的坐标 - 修正
     public int rewardfly_positionY;//消除特效的坐标 - 修正
-
-    private LevelStorage levelStorage;
-    private ShareDataGlobalConfig shareDataGlobalConfig;
-    private CommonStorage commonStorage;
-    private Tile2Storage tile2Storage;
-    private List<LevelConfig> all_level;
     public LevelConfig level;
 
     public int leftCell;
@@ -37,12 +31,8 @@ public class GameUI : WindowUI
     {
         //var home_ui = _ui_manager.FindWindow<HomeUI>();
         Property.CommonAnimationTransform = transform.Find("Panel");
-        commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();
-        tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        levelStorage = _ui_manager.Framework.StorageManager.Storage<LevelStorage>();
-        shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        all_level = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().LevelConfigList;
-        level = all_level.Find(a => a.PanelID == levelStorage.CurrentPanel.ID);
+        var all_level = GameConfigManager.GameConfigGroup.LevelConfigList;
+        level = all_level.Find(a => a.PanelID == GameConfigManager.LevelStorage.CurrentPanel.ID);
         GameActiveDelay();
 
         //创建游戏布局
@@ -73,9 +63,9 @@ public class GameUI : WindowUI
 
         //显示level等级
         var Game_Level = find_component<Text>("Panel/Title/Text");
-        if (shareDataGlobalConfig._level_condition == 1)
-            Game_Level.text = "Level " + levelStorage.LevelCount.ToString();
-        if (shareDataGlobalConfig._level_condition == 2)
+        if (GameConfigManager.ShareDataGlobalConfig._level_condition == 1)
+            Game_Level.text = "Level " + GameConfigManager.LevelStorage.LevelCount.ToString();
+        if (GameConfigManager.ShareDataGlobalConfig._level_condition == 2)
             Game_Level.text = "";
 
         //新手引导相关
@@ -95,8 +85,8 @@ public class GameUI : WindowUI
         _panel_ui.CollectionUI.CallBack_Collect(p => Collect());
 
         //判断游戏过程中杀进程
-        if (shareDataGlobalConfig._is_winstreak)
-            tile2Storage.WinStreakOffGame = true;
+        if (GameConfigManager.ShareDataGlobalConfig._is_winstreak)
+            GameConfigManager.Tile2Storage.WinStreakOffGame = true;
     }
     private void Update()//游戏更新
     {
@@ -125,9 +115,9 @@ public class GameUI : WindowUI
     //设置游戏内音乐
     public void SetGameMusic()
     {
-        _ui_manager.Framework.AudioManager.StopMusic(shareDataGlobalConfig._home_music_id);
-        _ui_manager.Framework.AudioManager.StopMusic(shareDataGlobalConfig._game_music_bloom);
-        shareDataGlobalConfig._game_music_id = _ui_manager.Framework.AudioManager.PlayMusic("music_game");
+        _ui_manager.Framework.AudioManager.StopMusic(GameConfigManager.ShareDataGlobalConfig._home_music_id);
+        _ui_manager.Framework.AudioManager.StopMusic(GameConfigManager.ShareDataGlobalConfig._game_music_bloom);
+        GameConfigManager.ShareDataGlobalConfig._game_music_id = _ui_manager.Framework.AudioManager.PlayMusic("music_game");
     }
     public void SetItemBloomMusic()
     {
@@ -140,7 +130,7 @@ public class GameUI : WindowUI
     }
     public void ReviveBloomMusic()
     {
-        shareDataGlobalConfig._game_music_id = _ui_manager.Framework.AudioManager.PlayMusic("music_game");
+        GameConfigManager.ShareDataGlobalConfig._game_music_id = _ui_manager.Framework.AudioManager.PlayMusic("music_game");
         _ui_manager.Framework.AudioManager.SetMusicPitch(1.3f);
     }
 
@@ -190,7 +180,7 @@ public class GameUI : WindowUI
     //点设置按钮
     private void on_setting_clicked()
     {
-        shareDataGlobalConfig._winstreak_notice_type = 1;
+        GameConfigManager.ShareDataGlobalConfig._winstreak_notice_type = 1;
         _ui_manager.OpenWindow<GameSettingUI>();
     }
 
@@ -243,35 +233,35 @@ public class GameUI : WindowUI
     //道具为0时，进关卡会主动弹ui
     private void outItemJump()
     {
-        if (shareDataGlobalConfig._game_outitem_jump <= 0)
+        if (GameConfigManager.ShareDataGlobalConfig._game_outitem_jump <= 0)
         {
-            if (levelStorage.LevelCount >= 6)
+            if (GameConfigManager.LevelStorage.LevelCount >= 6)
             {
                 for (int i = 0; i < 3; i++)
                 {
                     if (i == 0)
                     {
-                        if (commonStorage.Item_Remove <= 0)
+                        if (GameConfigManager.CommonStorage.Item_Remove <= 0)
                         {
-                            shareDataGlobalConfig._bundle_type_id = 3;
+                            GameConfigManager.ShareDataGlobalConfig._bundle_type_id = 3;
                             _ui_manager.OpenWindow<OutItemRV>();
                             break;
                         }
                     }
                     if (i == 1)
                     {
-                        if (commonStorage.Item_Recall <= 0)
+                        if (GameConfigManager.CommonStorage.Item_Recall <= 0)
                         {
-                            shareDataGlobalConfig._bundle_type_id = 4;
+                            GameConfigManager.ShareDataGlobalConfig._bundle_type_id = 4;
                             _ui_manager.OpenWindow<OutItemRV>();
                             break;
                         }
                     }
                     if (i == 2)
                     {
-                        if (commonStorage.Item_Bloom <= 0)
+                        if (GameConfigManager.CommonStorage.Item_Bloom <= 0)
                         {
-                            shareDataGlobalConfig._bundle_type_id = 5;
+                            GameConfigManager.ShareDataGlobalConfig._bundle_type_id = 5;
                             _ui_manager.OpenWindow<OutItemRV>();
                             break;
                         }
@@ -327,10 +317,8 @@ public class GameUI : WindowUI
     //加载插屏广告
     private void LoadingInterstitial()
     {
-        var gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        var globalconfig = gameConfigGroup.GlobalConfigList[0];
-        if (levelStorage.LevelCount >= globalconfig.Interstitial_UnlockLevel
-            && globalconfig.Interstitial_CD_Initial >= globalconfig.Interstitial_CD_Level)
+        if (GameConfigManager.LevelStorage.LevelCount >= GameConfigManager.GlobalConfig.Interstitial_UnlockLevel
+            && GameConfigManager.GlobalConfig.Interstitial_CD_Initial >= GameConfigManager.GlobalConfig.Interstitial_CD_Level)
             ADSManager.TriggerADSLoading_Interstitial();
     }
 
@@ -357,7 +345,7 @@ public class GameUI : WindowUI
     //尝试切换关卡
     public void ResetPanel()
     {
-        CSFramework.LevelConfig current_levelconfig = TileUtils.GetCurrentLevelConfig(levelStorage.CurrentLevel, _ui_manager.Framework.ConfigManager);
+        CSFramework.LevelConfig current_levelconfig = TileUtils.GetCurrentLevelConfig(GameConfigManager.LevelStorage.CurrentLevel, _ui_manager.Framework.ConfigManager);
         var panel_config_ta = _ui_manager.Framework.ResourcesManager.LoadResource<TextAsset>($"{M3Const.M3PanelConfigPath}/{2024002}");
         if (panel_config_ta != null)
         {

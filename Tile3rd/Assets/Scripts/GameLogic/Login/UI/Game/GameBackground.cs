@@ -23,17 +23,16 @@ public class GameBackground : BaseUI
     }
     private void Update()//游戏更新
     {
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        if (tile2storage.BloomAllTimes > 0)
+        if (GameConfigManager.Tile2Storage.BloomAllTimes > 0)
         {
-            if (tile2storage.BloomBuffTimes > 0)
+            if (GameConfigManager.Tile2Storage.BloomBuffTimes > 0)
                 BloomBGShow(2);
             else
                 BloomBGShow(1);
         }
         else
         {
-            if (tile2storage.BloomBuffTimes > 0)
+            if (GameConfigManager.Tile2Storage.BloomBuffTimes > 0)
             {
                 if (gameUI.gameRewardItem.BloomBuff)
                     BloomBGShow(2);
@@ -63,11 +62,8 @@ public class GameBackground : BaseUI
 
     public void BackGroundChange()
     {
-        //var shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        var alltile = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().CollectionConfigList;
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-
-        var gamebg = alltile.Find(a => a.ID == tile2storage.CurrentTileID);
+        var alltile = GameConfigManager.GameConfigGroup.CollectionConfigList;
+        var gamebg = alltile.Find(a => a.ID == GameConfigManager.Tile2Storage.CurrentTileID);
         bg_back_im.sprite = _ui_manager.FindSprite($"{gamebg.GameBGPack}", $"{gamebg.GameBG}", true);
     }
     public void BloomBGShow(int value)

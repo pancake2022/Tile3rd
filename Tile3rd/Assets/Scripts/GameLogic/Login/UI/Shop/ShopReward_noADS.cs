@@ -50,26 +50,20 @@ public class ShopReward_noADS : WindowUI
     }
     private void GetReward()
     {
-        var commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();//获取通用存档
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        var gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        var globalconfig = gameConfigGroup.GlobalConfigList[0];
-
         //设置此礼包已经被购买过
-        tile2storage.isnoADS = true;
-        globalconfig.Interstitial_CD_Initial = 0;
+        GameConfigManager.Tile2Storage.isnoADS = true;
+        GameConfigManager.GlobalConfig.Interstitial_CD_Initial = 0;
 
         //获得道具
-        commonStorage.Item_Life = commonStorage.Item_Life + 3;
-        commonStorage.Item_Recall = commonStorage.Item_Recall + 5;
-        commonStorage.Item_Remove = commonStorage.Item_Remove + 5;
-        commonStorage.Item_Bloom = commonStorage.Item_Bloom + 8;
+        GameConfigManager.CommonStorage.Item_Life = GameConfigManager.CommonStorage.Item_Life + 3;
+        GameConfigManager.CommonStorage.Item_Recall = GameConfigManager.CommonStorage.Item_Recall + 5;
+        GameConfigManager.CommonStorage.Item_Remove = GameConfigManager.CommonStorage.Item_Remove + 5;
+        GameConfigManager.CommonStorage.Item_Bloom = GameConfigManager.CommonStorage.Item_Bloom + 8;
     }
     private void RefreshUI()
     {
-        var tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
         var home_ui = _ui_manager.FindWindow<HomeUI>();
-        tile2storage.ShopRefreshCD = DateTime.Now;
+        GameConfigManager.Tile2Storage.ShopRefreshCD = DateTime.Now;
         home_ui.shopBundleIcon.ChangeCurrentShop();
         home_ui.shopBundleIcon.IconInit();
     }

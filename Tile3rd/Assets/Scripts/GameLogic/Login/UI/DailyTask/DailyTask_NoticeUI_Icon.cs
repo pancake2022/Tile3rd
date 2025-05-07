@@ -37,10 +37,9 @@ public class DailyTask_NoticeUI_Icon : WindowUI
     private void IconShow()
     {
         //icon
-        var tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        var makeoverlist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().MakeOverConfigList;
-        var chainlist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().DailyTaskChainConfigList;
-        var currentchain = chainlist.Find(a => a.ID == tile2Storage.CurrentDailyTaskChainID);
+        var makeoverlist = GameConfigManager.GameConfigGroup.MakeOverConfigList;
+        var chainlist = GameConfigManager.GameConfigGroup.DailyTaskChainConfigList;
+        var currentchain = chainlist.Find(a => a.ID == GameConfigManager.Tile2Storage.CurrentDailyTaskChainID);
         var currentitem = makeoverlist.Find(a => a.ID == currentchain.MakeOverImageID);
 
         var taskBG = find_component<Image>("Panel/DailyTask/Icon/icon/Background");
@@ -52,7 +51,7 @@ public class DailyTask_NoticeUI_Icon : WindowUI
         int sliderValue = 0;
         foreach (var item in currentchain.ChainList)
         {
-            if (tile2Storage.DailyTaskCondition[item] == 3)
+            if (GameConfigManager.Tile2Storage.DailyTaskCondition[item] == 3)
                 sliderValue++;
         }
         var slider = find_component<Slider>("Panel/DailyTask/Icon/icon");
@@ -62,7 +61,6 @@ public class DailyTask_NoticeUI_Icon : WindowUI
     }
     private void ConditionInit()
     {
-        var tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
         var iconlock = find_component<RectTransform>("Panel/DailyTask/Icon/lock");
         var desc = find_component<Text>("Panel/DailyTask/Icon/decs/Text");
         iconlock.SetActive(false);
@@ -79,7 +77,7 @@ public class DailyTask_NoticeUI_Icon : WindowUI
         button_ok.SetActive(false);
         button_claim.SetActive(false);
 
-        if (tile2Storage.DailyTaskChainCondition[tile2Storage.CurrentDailyTaskChainID] == 0)
+        if (GameConfigManager.Tile2Storage.DailyTaskChainCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskChainID] == 0)
         {
             iconlock.SetActive(true);
             guide1.SetActive(true);
@@ -87,14 +85,14 @@ public class DailyTask_NoticeUI_Icon : WindowUI
             desc.text = "                    to unlock";
         }
             
-        if (tile2Storage.DailyTaskChainCondition[tile2Storage.CurrentDailyTaskChainID] == 1)
+        if (GameConfigManager.Tile2Storage.DailyTaskChainCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskChainID] == 1)
         {
             guide2.SetActive(true);
             button_ok.SetActive(true);
             desc.text = "Complete task to get rewards";
         }
             
-        if (tile2Storage.DailyTaskChainCondition[tile2Storage.CurrentDailyTaskChainID] == 2)
+        if (GameConfigManager.Tile2Storage.DailyTaskChainCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskChainID] == 2)
         {
             guide3.SetActive(true);
             button_claim.SetActive(true);
@@ -114,9 +112,8 @@ public class DailyTask_NoticeUI_Icon : WindowUI
         Close();
 
         //刷新到下一个任务链
-        var tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        tile2Storage.DailyTaskChainCondition[2] = 0;
-        tile2Storage.DailyTaskChainStartTime = DateTime.Now;
+        GameConfigManager.Tile2Storage.DailyTaskChainCondition[2] = 0;
+        GameConfigManager.Tile2Storage.DailyTaskChainStartTime = DateTime.Now;
 
         //领取奖励
         UnlockRewardImage();
@@ -127,17 +124,14 @@ public class DailyTask_NoticeUI_Icon : WindowUI
     }
     private void UnlockRewardImage()
     {
-        var makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-        var tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-
-        var all_dailychain = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().DailyTaskChainConfigList;
-        var all_image = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().MakeOverConfigList;
-        var currentchain = all_dailychain.Find(a => a.ID == tile2Storage.CurrentDailyTaskChainID);
+        var all_dailychain = GameConfigManager.GameConfigGroup.DailyTaskChainConfigList;
+        var all_image = GameConfigManager.GameConfigGroup.MakeOverConfigList;
+        var currentchain = all_dailychain.Find(a => a.ID == GameConfigManager.Tile2Storage.CurrentDailyTaskChainID);
         var rewardimage = all_image.Find(a => a.ID == currentchain.MakeOverImageID);
 
         //刷新到对应的story
         var home_ui = _ui_manager.FindWindow<HomeUI>();
-        makeoverStorage.CurrentStoryID = rewardimage.StoryID;
+        GameConfigManager.MakeOverStorage.CurrentStoryID = rewardimage.StoryID;
         home_ui.MakeOverInit();
         home_ui.storyIcon.StoryTipInit();
 
@@ -154,10 +148,10 @@ public class DailyTask_NoticeUI_Icon : WindowUI
             {
                 //data.isUse = true;
                 //data.isUnlock = true;
-                makeoverStorage.ImageUse[data.ID] = true;
-                makeoverStorage.ImageUnlock[data.ID] = true;
+                GameConfigManager.MakeOverStorage.ImageUse[data.ID] = true;
+                GameConfigManager.MakeOverStorage.ImageUnlock[data.ID] = true;
                 home_ui.makeOver.makeOver_Select.SetTouchUnlock(data);
-                tile2Storage.LoveLevelExpUp = data.LoveExp;
+                GameConfigManager.Tile2Storage.LoveLevelExpUp = data.LoveExp;
                 home_ui.makeOver.makeOver_Select.GetCatID();
                 home_ui.makeOver.makeOver_Image.InitImageButtonList();
                 home_ui.makeOver.makeOver_Select.AnimType = 2;
@@ -166,7 +160,7 @@ public class DailyTask_NoticeUI_Icon : WindowUI
             else
             {
                 data.isUse = false;
-                makeoverStorage.ImageUse[data.ID] = false;
+                GameConfigManager.MakeOverStorage.ImageUse[data.ID] = false;
             }
         }
     }

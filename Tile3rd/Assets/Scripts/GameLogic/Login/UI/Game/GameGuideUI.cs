@@ -8,21 +8,10 @@ using UnityEngine.UI;
 public class GameGuideUI : BaseUI
 {
     public GameUI gameUI;
-    private MakeOverStorage makeoverStorage;
-    private CommonStorage commonStorage;
-    private LevelStorage levelStorage;
-    private GameConfigGroup gameConfigGroup;
-    private GlobalConfig globalconfig;
     private bool isGuide = false;
 
     protected override void on_create()
     {
-        makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-        commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();//获取通用存档
-        levelStorage = _ui_manager.Framework.StorageManager.Storage<LevelStorage>();//获取通用关卡存档
-        gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        globalconfig = gameConfigGroup.GlobalConfigList[0];
-
         //新手引导相关
         ShowInit();
     }
@@ -125,7 +114,7 @@ public class GameGuideUI : BaseUI
         var guide_level2 = find_component<RectTransform>("Panel/level2");
         if (gameUI._panel_ui.Panel.ID == 2024002)
         {
-            if (commonStorage.Item_Recall == 3)
+            if (GameConfigManager.CommonStorage.Item_Recall == 3)
                 guide_level2.transform.SetActive(true);
             else
                 guide_level2.transform.SetActive(false);
@@ -133,7 +122,7 @@ public class GameGuideUI : BaseUI
         var guide_level3 = find_component<RectTransform>("Panel/level3");
         if (gameUI._panel_ui.Panel.ID == 2024003)
         {
-            if (commonStorage.Item_Remove == 3)
+            if (GameConfigManager.CommonStorage.Item_Remove == 3)
                 guide_level3.transform.SetActive(true);
             else
                 guide_level3.transform.SetActive(false);

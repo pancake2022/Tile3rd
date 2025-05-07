@@ -10,11 +10,9 @@ public class MakeOver_Image : BaseUI
     {
         public MakeOverConfig Data;
         public Action<ImageButton> ClickCalback;
-        private MakeOverStorage makeoverStorage;
 
         protected override void on_create()
         {
-            makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
         }
         //登录游戏时默认显示
         private void ImageShow()
@@ -22,7 +20,7 @@ public class MakeOver_Image : BaseUI
             ShowIDList();
             HideIDList();
             gameObject.SetActive(false);
-            if (makeoverStorage.ImageUse[Data.ID])
+            if (GameConfigManager.MakeOverStorage.ImageUse[Data.ID])
                 gameObject.SetActive(true);
         }
         //showlist里的data只要有1个解锁了就显示指定图片
@@ -32,10 +30,10 @@ public class MakeOver_Image : BaseUI
             {
                 if (item > 0)
                 {
-                    if (makeoverStorage.ImageUnlock[item])
+                    if (GameConfigManager.MakeOverStorage.ImageUnlock[item])
                     {
-                        makeoverStorage.ImageUnlock[Data.ID] = true;
-                        makeoverStorage.ImageUse[Data.ID] = true;
+                        GameConfigManager.MakeOverStorage.ImageUnlock[Data.ID] = true;
+                        GameConfigManager.MakeOverStorage.ImageUse[Data.ID] = true;
                     }
                 }
             });
@@ -47,15 +45,15 @@ public class MakeOver_Image : BaseUI
             {
                 if (item > 0)
                 {
-                    if (makeoverStorage.ImageUnlock[item])
-                        makeoverStorage.ImageUse[Data.ID] = false;
+                    if (GameConfigManager.MakeOverStorage.ImageUnlock[item])
+                        GameConfigManager.MakeOverStorage.ImageUse[Data.ID] = false;
                 }
             });
         }
         private void SetColor()
         {
             var color = find_component<Image>("Panel/image");
-            if (makeoverStorage.ImageUnlock[Data.ID])
+            if (GameConfigManager.MakeOverStorage.ImageUnlock[Data.ID])
                 color.color = new Color32(255, 255, 255, 255);
             else
                 color.color = new Color32(100, 100, 100, 180);
@@ -112,7 +110,6 @@ public class MakeOver_Image : BaseUI
     private RectTransform imagepoint;
     public bool fromImageClick;
     public bool isQuestClick;
-    private MakeOverStorage makeoverStorage;
     private List<MakeOverConfig> datalist;
     private RectTransform imageLerp;
     private Vector3 defaultPosition;
@@ -127,7 +124,6 @@ public class MakeOver_Image : BaseUI
     }
     protected override void on_create()
     {
-        makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
         imageButtonList = new List<ImageButton>();
         CurrentImage = null;
 
@@ -273,7 +269,7 @@ public class MakeOver_Image : BaseUI
     //story01的collider
     private void collider()
     {
-        if (makeoverStorage.CurrentStoryID == 1)
+        if (GameConfigManager.MakeOverStorage.CurrentStoryID == 1)
         {
             var collider_01_1 = find_component<RectTransform>($"image/background/effect/Collider/point_1");
             var collider_01_2 = find_component<RectTransform>($"image/background/effect/Collider/point_2");
@@ -288,21 +284,21 @@ public class MakeOver_Image : BaseUI
             collider_01_5.SetActive(false);
             collider_01_6.SetActive(false);
 
-            if (makeoverStorage.ImageUse[2]) 
+            if (GameConfigManager.MakeOverStorage.ImageUse[2]) 
                 collider_01_1.SetActive(true);
-            if (makeoverStorage.ImageUse[3]) 
+            if (GameConfigManager.MakeOverStorage.ImageUse[3]) 
                 collider_01_1.SetActive(true);
-            if (makeoverStorage.ImageUse[4]) 
+            if (GameConfigManager.MakeOverStorage.ImageUse[4]) 
                 collider_01_3.SetActive(true);
-            if (makeoverStorage.ImageUse[5]) 
+            if (GameConfigManager.MakeOverStorage.ImageUse[5]) 
                 collider_01_2.SetActive(true);
-            if (makeoverStorage.ImageUse[6]) 
+            if (GameConfigManager.MakeOverStorage.ImageUse[6]) 
                 collider_01_1.SetActive(true);
-            if (makeoverStorage.ImageUse[8]) 
+            if (GameConfigManager.MakeOverStorage.ImageUse[8]) 
                 collider_01_4.SetActive(true);
-            if (makeoverStorage.ImageUse[9]) 
+            if (GameConfigManager.MakeOverStorage.ImageUse[9]) 
                 collider_01_5.SetActive(true);
-            if (makeoverStorage.ImageUse[11])
+            if (GameConfigManager.MakeOverStorage.ImageUse[11])
                 collider_01_6.SetActive(true);
         }
     }

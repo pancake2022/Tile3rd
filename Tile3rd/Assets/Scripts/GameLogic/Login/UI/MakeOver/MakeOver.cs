@@ -15,9 +15,6 @@ public class MakeOver : WindowUI
     public List<TouchPointConfig> CurrentStoryTouchList;
     public List<MakeOverConfig> CurrentStoryImageList;
 
-    private MakeOverStorage makeoverStorage;
-    private Tile2Storage tile2storage;
-
     public int story_Reward_Condition;
     private bool alltouchunlock;
     private bool allimageunlock;
@@ -33,9 +30,6 @@ public class MakeOver : WindowUI
     }
     protected override void on_create()
     {
-        makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();//获取通用关卡存档
-        tile2storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-
         //创建list
         InitTouchList();
         InitImageList();
@@ -54,21 +48,21 @@ public class MakeOver : WindowUI
 
     public void InitTouchList()
     {
-        var all_touch_config = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().TouchPointConfigList;
+        var all_touch_config = GameConfigManager.GameConfigGroup.TouchPointConfigList;
         CurrentStoryTouchList = new List<TouchPointConfig>();
         foreach (var touch in all_touch_config)
         {
-            if (touch.StoryID == makeoverStorage.CurrentStoryID)
+            if (touch.StoryID == GameConfigManager.MakeOverStorage.CurrentStoryID)
                 CurrentStoryTouchList.Add(touch);
         }
     }
     public void InitImageList()
     {
-        var all_image_config = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().MakeOverConfigList;
+        var all_image_config = GameConfigManager.GameConfigGroup.MakeOverConfigList;
         CurrentStoryImageList = new List<MakeOverConfig>();
         foreach (var image in all_image_config)
         {
-            if (image.StoryID == makeoverStorage.CurrentStoryID)
+            if (image.StoryID == GameConfigManager.MakeOverStorage.CurrentStoryID)
                 CurrentStoryImageList.Add(image);
         }
     }
@@ -76,13 +70,13 @@ public class MakeOver : WindowUI
     //当前makoverstory的状态
     public void CurrentStoryCondition()
     {
-        if (makeoverStorage.StoryCondition[makeoverStorage.CurrentStoryID] == 0)
+        if (GameConfigManager.MakeOverStorage.StoryCondition[GameConfigManager.MakeOverStorage.CurrentStoryID] == 0)
             Debug.Log("上一个story完成时，就把下一个story值置为1");
-        if (makeoverStorage.StoryCondition[makeoverStorage.CurrentStoryID] == 1)//touch（未领奖）
+        if (GameConfigManager.MakeOverStorage.StoryCondition[GameConfigManager.MakeOverStorage.CurrentStoryID] == 1)//touch（未领奖）
             StoryTouchFinish();
-        if (makeoverStorage.StoryCondition[makeoverStorage.CurrentStoryID] == 2)//touch（已领奖）image（未领奖）
+        if (GameConfigManager.MakeOverStorage.StoryCondition[GameConfigManager.MakeOverStorage.CurrentStoryID] == 2)//touch（已领奖）image（未领奖）
             StoryImageFinish();
-        if (makeoverStorage.StoryCondition[makeoverStorage.CurrentStoryID] == 3)//image完成（已领奖）
+        if (GameConfigManager.MakeOverStorage.StoryCondition[GameConfigManager.MakeOverStorage.CurrentStoryID] == 3)//image完成（已领奖）
             Debug.Log("此图已完美");
     }
     //全部touch解锁
@@ -90,12 +84,12 @@ public class MakeOver : WindowUI
     {
         foreach (var item in CurrentStoryTouchList)
         {
-            if (makeoverStorage.TouchPointCondition[item.ID] <= 1)
+            if (GameConfigManager.MakeOverStorage.TouchPointCondition[item.ID] <= 1)
             {
                 alltouchunlock = false;
                 break;
             }
-            if (makeoverStorage.TouchPointCondition[item.ID] >= 2)
+            if (GameConfigManager.MakeOverStorage.TouchPointCondition[item.ID] >= 2)
                 alltouchunlock = true;
         }
         if (alltouchunlock)
@@ -112,7 +106,7 @@ public class MakeOver : WindowUI
         {
             if (item.ImageCount == true)
             {
-                if (makeoverStorage.ImageUnlock[item.ID] == false)
+                if (GameConfigManager.MakeOverStorage.ImageUnlock[item.ID] == false)
                 {
                     allimageunlock = false;
                     break;
@@ -177,9 +171,8 @@ public class MakeOver : WindowUI
     public void GetSignStory()
     {
         //解锁并进入该story
-        var shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        makeoverStorage.CurrentStoryID = shareDataGlobalConfig._sign_reward_id;
-        makeoverStorage.StoryCondition[makeoverStorage.CurrentStoryID] = 1;
+        GameConfigManager.MakeOverStorage.CurrentStoryID = GameConfigManager.ShareDataGlobalConfig._sign_reward_id;
+        GameConfigManager.MakeOverStorage.StoryCondition[GameConfigManager.MakeOverStorage.CurrentStoryID] = 1;
     }
     public void MakeoverRefresh()
     {

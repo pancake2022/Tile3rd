@@ -10,7 +10,6 @@ public class StoryUI : WindowUI
     {
         public Action<StoryButton> ClickCalback;
         public StoryConfig storyConfig;
-        private MakeOverStorage makeoverStorage;
         private RectTransform condition_lock;
         private RectTransform condition_touch;
         private RectTransform condition_image;
@@ -22,7 +21,6 @@ public class StoryUI : WindowUI
 
         protected override void on_create()
         {
-            makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
             mater = find_component<Coffee.UIExtensions.UIEffect>("Panel/BG/image");
             condition_lock = find_component<RectTransform>("Panel/Condition/lock");
             condition_touch = find_component<RectTransform>("Panel/Condition/touch");
@@ -67,37 +65,36 @@ public class StoryUI : WindowUI
             button.SetActive(true);
             //if (storyConfig.ID == makeoverStorage.CurrentStoryID)
             //    button.SetActive(false);
-            if (makeoverStorage.StoryCondition[storyConfig.ID] == 0)
+            if (GameConfigManager.MakeOverStorage.StoryCondition[storyConfig.ID] == 0)
                 button.SetActive(false);
         }
         private void SetTips(int value)
         {
             //如果先进入选故事的界面，tip就会有问题
-            var commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();//获取通用存档
-            var all_touch = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().TouchPointConfigList;
-            var all_image = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().MakeOverConfigList;
+            var all_touch = GameConfigManager.GameConfigGroup.TouchPointConfigList;
+            var all_image = GameConfigManager.GameConfigGroup.MakeOverConfigList;
             tip.SetActive(false);
             if (value == 1)
             {
-                var touch = all_touch.Find(a => makeoverStorage.TouchPointCondition[a.ID] == 1 && a.StoryID == storyConfig.ID);
+                var touch = all_touch.Find(a => GameConfigManager.MakeOverStorage.TouchPointCondition[a.ID] == 1 && a.StoryID == storyConfig.ID);
                 foreach (var imageID in touch.ImageIDList)
                 {
-                    var image = all_image.Find(a => a.ID == imageID && a.BuyType == 1 && commonStorage.Flower >= a.BuyPrice);
+                    var image = all_image.Find(a => a.ID == imageID && a.BuyType == 1 && GameConfigManager.CommonStorage.Flower >= a.BuyPrice);
                     if (image != null) 
                         tip.SetActive(true);
                 }
             }
             if (value == 2)
             {
-                var touch = all_touch.Find(a => makeoverStorage.TouchPointCondition[a.ID] == 2 && a.StoryID == storyConfig.ID);
+                var touch = all_touch.Find(a => GameConfigManager.MakeOverStorage.TouchPointCondition[a.ID] == 2 && a.StoryID == storyConfig.ID);
                 if (touch != null)
                 {
                     foreach (var imageID in touch.ImageIDList)
                     {
                         var image = all_image.Find(a => a.ID == imageID);
-                        if (makeoverStorage.ImageUnlock[image.ID] == false && image.BuyType == 1)
+                        if (GameConfigManager.MakeOverStorage.ImageUnlock[image.ID] == false && image.BuyType == 1)
                         {
-                            if (commonStorage.Flower >= image.SecondPrice)
+                            if (GameConfigManager.CommonStorage.Flower >= image.SecondPrice)
                                 tip.SetActive(true);
                         }
                     }
@@ -107,13 +104,13 @@ public class StoryUI : WindowUI
         private void SetCondition()
         {
             SetBaseCondition();
-            if (makeoverStorage.StoryCondition[storyConfig.ID] == 0)
+            if (GameConfigManager.MakeOverStorage.StoryCondition[storyConfig.ID] == 0)
                 SetLockCondition();
-            if (makeoverStorage.StoryCondition[storyConfig.ID] == 1)
+            if (GameConfigManager.MakeOverStorage.StoryCondition[storyConfig.ID] == 1)
                 SetTouchCondition();
-            if (makeoverStorage.StoryCondition[storyConfig.ID] == 2)
+            if (GameConfigManager.MakeOverStorage.StoryCondition[storyConfig.ID] == 2)
                 SetImageCondition();
-            if (makeoverStorage.StoryCondition[storyConfig.ID] == 3)
+            if (GameConfigManager.MakeOverStorage.StoryCondition[storyConfig.ID] == 3)
                 SetCompleteCondition();
         }
         private void SetBaseCondition()
@@ -149,7 +146,7 @@ public class StoryUI : WindowUI
         {
             var reward = find_component<RectTransform>("Panel/Reward");
             reward.SetActive(false);
-            if (makeoverStorage.StoryCondition[storyConfig.ID] == 2)
+            if (GameConfigManager.MakeOverStorage.StoryCondition[storyConfig.ID] == 2)
                 reward.SetActive(true);
 
             //把宝箱设置成开关
@@ -176,7 +173,7 @@ public class StoryUI : WindowUI
         }
         private void SetTouchSlider()
         {
-            var touchlist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().TouchPointConfigList;
+            var touchlist = GameConfigManager.GameConfigGroup.TouchPointConfigList;
             var touchSlider = find_component<Slider>("Panel/Condition/touch/rate/Slider");
             var touchCount = find_component<Text>("Panel/Condition/touch/rate/Slider/Fill Area/Text");
             int touchSliderCurrent = 0;
@@ -187,7 +184,7 @@ public class StoryUI : WindowUI
                 if (touch.StoryID == storyConfig.ID)
                 {
                     touchSliderMax++;
-                    if (makeoverStorage.TouchPointCondition[touch.ID] >= 2) 
+                    if (GameConfigManager.MakeOverStorage.TouchPointCondition[touch.ID] >= 2) 
                         touchSliderCurrent++;
                 }
             }
@@ -197,7 +194,7 @@ public class StoryUI : WindowUI
         }
         private void SetImageSlider()
         {
-            var makeoverlist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().MakeOverConfigList;
+            var makeoverlist = GameConfigManager.GameConfigGroup.MakeOverConfigList;
             var imageSlider = find_component<Slider>("Panel/Condition/image/rate/Slider");
             var imageCount = find_component<Text>("Panel/Condition/image/rate/Slider/Fill Area/Text");
             int imageSliderCurrent = 0;
@@ -210,7 +207,7 @@ public class StoryUI : WindowUI
                     if (image.ImageCount)
                     {
                         imageSliderMax++;
-                        if (makeoverStorage.ImageUnlock[image.ID])
+                        if (GameConfigManager.MakeOverStorage.ImageUnlock[image.ID])
                             imageSliderCurrent++;
                     }
                 }
@@ -247,23 +244,13 @@ public class StoryUI : WindowUI
     public StoryConfig currentStory;
     private RectTransform storyButton_rt;
     private GameObject storyButton_temp;
-    private CommonStorage commonStorage;
-    private MakeOverStorage makeoverStorage;
     private List<StoryConfig> storylist;
-    private GameConfigGroup gameConfigGroup;
-    private GlobalConfig globalconfig;
     private int storyScrollID = 1;
 
     protected override void on_create()
     {
         Property.CommonAnimationTransform = transform.Find("Panel");
         _ui_manager.Framework.AudioManager.PlaySound("sound_panel_opening");
-
-        commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();//获取通用存档
-        makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
-        storylist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().StoryConfigList;
-        gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        globalconfig = gameConfigGroup.GlobalConfigList[0];
 
         register_button("Panel/UI_Top/Button_close", on_close_clicked);
         storyButton_rt = find_component<RectTransform>("Panel/Scroll View/Viewport/Content/UI_Middle");
@@ -286,7 +273,7 @@ public class StoryUI : WindowUI
     private void StoryBack()
     {
         var back = find_component<RectTransform>("BG");
-        var currentstory = storylist.Find(a => a.ID == makeoverStorage.CurrentStoryID);
+        var currentstory = storylist.Find(a => a.ID == GameConfigManager.MakeOverStorage.CurrentStoryID);
         var background = create_ui<HomeBackground>($"MakeOverLevels/00_bg/{currentstory.HomeBack}", back);
         background.Init();
     }
@@ -304,17 +291,17 @@ public class StoryUI : WindowUI
     private void StoryScroll()
     {
         //有猫任务的时候，按照价格够判断
-        var all_touch = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().TouchPointConfigList;
-        var all_image = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().MakeOverConfigList;
+        var all_touch = GameConfigManager.GameConfigGroup.TouchPointConfigList;
+        var all_image = GameConfigManager.GameConfigGroup.MakeOverConfigList;
 
         foreach (var story in storylist) 
         {
-            if (makeoverStorage.StoryCondition[story.ID] == 1)
+            if (GameConfigManager.MakeOverStorage.StoryCondition[story.ID] == 1)
             {
-                var touch = all_touch.Find(a => makeoverStorage.TouchPointCondition[a.ID] == 1);
+                var touch = all_touch.Find(a => GameConfigManager.MakeOverStorage.TouchPointCondition[a.ID] == 1);
                 foreach (var imageID in touch.ImageIDList)
                 {
-                    var image = all_image.Find(a => a.ID == imageID && a.BuyType != 4 && commonStorage.Flower >= a.BuyPrice);
+                    var image = all_image.Find(a => a.ID == imageID && a.BuyType != 4 && GameConfigManager.CommonStorage.Flower >= a.BuyPrice);
                     if (image != null) 
                     {
                         storyScrollID = touch.StoryID;
@@ -322,12 +309,12 @@ public class StoryUI : WindowUI
                     }
                 }
             }
-            else if (makeoverStorage.StoryCondition[story.ID] == 2)
+            else if (GameConfigManager.MakeOverStorage.StoryCondition[story.ID] == 2)
             {
-                var touch = all_touch.Find(a => makeoverStorage.TouchPointCondition[a.ID] == 2);
+                var touch = all_touch.Find(a => GameConfigManager.MakeOverStorage.TouchPointCondition[a.ID] == 2);
                 foreach (var imageID in touch.ImageIDList)
                 {
-                    var image = all_image.Find(a => a.ID == imageID && a.BuyType != 4 && commonStorage.Flower >= a.SecondPrice);
+                    var image = all_image.Find(a => a.ID == imageID && a.BuyType != 4 && GameConfigManager.CommonStorage.Flower >= a.SecondPrice);
                     if (image != null)
                     {
                         storyScrollID = touch.StoryID;
@@ -340,9 +327,9 @@ public class StoryUI : WindowUI
                     }
                 }
             }
-            else if (makeoverStorage.StoryCondition[story.ID] == 3)
+            else if (GameConfigManager.MakeOverStorage.StoryCondition[story.ID] == 3)
                 GetLastStory();
-            if (makeoverStorage.StoryGuide[1] == 1)
+            if (GameConfigManager.MakeOverStorage.StoryGuide[1] == 1)
                 GetFirstStory();
             //如果全部story的condition都为3，则story的scroll为最大值
             GetMaxStory();
@@ -361,13 +348,13 @@ public class StoryUI : WindowUI
     }
     private void GetLastStory()
     {
-        var story = storylist.Find(a => a != null && makeoverStorage.StoryCondition[a.ID] == 1);
+        var story = storylist.Find(a => a != null && GameConfigManager.MakeOverStorage.StoryCondition[a.ID] == 1);
         if (story != null)
             storyScrollID = story.ID;
     }
     private void GetMaxStory()
     {
-        var story = storylist.Find(a => a != null && makeoverStorage.StoryCondition[a.ID] != 3);
+        var story = storylist.Find(a => a != null && GameConfigManager.MakeOverStorage.StoryCondition[a.ID] != 3);
         if (!storylist.Contains(story))
             storyScrollID = storylist.Count + 1;
     }
@@ -377,7 +364,7 @@ public class StoryUI : WindowUI
         currentStory = storyConfig;
 
         var home_ui = _ui_manager.FindWindow<HomeUI>();
-        makeoverStorage.CurrentStoryID = currentStory.ID;
+        GameConfigManager.MakeOverStorage.CurrentStoryID = currentStory.ID;
         home_ui.MakeOverInit();
         home_ui.DefaultAnimSet();
         home_ui.catQuest.RefreshCatQuest();
@@ -395,16 +382,16 @@ public class StoryUI : WindowUI
     {
         var guide = find_component<RectTransform>("Panel/Guide/Panel/guide_1");
         guide.SetActive(false);
-        if (makeoverStorage.ImageUnlock[globalconfig.Unlock_StoryIcon])
+        if (GameConfigManager.MakeOverStorage.ImageUnlock[GameConfigManager.GlobalConfig.Unlock_StoryIcon])
         {
-            if (makeoverStorage.StoryGuide[1] == 1)
+            if (GameConfigManager.MakeOverStorage.StoryGuide[1] == 1)
                 guide.SetActive(true);
         }
     }
     private void StoryGuideChange()
     {
-        if (makeoverStorage.ImageUnlock[globalconfig.Unlock_StoryIcon]) 
-            makeoverStorage.StoryGuide[1] = 2;
+        if (GameConfigManager.MakeOverStorage.ImageUnlock[GameConfigManager.GlobalConfig.Unlock_StoryIcon])
+            GameConfigManager.MakeOverStorage.StoryGuide[1] = 2;
         var home_ui = _ui_manager.FindWindow<HomeUI>();
         home_ui.storyIcon.StoryTipInit();
     }

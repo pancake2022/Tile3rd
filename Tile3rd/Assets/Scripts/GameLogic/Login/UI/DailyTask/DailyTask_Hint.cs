@@ -43,7 +43,8 @@ public class DailyTask_Hint : BaseUI
         }
         public void InitTaskType()
         {
-            itemlist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().ItemConfigList;
+            //itemlist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().ItemConfigList;
+            itemlist = GameConfigManager.GameConfigGroup.ItemConfigList;
             currentitem = itemlist.Find(a => a.ID == Task.RewardID);
             if (Task.TaskType == 1)
                 WinStreak();
@@ -127,9 +128,8 @@ public class DailyTask_Hint : BaseUI
             rewardText.text = $"+{Task.RewardCount}";
 
             //slier
-            var tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
             var slider = find_component<Slider>("bubble/taskType/WinStreak/icon");
-            slider.value = tile2Storage.WinStreakCount;
+            slider.value = GameConfigManager.Tile2Storage.WinStreakCount;
             slider.maxValue = Task.TaskCount;
         }
         private void FindCatIcon()
@@ -145,8 +145,6 @@ public class DailyTask_Hint : BaseUI
     public HomeUI Home;
     public CurrentTask currentTask;
     private DailyTaskConfig taskData;
-    private Tile2Storage tile2Storage;
-    private ShareDataGlobalConfig shareDataGlobalConfig;
 
     public DailyTask_Hint Init(HomeUI home)
     {
@@ -155,34 +153,32 @@ public class DailyTask_Hint : BaseUI
     }
     protected override void on_create()
     {
-        tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
         WinStreakCountInit();
     }
     private void GetCurrentTask()
     {
-        var tasklist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().DailyTaskConfigList;
-        taskData = tasklist.Find(a => a.ID == tile2Storage.CurrentDailyTaskID);
+        var tasklist = GameConfigManager.GameConfigGroup.DailyTaskConfigList;
+        taskData = tasklist.Find(a => a.ID == GameConfigManager.Tile2Storage.CurrentDailyTaskID);
         currentTask = create_ui<CurrentTask>("Panel");
         currentTask.Init(taskData, p => on_clicked(p.Task));
     }
     private void WinStreakCountInit()
     {
-        if (tile2Storage.WinStreakOffGame) 
-            tile2Storage.WinStreakCount = 0;
+        if (GameConfigManager.Tile2Storage.WinStreakOffGame) 
+            GameConfigManager.Tile2Storage.WinStreakCount = 0;
     }
     private void DailyTaskInit()
     {
-        if (tile2Storage.DailyTaskChainCondition[tile2Storage.CurrentDailyTaskChainID] == 1)
+        if (GameConfigManager.Tile2Storage.DailyTaskChainCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskChainID] == 1)
         {
-            if (shareDataGlobalConfig._is_catquest_active == false)
+            if (GameConfigManager.ShareDataGlobalConfig._is_catquest_active == false)
                 gameObject.SetActive(true);
             else
                 gameObject.SetActive(false);
         }
         else
             gameObject.SetActive(false);
-        shareDataGlobalConfig._is_winstreak = false;
+        GameConfigManager.ShareDataGlobalConfig._is_winstreak = false;
     }
 
     public DailyTask_Hint InitDailyTask_Hint()
@@ -196,13 +192,13 @@ public class DailyTask_Hint : BaseUI
         //需要跟猫任务相斥
         DailyTaskInit();
         GetCurrentTask();
-        if (tile2Storage.DailyTaskCondition[tile2Storage.CurrentDailyTaskID] == 0)
+        if (GameConfigManager.Tile2Storage.DailyTaskCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskID] == 0)
             DailyTaskCondition_0();
-        if (tile2Storage.DailyTaskCondition[tile2Storage.CurrentDailyTaskID] == 1)
+        if (GameConfigManager.Tile2Storage.DailyTaskCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskID] == 1)
             DailyTaskCondition_1();
-        if (tile2Storage.DailyTaskCondition[tile2Storage.CurrentDailyTaskID] == 2)
+        if (GameConfigManager.Tile2Storage.DailyTaskCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskID] == 2)
             DailyTaskCondition_2();
-        if (tile2Storage.DailyTaskCondition[tile2Storage.CurrentDailyTaskID] == 3)
+        if (GameConfigManager.Tile2Storage.DailyTaskCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskID] == 3)
             DailyTaskCondition_3();
     }
 
@@ -210,8 +206,8 @@ public class DailyTask_Hint : BaseUI
     {
         //任务未解锁
         //当前的任务链如果状态为1，则任务为已解锁
-        if (tile2Storage.DailyTaskChainCondition[currentTask.Task.TaskChain] == 1)
-            tile2Storage.DailyTaskCondition[tile2Storage.CurrentDailyTaskID] = 1;
+        if (GameConfigManager.Tile2Storage.DailyTaskChainCondition[currentTask.Task.TaskChain] == 1)
+            GameConfigManager.Tile2Storage.DailyTaskCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskID] = 1;
     }
     private void DailyTaskCondition_1()
     {
@@ -220,13 +216,13 @@ public class DailyTask_Hint : BaseUI
 
         //判断是否是连赢状态
         //只有当前任务在condition1的情况下，才会判断连赢（处理levelwin和revive）
-        shareDataGlobalConfig._is_winstreak = true;
+        GameConfigManager.ShareDataGlobalConfig._is_winstreak = true;
 
         //condition1->2
-        if (tile2Storage.WinStreakCount >= currentTask.Task.TaskCount)
+        if (GameConfigManager.Tile2Storage.WinStreakCount >= currentTask.Task.TaskCount)
         {
-            tile2Storage.DailyTaskCondition[tile2Storage.CurrentDailyTaskID] = 2;
-            shareDataGlobalConfig._is_winstreak = false;
+            GameConfigManager.Tile2Storage.DailyTaskCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskID] = 2;
+            GameConfigManager.ShareDataGlobalConfig._is_winstreak = false;
             RefreshDailyTask_Hint();
         }
     }
@@ -240,43 +236,6 @@ public class DailyTask_Hint : BaseUI
         GetNextDailyTask();
     }
     
-    private void ItemGet(int itemID, int itemNum)
-    {
-        var commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();//获取通用存档
-        var itemlist = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().ItemConfigList;
-        foreach (var item in itemlist)
-        {
-            if (itemID == 1)
-            {
-                commonStorage.Flower = commonStorage.Flower + itemNum;
-                return;
-            }
-
-            if (itemID == 2)
-            {
-                commonStorage.Item_Remove = commonStorage.Item_Remove + itemNum;
-                return;
-            }
-
-            if (itemID == 3)
-            {
-                commonStorage.Item_Recall = commonStorage.Item_Recall + itemNum;
-                return;
-            }
-
-            if (itemID == 4)
-            {
-                commonStorage.Item_Bloom = commonStorage.Item_Bloom + itemNum;
-                return;
-            }
-
-            if (itemID == 5)
-            {
-                commonStorage.Item_Life = commonStorage.Item_Life + itemNum;
-                return;
-            }
-        }
-    }
     private void on_clicked(DailyTaskConfig taskData)
     {
         if (currentTask.button_type == 1)
@@ -291,15 +250,14 @@ public class DailyTask_Hint : BaseUI
     private void reward_claim_clicked()
     {
         //设置当前任务状态
-        tile2Storage.DailyTaskCondition[tile2Storage.CurrentDailyTaskID] = 3;
+        GameConfigManager.Tile2Storage.DailyTaskCondition[GameConfigManager.Tile2Storage.CurrentDailyTaskID] = 3;
 
         //获得奖励数据
-        var commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();//获取通用存档
-        ItemGet(currentTask.Task.RewardID, currentTask.Task.RewardCount);
+        GameConfigManager.GiveItem(currentTask.Task.RewardID, currentTask.Task.RewardCount);
 
         //得奖动画
         Home.dailyTask_icon.InitDailyTask_Icon();
-        shareDataGlobalConfig._home_fly = 5;
+        GameConfigManager.ShareDataGlobalConfig._home_fly = 5;
         gameObject.SetActive(false);
         Home.home_rewarditemfly();
 
@@ -308,7 +266,7 @@ public class DailyTask_Hint : BaseUI
 
         //winstreak归零
         if (currentTask.Task.TaskType == 1)
-            tile2Storage.WinStreakCount = 0;
+            GameConfigManager.Tile2Storage.WinStreakCount = 0;
         //if (currentTask.Task.TaskType == 2)
         //    Debug.Log("找猫领奖");
 
@@ -318,14 +276,14 @@ public class DailyTask_Hint : BaseUI
 
     private void GetNextDailyTask()
     {
-        var taskList = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().DailyTaskConfigList;
-        int index = taskList.FindIndex(a => a.ID == tile2Storage.CurrentDailyTaskID);
+        var taskList = GameConfigManager.GameConfigGroup.DailyTaskConfigList;
+        int index = taskList.FindIndex(a => a.ID == GameConfigManager.Tile2Storage.CurrentDailyTaskID);
         var lastTask = taskList[taskList.Count - 1];
 
-        if (tile2Storage.CurrentDailyTaskID < lastTask.ID)
+        if (GameConfigManager.Tile2Storage.CurrentDailyTaskID < lastTask.ID)
         {
             var nextTask = taskList[index + 1];
-            tile2Storage.CurrentDailyTaskID = nextTask.ID;
+            GameConfigManager.Tile2Storage.CurrentDailyTaskID = nextTask.ID;
             InitDailyTask_Hint();
         }
         else

@@ -8,23 +8,11 @@ public class ReviveUI : WindowUI
 {
     public static new string DefaultPrefabPath = "Game/UI_Panel_revive";
     private GameUI game_ui;
-    private ShareDataGlobalConfig shareDataGlobalConfig;
-    private CommonStorage commonStorage;
-    private Tile2Storage tile2Storage;
-    private LevelStorage levelStorage;
-    private GameConfigGroup gameConfigGroup;
-    private GlobalConfig globalconfig;
 
     protected override void on_create()
     {
         Property.CommonAnimationTransform = transform.Find("Panel");
         _ui_manager.Framework.AudioManager.PlaySound("sound_level_failed");
-        shareDataGlobalConfig = _ui_manager.Framework.ShareDataManager.Data<ShareDataGlobalConfig>();
-        commonStorage = _ui_manager.Framework.StorageManager.Storage<CommonStorage>();
-        tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
-        levelStorage = _ui_manager.Framework.StorageManager.Storage<LevelStorage>();
-        gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
-        globalconfig = gameConfigGroup.GlobalConfigList[0];
 
         game_ui = _ui_manager.FindWindow<GameUI>();
         game_ui.GamePause();
@@ -34,16 +22,16 @@ public class ReviveUI : WindowUI
         register_button("Panel/Button/playout", on_rv_clicked);
 
         //停止音乐
-        _ui_manager.Framework.AudioManager.StopMusic(shareDataGlobalConfig._game_music_id);
-        _ui_manager.Framework.AudioManager.StopMusic(shareDataGlobalConfig._game_music_bloom);
+        _ui_manager.Framework.AudioManager.StopMusic(GameConfigManager.ShareDataGlobalConfig._game_music_id);
+        _ui_manager.Framework.AudioManager.StopMusic(GameConfigManager.ShareDataGlobalConfig._game_music_bloom);
 
         UIShow();
     }
 
     private void on_life_clicked()
     {
-        shareDataGlobalConfig.itemlist[0]++;
-        commonStorage.Item_Life--;
+        GameConfigManager.ShareDataGlobalConfig.itemlist[0]++;
+        GameConfigManager.CommonStorage.Item_Life--;
         PlayOut();
     }
     public void PlayOut()
@@ -53,11 +41,11 @@ public class ReviveUI : WindowUI
         Close();
 
         //复活给双倍钻石掉落buff
-        if (levelStorage.LevelCount > globalconfig.Unlock_Revive_BloomBuff)
+        if (GameConfigManager.LevelStorage.LevelCount > GameConfigManager.GlobalConfig.Unlock_Revive_BloomBuff)
         {
             game_ui.ReviveBloomMusic();
             game_ui.gameRewardItem.BloomBuff = true;
-            game_ui.gameRewardItem.BloomTimes = game_ui.gameRewardItem.BloomTimes + globalconfig.Bloom_Times_Life;
+            game_ui.gameRewardItem.BloomTimes = game_ui.gameRewardItem.BloomTimes + GameConfigManager.GlobalConfig.Bloom_Times_Life;
         }
         else
             game_ui.SetGameMusic();
@@ -72,9 +60,9 @@ public class ReviveUI : WindowUI
         play_sound("sound_panel_closing");
         Close();
         //if (tile2Storage.WinStreakCount >= 1)
-        if (shareDataGlobalConfig._is_winstreak) 
+        if (GameConfigManager.ShareDataGlobalConfig._is_winstreak) 
         {
-            shareDataGlobalConfig._winstreak_notice_type = 2;
+            GameConfigManager.ShareDataGlobalConfig._winstreak_notice_type = 2;
             _ui_manager.OpenWindow<DailyTask_NoticeUI_WinStreak>();
         }
         else
@@ -95,10 +83,10 @@ public class ReviveUI : WindowUI
         var textitem_2 = find_component<Text>("Panel/Picture/reward_2/Text_2");
         var game_ui = _ui_manager.FindWindow<GameUI>();
         textitem_1.text = "x3";
-        textitem_2.text = "+" + globalconfig.Bloom_Times_Life.ToString();
+        textitem_2.text = "+" + GameConfigManager.GlobalConfig.Bloom_Times_Life.ToString();
 
         //前3关不显示bloom
-        if(levelStorage.LevelCount > 3)
+        if(GameConfigManager.LevelStorage.LevelCount > 3)
         {
             item_1.SetActive(true);
             item_2.SetActive(true);
@@ -116,7 +104,7 @@ public class ReviveUI : WindowUI
         playon.SetActive(false);
         playout.SetActive(false);
 
-        if (commonStorage.Item_Life >= 1)
+        if (GameConfigManager.CommonStorage.Item_Life >= 1)
             playon.SetActive(true);
         else
             playout.SetActive(true);
@@ -125,6 +113,6 @@ public class ReviveUI : WindowUI
     {
         //金币栏显示
         var Revive_Num = find_component<Text>("ItemBar/Text");
-        Revive_Num.text = commonStorage.Item_Life.ToString();
+        Revive_Num.text = GameConfigManager.CommonStorage.Item_Life.ToString();
     }
 }
