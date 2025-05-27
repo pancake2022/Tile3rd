@@ -28,7 +28,7 @@ public class HomeUI : WindowUI
     public SignIcon signIcon;
     public PopUI popUI;
 
-    public M3Panel currentPanel;
+    //public M3Panel currentPanel;
     public BundleConfig currentBundle;
 
     protected override void on_create()
@@ -41,6 +41,14 @@ public class HomeUI : WindowUI
 
         //测试按钮
         register_button("Panel/UI_Pop_Icon/UI_Right/item_test", on_icon_test_clicked);
+
+        foreach (var kv in GameConfigManager.LevelStorage.GameLevel_Condition)
+        {
+            var ID = kv.Key;
+            var isCompleted = kv.Value;
+
+            Debug.Log($"关卡ID: {ID}, 完成状态: {isCompleted}");
+        }
     }
 
     protected override void on_open()
@@ -56,7 +64,7 @@ public class HomeUI : WindowUI
         GoogleRevivew();
         SystemUnlock();
         PopUIInit();
-        CreatePanel();
+        //CreatePanel();
         SignInit();
     }
     private void Update()
@@ -91,24 +99,6 @@ public class HomeUI : WindowUI
     private void PopUIInit()
     {
         popUI = create_ui<PopUI>("Panel").Init(this);
-    }
-    //创建关卡
-    private void CreatePanel()
-    {
-        CSFramework.LevelConfig current_levelconfig = TileUtils.GetCurrentLevelConfig(GameConfigManager.LevelStorage.CurrentLevel, _ui_manager.Framework.ConfigManager);
-        var panel_config_ta = _ui_manager.Framework.ResourcesManager.LoadResource<TextAsset>($"{M3Const.M3PanelConfigPath}/{current_levelconfig.PanelID}");
-        if (panel_config_ta != null)
-        {
-            try
-            {
-                currentPanel = JsonUtility.FromJson<M3Panel>(panel_config_ta.text);
-                GameConfigManager.LevelStorage.CurrentPanel = currentPanel;
-            }
-            catch (Exception e)
-            {
-                CSFramework.Logger.Error(e);
-            }
-        }
     }
     //挂play按钮
     private void PlayUIInit()

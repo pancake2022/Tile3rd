@@ -46,6 +46,7 @@ public class LevelwinUI : WindowUI
     }
     private void LevelInit()
     {
+        GetNextGameLevel();
         GetNextLevel();
         LevelChestProcess();
         winStreak();
@@ -191,5 +192,16 @@ public class LevelwinUI : WindowUI
         {
             GameConfigManager.GlobalConfig.Interstitial_CD_Initial++;
         }
+    }
+    //获得下一个GameLevel
+    private void GetNextGameLevel()
+    {
+        //var all_gamelevel = GameConfigManager.GameConfigGroup.GameLevelConfigList;
+        //var nextlevel = all_gamelevel.Find(a => a.Type == 1 && a.ID == GameConfigManager.LevelStorage.Current_GameLevel.ID + 1);
+        //GameConfigManager.LevelStorage.Current_GameLevel = nextlevel;
+
+        //需要判断达到最大值的情况
+        //当前gamelevel状态设置为true
+        GameConfigManager.LevelStorage.GameLevel_Condition[GameConfigManager.LevelStorage.Current_GameLevel.ID] = true;
     }
 }

@@ -112,7 +112,7 @@ namespace CSFramework
             {
                 var json_value = json_obj[item.Key];
                 if (json_value != null)
-                    JsonConvert.PopulateObject(json_value.ToString(), item.Value, setting);
+                JsonConvert.PopulateObject(json_value.ToString(), item.Value, setting);
             }
         }
 

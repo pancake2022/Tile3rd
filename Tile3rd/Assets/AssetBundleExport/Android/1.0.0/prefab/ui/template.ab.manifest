@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 922797719
+CRC: 3013448082
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d524c8693a9646299318fac15d62937a
+    Hash: 31f2cefc068db885aed85f67e2690afc
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 6285c2f98018d1b2cdb050082b1332a1
+    Hash: 82cda70383d6fa650d95434bc2e26c33
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: d524c8693a9646299318fac15d62937a
+    Hash: 31f2cefc068db885aed85f67e2690afc
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -29,9 +29,9 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
 - Class: 114
@@ -79,15 +79,18 @@ SerializeReferenceClassIdentifiers:
   ClassName: UnityEngine.UI.Toggle/ToggleEvent
 Assets:
 - Assets/ExtraResources/Prefab/UI/Template/StoryTemplate.prefab
+- Assets/ExtraResources/Prefab/UI/Template/TestTemplate.prefab
 - Assets/ExtraResources/Prefab/UI/Template/SignTemplate_small.prefab
 - Assets/ExtraResources/Prefab/UI/Template/SignIconTemplate.prefab
+- Assets/ExtraResources/Prefab/UI/Template/CustomerTemplate.prefab
+- Assets/ExtraResources/Prefab/UI/Template/OrderTemplate_1.prefab
 - Assets/ExtraResources/Prefab/UI/Template/SignFlyTip.prefab
 - Assets/ExtraResources/Prefab/UI/Template/CollectionTemplate.prefab
 - Assets/ExtraResources/Prefab/UI/Template/CommingSoon.prefab
+- Assets/ExtraResources/Prefab/UI/Template/OrderTemplate_3.prefab
 - Assets/ExtraResources/Prefab/UI/Template/SignTemplate_big.prefab
-- Assets/ExtraResources/Prefab/UI/Template/OrderTemplate.prefab
+- Assets/ExtraResources/Prefab/UI/Template/OrderTemplate_2.prefab
 - Assets/ExtraResources/Prefab/UI/Template/SignFlower.prefab
-- Assets/ExtraResources/Prefab/UI/Template/CustomerTemplate.prefab
 - Assets/ExtraResources/Prefab/UI/Template/CustomTemplate.prefab
 Dependencies:
 - /Users/rancui/Documents/GitHub/Tile3rd/Tile3rd/Assets/AssetBundleExport/Android/1.0.0/prefab/ui/animator.ab

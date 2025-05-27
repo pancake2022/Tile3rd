@@ -8,6 +8,7 @@ public class VersionUpdate : BaseUI
 {
     public LoginUI loginUI;
     private Tile2Storage tile2Storage;
+    private LevelStorage levelStorage;
     private MakeOverStorage makeoverStorage;
     private GameConfigGroup gameConfigGroup;
     private GlobalConfig globalConfig;
@@ -20,6 +21,7 @@ public class VersionUpdate : BaseUI
     protected override void on_create()
     {
         tile2Storage = _ui_manager.Framework.StorageManager.Storage<Tile2Storage>();
+        levelStorage = _ui_manager.Framework.StorageManager.Storage<LevelStorage>();
         makeoverStorage = _ui_manager.Framework.StorageManager.Storage<MakeOverStorage>();
         gameConfigGroup = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>();
         globalConfig = gameConfigGroup.GlobalConfigList[0];
@@ -44,6 +46,9 @@ public class VersionUpdate : BaseUI
             startsigncondition();
             startsignCD();
             startsignlevelCD();
+            gamelevelcondition();
+            //customercondition();
+            //ordercondition();
             //Test();
 
             if (makeoverStorage.StoryCondition[globalConfig.Story_Num_Last] >= 2)
@@ -191,4 +196,31 @@ public class VersionUpdate : BaseUI
                 tile2Storage.SignLevelCD.Add(sign.ID, 0);
         }
     }
+    private void gamelevelcondition()
+    {
+        var all_gamelevel = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().GameLevelConfigList;
+        foreach (var gamelevel in all_gamelevel)
+        {
+            if (!levelStorage.GameLevel_Condition.ContainsKey(gamelevel.ID))
+                levelStorage.GameLevel_Condition.Add(gamelevel.ID, false);
+        }
+    }
+    //private void customercondition()
+    //{
+    //    var all_customer = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().CustomerConfigList;
+    //    foreach (var customer in all_customer)
+    //    {
+    //        if (!levelStorage.Customer_Condition.ContainsKey(customer.ID))
+    //            levelStorage.Customer_Condition.Add(customer.ID, 0);
+    //    }
+    //}
+    //private void ordercondition()
+    //{
+    //    var all_order = _ui_manager.Framework.ConfigManager.SingleConfigGroup<GameConfigGroup>().CustomerOrderConfigList;
+    //    foreach (var order in all_order)
+    //    {
+    //        if (!levelStorage.Order_Condition.ContainsKey(order.ID))
+    //            levelStorage.Order_Condition.Add(order.ID, 0);
+    //    }
+    //}
 }

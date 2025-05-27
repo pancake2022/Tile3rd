@@ -25,14 +25,16 @@ public class GameUI : WindowUI
     public int totalCell;
     public bool isPause;
 
-    public GameCustom gameCustom;
+    public GameLevel gameLevel;
 
     protected override void on_create()
     {
         //var home_ui = _ui_manager.FindWindow<HomeUI>();
         Property.CommonAnimationTransform = transform.Find("Panel");
         var all_level = GameConfigManager.GameConfigGroup.LevelConfigList;
-        level = all_level.Find(a => a.PanelID == GameConfigManager.LevelStorage.CurrentPanel.ID);
+        //level = all_level.Find(a => a.PanelID == GameConfigManager.LevelStorage.CurrentPanel.ID);
+        level = all_level.Find(a => a.ID == GameConfigManager.LevelStorage.CurrentLevel);
+        Debug.Log("level:" + level.ID);
         GameActiveDelay();
 
         //创建游戏布局
@@ -55,7 +57,6 @@ public class GameUI : WindowUI
         register_button("Panel/Setting/Button", on_setting_clicked);
         register_button("Panel/LevelWin", on_win_clicked);
         register_button("Panel/TestButton", on_test_clicked);
-        register_button("Panel/TestButton2", on_test2_clicked);
 
         SetGameMusic();
         TileRandomShowInit();
@@ -72,7 +73,7 @@ public class GameUI : WindowUI
         gameGuideUI = create_ui<GameGuideUI>("Panel/Guide");
 
         //挂顾客系统
-        gameCustom = create_ui<GameCustom>("Template/CustomTemplate", "Panel/Custom").Init(this);
+        gameLevel = create_ui<GameLevel>("Template/CustomTemplate", "Panel/Custom").Init(this);
 
         //var _prop_rt = find_component<RectTransform>("Panel/Game_PropsFly");
         //gamePropsFly = create_ui<GamePropsFly>("Game/Game_PropsFly", _prop_rt).Init(this);
@@ -287,7 +288,7 @@ public class GameUI : WindowUI
 
         //打印cell.type
         //Debug.Log("当前牌的type" + _panel_ui.CollectionUI.currentCellType);
-        gameCustom.FinishOrder();
+        gameLevel.FinishOrder();
     }
     //回调collect
     private void Collect()
@@ -298,7 +299,7 @@ public class GameUI : WindowUI
         LevelType_TileChange();
 
         //收集2次出现customer2，收集5次出
-        gameCustom.Collect();
+        //gameCustom.Collect();
     }
     //win按钮
     private void on_win_clicked()
@@ -330,15 +331,6 @@ public class GameUI : WindowUI
         Init(_panel_ui.Panel);
 
         _panel_ui.RetryReset();
-        _panel_ui.SetCellType(1);
-        Init(_panel_ui.Panel);
-    }
-    //test按钮
-    private void on_test2_clicked()
-    {
-        //_panel_ui.RetryReset();
-        //ResetPanel();
-        Init(_panel_ui.Panel);
         _panel_ui.SetCellType(1);
         Init(_panel_ui.Panel);
     }

@@ -6,10 +6,13 @@ namespace CSFramework
     public class GameConfigGroup : ConfigGroup
     {
         public List<GlobalConfig> GlobalConfigList; // Global 
-        public List<DailyTaskChainConfig> DailyTaskChainConfigList; // DailyTaskChain 
-        public List<OrderChainConfig> OrderChainConfigList; // OrderChain 
-        public List<DailyTaskConfig> DailyTaskConfigList; // DailyTask 
+        public List<GameLevelConfig> GameLevelConfigList; // GameLevel 
+        public List<CustomerConfig> CustomerConfigList; // Customer 
+        public List<CustomerOrderConfig> CustomerOrderConfigList; // CustomerOrder 
+        public List<PanelConfig> PanelConfigList; // Panel 
         public List<LevelConfig> LevelConfigList; // Level 
+        public List<DailyTaskChainConfig> DailyTaskChainConfigList; // DailyTaskChain 
+        public List<DailyTaskConfig> DailyTaskConfigList; // DailyTask 
         public List<ShopConfig> ShopConfigList; // Shop 
         public List<SignConfig> SignConfigList; // Sign 
         public List<BundleConfig> BundleConfigList; // Bundle 

@@ -51,263 +51,2170 @@
       "Shop_CD": 7200
     }
   ],
-  "DailyTaskChain": [
+  "GameLevel": [
     {
-      "ChainList": [
+      "BgImage": "bg_301",
+      "BgPack": "M3BackStory",
+      "CustomerList": [
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "CustomerShowType": 1,
+      "Desc": "关卡1",
+      "ID": 1,
+      "PanelID": 2024001,
+      "RefreshPanelList": [
+        2024001,
+        2024002,
+        2024003
+      ],
+      "SCustomerList": [
+        0
+      ],
+      "Type": 1
+    },
+    {
+      "BgImage": "TileBG_3",
+      "BgPack": "M3MakeOver",
+      "CustomerList": [
+        201,
+        202,
+        203,
+        204,
+        205
+      ],
+      "CustomerShowType": 1,
+      "Desc": "关卡2",
+      "ID": 2,
+      "PanelID": 2024002,
+      "RefreshPanelList": [
+        2024001,
+        2024002,
+        2024003
+      ],
+      "SCustomerList": [
+        0
+      ],
+      "Type": 1
+    },
+    {
+      "BgImage": "TileBG_2",
+      "BgPack": "M3MakeOver",
+      "CustomerList": [
+        301,
+        302,
+        303,
+        304,
+        305
+      ],
+      "CustomerShowType": 1,
+      "Desc": "关卡3",
+      "ID": 3,
+      "PanelID": 2024003,
+      "RefreshPanelList": [
+        2024001,
+        2024002,
+        2024003
+      ],
+      "SCustomerList": [
+        100001
+      ],
+      "Type": 1
+    }
+  ],
+  "Customer": [
+    {
+      "ID": 101,
+      "Image": "04_8",
+      "Like": 1,
+      "OrderList": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "Pack": "M3MakeOver",
+      "RewardID": [
+        0
+      ],
+      "Type": 0,
+      "Unlock": [
+        0
+      ]
+    },
+    {
+      "ID": 102,
+      "Image": "04_10",
+      "Like": 1,
+      "OrderList": [
+        2
+      ],
+      "Pack": "M3MakeOver",
+      "RewardID": [
+        0
+      ],
+      "Type": 1,
+      "Unlock": [
+        101
+      ]
+    },
+    {
+      "ID": 103,
+      "Image": "04_6",
+      "Like": 1,
+      "OrderList": [
+        3
+      ],
+      "Pack": "M3MakeOver",
+      "RewardID": [
+        0
+      ],
+      "Type": 1,
+      "Unlock": [
+        102
+      ]
+    },
+    {
+      "ID": 104,
+      "Image": "101_4",
+      "Like": 1,
+      "OrderList": [
         1,
         2
       ],
-      "ID": 1,
-      "MakeOverImageID": 5,
-      "StoryID": 1,
-      "UnlockCD": 0,
-      "UnlockTouchID": 3
-    },
-    {
-      "ChainList": [
-        101,
-        102,
+      "Pack": "M3MakeOver",
+      "RewardID": [
+        0
+      ],
+      "Type": 1,
+      "Unlock": [
         103
+      ]
+    },
+    {
+      "ID": 105,
+      "Image": "02_8",
+      "Like": 1,
+      "OrderList": [
+        2,
+        3
       ],
-      "ID": 2,
-      "MakeOverImageID": 219,
-      "StoryID": 2,
-      "UnlockCD": 60,
-      "UnlockTouchID": 206
-    },
-    {
-      "ChainList": [
-        301,
-        302,
-        303
+      "Pack": "M3MakeOver",
+      "RewardID": [
+        0
       ],
-      "ID": 3,
-      "MakeOverImageID": 324,
-      "StoryID": 3,
-      "UnlockCD": 60,
-      "UnlockTouchID": 307
+      "Type": 1,
+      "Unlock": [
+        103
+      ]
     },
     {
-      "ChainList": [
-        401,
-        402,
-        403
+      "ID": 201,
+      "Image": "02_6",
+      "Like": 1,
+      "OrderList": [
+        4
       ],
-      "ID": 4,
-      "MakeOverImageID": 413,
-      "StoryID": 4,
-      "UnlockCD": 60,
-      "UnlockTouchID": 404
-    },
-    {
-      "ChainList": [
-        501,
-        502,
-        503
+      "Pack": "M3MakeOver",
+      "RewardID": [
+        0
       ],
-      "ID": 5,
-      "MakeOverImageID": 520,
-      "StoryID": 5,
-      "UnlockCD": 60,
-      "UnlockTouchID": 504
+      "Type": 0,
+      "Unlock": [
+        0
+      ]
     },
     {
-      "ChainList": [
-        511,
-        512,
-        513
+      "ID": 202,
+      "Image": "04_8",
+      "Like": 1,
+      "OrderList": [
+        4,
+        1
       ],
-      "ID": 6,
-      "MakeOverImageID": 521,
-      "StoryID": 5,
-      "UnlockCD": 60,
-      "UnlockTouchID": 506
-    }
-  ],
-  "OrderChain": [
-    {
-      "Desc": "测试用1",
-      "ID": 1
+      "Pack": "M3MakeOver",
+      "RewardID": [
+        0
+      ],
+      "Type": 1,
+      "Unlock": [
+        201
+      ]
     },
     {
-      "Desc": "测试用2",
-      "ID": 2
+      "ID": 203,
+      "Image": "04_10",
+      "Like": 1,
+      "OrderList": [
+        4,
+        5,
+        6
+      ],
+      "Pack": "M3MakeOver",
+      "RewardID": [
+        0
+      ],
+      "Type": 1,
+      "Unlock": [
+        201
+      ]
     },
     {
-      "Desc": "测试用3",
-      "ID": 3
-    }
-  ],
-  "DailyTask": [
-    {
-      "FindCatPrefab": "0",
-      "ID": 1,
-      "RewardCount": 100,
-      "RewardID": 1,
-      "RewardType": 1,
-      "TaskChain": 1,
-      "TaskCount": 2,
-      "TaskType": 1
+      "ID": 204,
+      "Image": "04_6",
+      "Like": 1,
+      "OrderList": [
+        5,
+        6,
+        7
+      ],
+      "Pack": "M3MakeOver",
+      "RewardID": [
+        0
+      ],
+      "Type": 1,
+      "Unlock": [
+        202,
+        203
+      ]
     },
     {
-      "FindCatPrefab": "0",
-      "ID": 2,
-      "RewardCount": 3,
-      "RewardID": 4,
-      "RewardType": 1,
-      "TaskChain": 1,
-      "TaskCount": 3,
-      "TaskType": 1
+      "ID": 205,
+      "Image": "101_4",
+      "Like": 1,
+      "OrderList": [
+        2,
+        2,
+        5
+      ],
+      "Pack": "M3MakeOver",
+      "RewardID": [
+        0
+      ],
+      "Type": 1,
+      "Unlock": [
+        202,
+        203
+      ]
     },
     {
-      "FindCatPrefab": "0",
-      "ID": 101,
-      "RewardCount": 2,
-      "RewardID": 2,
-      "RewardType": 1,
-      "TaskChain": 2,
-      "TaskCount": 2,
-      "TaskType": 1
-    },
-    {
-      "FindCatPrefab": "0",
-      "ID": 102,
-      "RewardCount": 200,
-      "RewardID": 1,
-      "RewardType": 1,
-      "TaskChain": 2,
-      "TaskCount": 3,
-      "TaskType": 1
-    },
-    {
-      "FindCatPrefab": "0",
-      "ID": 103,
-      "RewardCount": 3,
-      "RewardID": 4,
-      "RewardType": 1,
-      "TaskChain": 2,
-      "TaskCount": 3,
-      "TaskType": 1
-    },
-    {
-      "FindCatPrefab": "FindCat_1",
       "ID": 301,
-      "RewardCount": 150,
-      "RewardID": 1,
-      "RewardType": 1,
-      "TaskChain": 3,
-      "TaskCount": 1,
-      "TaskType": 2
+      "Image": "02_8",
+      "Like": 1,
+      "OrderList": [
+        3,
+        4,
+        5
+      ],
+      "Pack": "M3MakeOver",
+      "RewardID": [
+        0
+      ],
+      "Type": 0,
+      "Unlock": [
+        0
+      ]
     },
     {
-      "FindCatPrefab": "0",
       "ID": 302,
-      "RewardCount": 2,
-      "RewardID": 3,
-      "RewardType": 1,
-      "TaskChain": 3,
-      "TaskCount": 3,
-      "TaskType": 1
+      "Image": "02_6",
+      "Like": 1,
+      "OrderList": [
+        6,
+        7,
+        8
+      ],
+      "Pack": "M3MakeOver",
+      "RewardID": [
+        0
+      ],
+      "Type": 1,
+      "Unlock": [
+        301
+      ]
     },
     {
-      "FindCatPrefab": "0",
       "ID": 303,
-      "RewardCount": 2,
-      "RewardID": 2,
-      "RewardType": 1,
-      "TaskChain": 3,
-      "TaskCount": 3,
-      "TaskType": 1
+      "Image": "04_8",
+      "Like": 1,
+      "OrderList": [
+        1,
+        2,
+        3
+      ],
+      "Pack": "M3MakeOver",
+      "RewardID": [
+        0
+      ],
+      "Type": 1,
+      "Unlock": [
+        301
+      ]
     },
     {
-      "FindCatPrefab": "FindCat_4",
-      "ID": 401,
-      "RewardCount": 200,
-      "RewardID": 1,
-      "RewardType": 1,
-      "TaskChain": 4,
-      "TaskCount": 1,
-      "TaskType": 2
+      "ID": 304,
+      "Image": "04_10",
+      "Like": 1,
+      "OrderList": [
+        4,
+        5,
+        6
+      ],
+      "Pack": "M3MakeOver",
+      "RewardID": [
+        0
+      ],
+      "Type": 1,
+      "Unlock": [
+        301
+      ]
     },
     {
-      "FindCatPrefab": "0",
-      "ID": 402,
-      "RewardCount": 3,
-      "RewardID": 4,
-      "RewardType": 1,
-      "TaskChain": 4,
-      "TaskCount": 3,
-      "TaskType": 1
+      "ID": 305,
+      "Image": "04_6",
+      "Like": 1,
+      "OrderList": [
+        2,
+        4,
+        8
+      ],
+      "Pack": "M3MakeOver",
+      "RewardID": [
+        0
+      ],
+      "Type": 1,
+      "Unlock": [
+        301
+      ]
     },
     {
-      "FindCatPrefab": "0",
-      "ID": 403,
-      "RewardCount": 200,
-      "RewardID": 1,
-      "RewardType": 1,
-      "TaskChain": 4,
-      "TaskCount": 3,
-      "TaskType": 1
+      "ID": 100001,
+      "Image": "icon_game_life",
+      "Like": 1,
+      "OrderList": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "Pack": "M3Reward",
+      "RewardID": [
+        5
+      ],
+      "Type": 2,
+      "Unlock": [
+        0
+      ]
+    }
+  ],
+  "CustomerOrder": [
+    {
+      "Desc": "普通",
+      "ID": 1,
+      "Image": "e01",
+      "Num": 1,
+      "Pack": "M3Tile01",
+      "Reward": 100,
+      "Type": 1
     },
     {
-      "FindCatPrefab": "FindCat_3",
-      "ID": 501,
-      "RewardCount": 200,
-      "RewardID": 1,
-      "RewardType": 1,
-      "TaskChain": 5,
-      "TaskCount": 1,
-      "TaskType": 2
+      "Desc": "普通",
+      "ID": 2,
+      "Image": "e02",
+      "Num": 1,
+      "Pack": "M3Tile01",
+      "Reward": 200,
+      "Type": 1
     },
     {
-      "FindCatPrefab": "0",
-      "ID": 502,
-      "RewardCount": 3,
-      "RewardID": 4,
-      "RewardType": 1,
-      "TaskChain": 5,
-      "TaskCount": 2,
-      "TaskType": 1
+      "Desc": "普通",
+      "ID": 3,
+      "Image": "e03",
+      "Num": 1,
+      "Pack": "M3Tile01",
+      "Reward": 300,
+      "Type": 1
     },
     {
-      "FindCatPrefab": "0",
-      "ID": 503,
-      "RewardCount": 2,
-      "RewardID": 2,
-      "RewardType": 1,
-      "TaskChain": 5,
-      "TaskCount": 2,
-      "TaskType": 1
+      "Desc": "普通",
+      "ID": 4,
+      "Image": "e04",
+      "Num": 1,
+      "Pack": "M3Tile01",
+      "Reward": 400,
+      "Type": 1
     },
     {
-      "FindCatPrefab": "FindCat_2",
-      "ID": 511,
-      "RewardCount": 300,
-      "RewardID": 1,
-      "RewardType": 1,
-      "TaskChain": 6,
-      "TaskCount": 1,
-      "TaskType": 2
+      "Desc": "普通",
+      "ID": 5,
+      "Image": "e05",
+      "Num": 1,
+      "Pack": "M3Tile01",
+      "Reward": 500,
+      "Type": 1
     },
     {
-      "FindCatPrefab": "0",
-      "ID": 512,
-      "RewardCount": 2,
-      "RewardID": 3,
-      "RewardType": 1,
-      "TaskChain": 6,
-      "TaskCount": 3,
-      "TaskType": 1
+      "Desc": "普通",
+      "ID": 6,
+      "Image": "e06",
+      "Num": 1,
+      "Pack": "M3Tile01",
+      "Reward": 600,
+      "Type": 1
     },
     {
-      "FindCatPrefab": "0",
-      "ID": 513,
-      "RewardCount": 3,
-      "RewardID": 4,
-      "RewardType": 1,
-      "TaskChain": 6,
-      "TaskCount": 3,
-      "TaskType": 1
+      "Desc": "普通",
+      "ID": 7,
+      "Image": "e07",
+      "Num": 1,
+      "Pack": "M3Tile01",
+      "Reward": 700,
+      "Type": 1
+    },
+    {
+      "Desc": "普通",
+      "ID": 8,
+      "Image": "e08",
+      "Num": 1,
+      "Pack": "M3Tile01",
+      "Reward": 800,
+      "Type": 1
+    },
+    {
+      "Desc": "普通",
+      "ID": 9,
+      "Image": "e09",
+      "Num": 1,
+      "Pack": "M3Tile01",
+      "Reward": 900,
+      "Type": 1
+    },
+    {
+      "Desc": "普通",
+      "ID": 10,
+      "Image": "e10",
+      "Num": 1,
+      "Pack": "M3Tile01",
+      "Reward": 1000,
+      "Type": 1
+    },
+    {
+      "Desc": "普通",
+      "ID": 11,
+      "Image": "e11",
+      "Num": 1,
+      "Pack": "M3Tile01",
+      "Reward": 1100,
+      "Type": 1
+    },
+    {
+      "Desc": "普通",
+      "ID": 12,
+      "Image": "e12",
+      "Num": 1,
+      "Pack": "M3Tile01",
+      "Reward": 1200,
+      "Type": 1
+    },
+    {
+      "Desc": "普通",
+      "ID": 13,
+      "Image": "e13",
+      "Num": 1,
+      "Pack": "M3Tile01",
+      "Reward": 1300,
+      "Type": 1
+    },
+    {
+      "Desc": "普通",
+      "ID": 14,
+      "Image": "e14",
+      "Num": 1,
+      "Pack": "M3Tile01",
+      "Reward": 1400,
+      "Type": 1
+    },
+    {
+      "Desc": "普通",
+      "ID": 15,
+      "Image": "e15",
+      "Num": 1,
+      "Pack": "M3Tile01",
+      "Reward": 1500,
+      "Type": 1
+    },
+    {
+      "Desc": "大单",
+      "ID": 1001,
+      "Image": "e01",
+      "Num": 3,
+      "Pack": "M3Tile01",
+      "Reward": 100,
+      "Type": 2
+    },
+    {
+      "Desc": "大单",
+      "ID": 1002,
+      "Image": "e02",
+      "Num": 3,
+      "Pack": "M3Tile01",
+      "Reward": 200,
+      "Type": 2
+    }
+  ],
+  "Panel": [
+    {
+      "PadRect": 0,
+      "PadScale": 1.4,
+      "PanelID": 2024001,
+      "PanelRect": 0,
+      "PanelScale": 1.7,
+      "Type": 0
+    },
+    {
+      "PadRect": 50,
+      "PadScale": 1.3,
+      "PanelID": 2024002,
+      "PanelRect": 50,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.3,
+      "PanelID": 2024003,
+      "PanelRect": 0,
+      "PanelScale": 1.6,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.2,
+      "PanelID": 2024004,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.2,
+      "PanelID": 2024006,
+      "PanelRect": 0,
+      "PanelScale": 1.7,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024008,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024007,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.2,
+      "PanelID": 2024009,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.2,
+      "PanelID": 2024005,
+      "PanelRect": 0,
+      "PanelScale": 1.7,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.2,
+      "PanelID": 2024011,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.2,
+      "PanelID": 2024010,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024013,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024012,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024014,
+      "PanelRect": 0,
+      "PanelScale": 1.5,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024015,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024016,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.2,
+      "PanelID": 2024017,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024018,
+      "PanelRect": 0,
+      "PanelScale": 1.5,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024019,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024020,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024021,
+      "PanelRect": 40,
+      "PanelScale": 1.45,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024022,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.2,
+      "PanelID": 2024023,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.2,
+      "PanelID": 2024024,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024025,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024026,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024027,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.2,
+      "PanelID": 2024028,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.2,
+      "PanelID": 2024029,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024030,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024031,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024032,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024033,
+      "PanelRect": 40,
+      "PanelScale": 1.45,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024034,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024035,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024036,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024037,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024038,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024039,
+      "PanelRect": 50,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024040,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024041,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024042,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024043,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024044,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024045,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.1,
+      "PanelID": 2024046,
+      "PanelRect": 30,
+      "PanelScale": 1.55,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024047,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024048,
+      "PanelRect": 0,
+      "PanelScale": 1.4,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.1,
+      "PanelID": 2024049,
+      "PanelRect": 40,
+      "PanelScale": 1.45,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024050,
+      "PanelRect": 0,
+      "PanelScale": 1.45,
+      "Type": 1
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024901,
+      "PanelRect": 0,
+      "PanelScale": 1.7,
+      "Type": 0
+    },
+    {
+      "PadRect": 40,
+      "PadScale": 1.0,
+      "PanelID": 2024902,
+      "PanelRect": 40,
+      "PanelScale": 1.5,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024999,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 40,
+      "PadScale": 1.0,
+      "PanelID": 2024902,
+      "PanelRect": 40,
+      "PanelScale": 1.5,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.0,
+      "PanelID": 2024999,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 362,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 363,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 364,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 366,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 369,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 373,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 378,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 384,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 390,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 397,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 39,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 278,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 281,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 60,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 122,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 286,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 136,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 141,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 147,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 154,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 566,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 567,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 571,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 573,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 574,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 577,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 580,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 590,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 591,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 593,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 599,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 219,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 223,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 233,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 237,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 235,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 238,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 249,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 241,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 253,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 256,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 258,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 260,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 259,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 262,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 277,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 283,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 287,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 292,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 296,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 300,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 341,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 313,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 321,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 322,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 310,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 345,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 352,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 354,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 359,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 5,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 119,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 54,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 55,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 52,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 250,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 255,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 59,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 270,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 265,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 399,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 400,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 407,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 409,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 410,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 415,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 421,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 426,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 433,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 437,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 175,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 173,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 157,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 181,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 189,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 199,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 195,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 196,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 215,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 205,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 229,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 438,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 442,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 445,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 452,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 465,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 477,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 510,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 531,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 553,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 729,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 28,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 120,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 121,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 34,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 36,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 155,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 35,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 178,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 66,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 76,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 78,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 80,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 82,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 86,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 93,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 97,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 274,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 8001,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 741,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 362,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 363,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 364,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 366,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 369,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 373,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 378,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 384,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 390,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 397,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 39,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 278,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 281,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 60,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 122,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 286,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 136,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 141,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 147,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 154,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 566,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 567,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 571,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 573,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 574,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 577,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 580,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 590,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 591,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 593,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
+    },
+    {
+      "PadRect": 0,
+      "PadScale": 1.55,
+      "PanelID": 196,
+      "PanelRect": 0,
+      "PanelScale": 1.55,
+      "Type": 0
     }
   ],
   "Level": [
@@ -2164,6 +4071,251 @@
       "PanelRect": 0,
       "PanelScale": 1.55,
       "Type": 0
+    }
+  ],
+  "DailyTaskChain": [
+    {
+      "ChainList": [
+        1,
+        2
+      ],
+      "ID": 1,
+      "MakeOverImageID": 5,
+      "StoryID": 1,
+      "UnlockCD": 0,
+      "UnlockTouchID": 3
+    },
+    {
+      "ChainList": [
+        101,
+        102,
+        103
+      ],
+      "ID": 2,
+      "MakeOverImageID": 219,
+      "StoryID": 2,
+      "UnlockCD": 60,
+      "UnlockTouchID": 206
+    },
+    {
+      "ChainList": [
+        301,
+        302,
+        303
+      ],
+      "ID": 3,
+      "MakeOverImageID": 324,
+      "StoryID": 3,
+      "UnlockCD": 60,
+      "UnlockTouchID": 307
+    },
+    {
+      "ChainList": [
+        401,
+        402,
+        403
+      ],
+      "ID": 4,
+      "MakeOverImageID": 413,
+      "StoryID": 4,
+      "UnlockCD": 60,
+      "UnlockTouchID": 404
+    },
+    {
+      "ChainList": [
+        501,
+        502,
+        503
+      ],
+      "ID": 5,
+      "MakeOverImageID": 520,
+      "StoryID": 5,
+      "UnlockCD": 60,
+      "UnlockTouchID": 504
+    },
+    {
+      "ChainList": [
+        511,
+        512,
+        513
+      ],
+      "ID": 6,
+      "MakeOverImageID": 521,
+      "StoryID": 5,
+      "UnlockCD": 60,
+      "UnlockTouchID": 506
+    }
+  ],
+  "DailyTask": [
+    {
+      "FindCatPrefab": "0",
+      "ID": 1,
+      "RewardCount": 100,
+      "RewardID": 1,
+      "RewardType": 1,
+      "TaskChain": 1,
+      "TaskCount": 2,
+      "TaskType": 1
+    },
+    {
+      "FindCatPrefab": "0",
+      "ID": 2,
+      "RewardCount": 3,
+      "RewardID": 4,
+      "RewardType": 1,
+      "TaskChain": 1,
+      "TaskCount": 3,
+      "TaskType": 1
+    },
+    {
+      "FindCatPrefab": "0",
+      "ID": 101,
+      "RewardCount": 2,
+      "RewardID": 2,
+      "RewardType": 1,
+      "TaskChain": 2,
+      "TaskCount": 2,
+      "TaskType": 1
+    },
+    {
+      "FindCatPrefab": "0",
+      "ID": 102,
+      "RewardCount": 200,
+      "RewardID": 1,
+      "RewardType": 1,
+      "TaskChain": 2,
+      "TaskCount": 3,
+      "TaskType": 1
+    },
+    {
+      "FindCatPrefab": "0",
+      "ID": 103,
+      "RewardCount": 3,
+      "RewardID": 4,
+      "RewardType": 1,
+      "TaskChain": 2,
+      "TaskCount": 3,
+      "TaskType": 1
+    },
+    {
+      "FindCatPrefab": "FindCat_1",
+      "ID": 301,
+      "RewardCount": 150,
+      "RewardID": 1,
+      "RewardType": 1,
+      "TaskChain": 3,
+      "TaskCount": 1,
+      "TaskType": 2
+    },
+    {
+      "FindCatPrefab": "0",
+      "ID": 302,
+      "RewardCount": 2,
+      "RewardID": 3,
+      "RewardType": 1,
+      "TaskChain": 3,
+      "TaskCount": 3,
+      "TaskType": 1
+    },
+    {
+      "FindCatPrefab": "0",
+      "ID": 303,
+      "RewardCount": 2,
+      "RewardID": 2,
+      "RewardType": 1,
+      "TaskChain": 3,
+      "TaskCount": 3,
+      "TaskType": 1
+    },
+    {
+      "FindCatPrefab": "FindCat_4",
+      "ID": 401,
+      "RewardCount": 200,
+      "RewardID": 1,
+      "RewardType": 1,
+      "TaskChain": 4,
+      "TaskCount": 1,
+      "TaskType": 2
+    },
+    {
+      "FindCatPrefab": "0",
+      "ID": 402,
+      "RewardCount": 3,
+      "RewardID": 4,
+      "RewardType": 1,
+      "TaskChain": 4,
+      "TaskCount": 3,
+      "TaskType": 1
+    },
+    {
+      "FindCatPrefab": "0",
+      "ID": 403,
+      "RewardCount": 200,
+      "RewardID": 1,
+      "RewardType": 1,
+      "TaskChain": 4,
+      "TaskCount": 3,
+      "TaskType": 1
+    },
+    {
+      "FindCatPrefab": "FindCat_3",
+      "ID": 501,
+      "RewardCount": 200,
+      "RewardID": 1,
+      "RewardType": 1,
+      "TaskChain": 5,
+      "TaskCount": 1,
+      "TaskType": 2
+    },
+    {
+      "FindCatPrefab": "0",
+      "ID": 502,
+      "RewardCount": 3,
+      "RewardID": 4,
+      "RewardType": 1,
+      "TaskChain": 5,
+      "TaskCount": 2,
+      "TaskType": 1
+    },
+    {
+      "FindCatPrefab": "0",
+      "ID": 503,
+      "RewardCount": 2,
+      "RewardID": 2,
+      "RewardType": 1,
+      "TaskChain": 5,
+      "TaskCount": 2,
+      "TaskType": 1
+    },
+    {
+      "FindCatPrefab": "FindCat_2",
+      "ID": 511,
+      "RewardCount": 300,
+      "RewardID": 1,
+      "RewardType": 1,
+      "TaskChain": 6,
+      "TaskCount": 1,
+      "TaskType": 2
+    },
+    {
+      "FindCatPrefab": "0",
+      "ID": 512,
+      "RewardCount": 2,
+      "RewardID": 3,
+      "RewardType": 1,
+      "TaskChain": 6,
+      "TaskCount": 3,
+      "TaskType": 1
+    },
+    {
+      "FindCatPrefab": "0",
+      "ID": 513,
+      "RewardCount": 3,
+      "RewardID": 4,
+      "RewardType": 1,
+      "TaskChain": 6,
+      "TaskCount": 3,
+      "TaskType": 1
     }
   ],
   "Shop": [

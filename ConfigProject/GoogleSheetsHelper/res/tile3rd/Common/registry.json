@@ -60,9 +60,21 @@
           "PropertyName": "SignConfigList",
           "PropertyType": "SignConfig"
         },
-        "OrderChain": {
-          "PropertyName": "OrderChainConfigList",
-          "PropertyType": "OrderChainConfig"
+        "GameLevel": {
+          "PropertyName": "GameLevelConfigList",
+          "PropertyType": "GameLevelConfig"
+        },
+        "Customer": {
+          "PropertyName": "CustomerConfigList",
+          "PropertyType": "CustomerConfig"
+        },
+        "CustomerOrder": {
+          "PropertyName": "CustomerOrderConfigList",
+          "PropertyType": "CustomerOrderConfig"
+        },
+        "Panel": {
+          "PropertyName": "PanelConfigList",
+          "PropertyType": "PanelConfig"
         }
       },
       "LoadOnStart": true

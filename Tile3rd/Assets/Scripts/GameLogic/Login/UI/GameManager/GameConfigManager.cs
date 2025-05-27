@@ -1,5 +1,7 @@
 using UnityEngine;
 using CSFramework;
+using System.Linq;
+using System.Collections.Generic;
 
 public class GameConfigManager : WindowUI
 {
@@ -28,6 +30,7 @@ public class GameConfigManager : WindowUI
         _initialized = true;
     }
 
+    //获得道具
     public static void GiveItem(int itemID, int itemNum)
     {
         var ItemConfigList = GameConfigGroup.ItemConfigList;
@@ -54,5 +57,20 @@ public class GameConfigManager : WindowUI
                 Debug.LogWarning($"未知的 itemID: {itemID}");
                 break;
         }
+    }
+
+    //获得关卡
+    public static GameLevelConfig GetGameLevel(Dictionary<int, bool> gameLevelcondition)
+    {
+        if (gameLevelcondition == null || gameLevelcondition.Count == 0)
+            return null;
+
+        var result = gameLevelcondition
+            .Where(kv => !kv.Value)
+            .OrderBy(kv => kv.Key)
+            .FirstOrDefault();
+
+        var gamelevel = GameConfigManager.GameConfigGroup.GameLevelConfigList.Find(a => a.ID == result.Key);
+        return gamelevel;
     }
 }

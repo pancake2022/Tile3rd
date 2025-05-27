@@ -29,6 +29,7 @@ namespace CSFramework
         public int _shop_pop_cd = 5;
 
         public Dictionary<int, bool> _pop_ui = new Dictionary<int, bool>();
+        //public Dictionary<int, int> _order_condition = new Dictionary<int, int>();
 
         //public bool _is_achievebubbleshowed = false;//成就bubble是否显示
         //public int _is_oder_active = 0;//成就bubble是否显示
