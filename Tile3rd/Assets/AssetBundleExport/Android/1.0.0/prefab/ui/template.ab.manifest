@@ -1,15 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3013448082
+CRC: 1378884052
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 31f2cefc068db885aed85f67e2690afc
+    Hash: 3080aea6a234e9fc2d05261180b3b09f
   TypeTreeHash:
     serializedVersion: 2
     Hash: 82cda70383d6fa650d95434bc2e26c33
   IncrementalBuildHash:
     serializedVersion: 2
-    Hash: 31f2cefc068db885aed85f67e2690afc
+    Hash: 3080aea6a234e9fc2d05261180b3b09f
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -79,7 +79,6 @@ SerializeReferenceClassIdentifiers:
   ClassName: UnityEngine.UI.Toggle/ToggleEvent
 Assets:
 - Assets/ExtraResources/Prefab/UI/Template/StoryTemplate.prefab
-- Assets/ExtraResources/Prefab/UI/Template/TestTemplate.prefab
 - Assets/ExtraResources/Prefab/UI/Template/SignTemplate_small.prefab
 - Assets/ExtraResources/Prefab/UI/Template/SignIconTemplate.prefab
 - Assets/ExtraResources/Prefab/UI/Template/CustomerTemplate.prefab
